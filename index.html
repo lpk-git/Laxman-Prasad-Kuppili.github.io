@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal website of Laxman Prasad Kuppili - Agile delivery, AI adoption, workflow automation, and continuous improvement.">
+  <title>Laxman Prasad Kuppili | Agile, AI Adoption and Workflow Automation</title>
+  <style>
+    /* --- CSS RESET & BASE STYLES --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-navy-dark: #0a192f;
+      --color-navy: #112240;
+      --color-navy-light: #233554;
+      --color-blue-primary: #1d4ed8;
+      --color-blue-hover: #1e40af;
+      --color-blue-soft: #eff6ff;
+      --color-blue-accent: #3b82f6;
+      --color-text-main: #0f172a;
+      --color-text-muted: #334155;
+      --color-bg-page: #f8fafc;
+      --color-white: #ffffff;
+      --color-border: #e2e8f0;
+      --color-card-border: #cbd5e1;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --nav-height: 72px;
+      --max-width: 1080px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      font-family: var(--font-family);
+      line-height: 1.65;
+      color: var(--color-text-main);
+      background-color: var(--color-bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- LAYOUT UTILITIES --- */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- NAVIGATION BAR --- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(10, 25, 47, 0.05);
+      height: var(--nav-height);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .brand-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-navy-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-navy-light);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--color-blue-primary);
+      background-color: var(--color-blue-soft);
+      outline: none;
+    }
+
+    /* --- HERO / HOME SECTION --- */
+    .hero-section {
+      background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 60%, var(--color-navy-light) 100%);
+      color: var(--color-white);
+      padding: 96px 0 84px 0;
+      border-bottom: 4px solid var(--color-blue-primary);
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      border: 1px solid rgba(147, 197, 253, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      color: var(--color-white);
+    }
+
+    .hero-headline {
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #bfdbfe;
+      margin-bottom: 24px;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--color-blue-primary);
+      color: var(--color-white);
+      border: 2px solid var(--color-blue-primary);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--color-blue-hover);
+      border-color: var(--color-blue-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-white);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-white);
+      transform: translateY(-1px);
+    }
+
+    /* --- CONTENT SECTIONS --- */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-alt {
+      background-color: var(--color-white);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-blue-primary);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-navy-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .section-divider {
+      width: 56px;
+      height: 4px;
+      background-color: var(--color-blue-primary);
+      border-radius: 2px;
+      margin-top: 12px;
+    }
+
+    /* --- ABOUT SECTION --- */
+    .about-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.04);
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-text:last-child {
+      margin-bottom: 0;
+    }
+
+    /* --- AREAS OF INTEREST SECTION --- */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .interest-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 30px 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      border-color: var(--color-blue-accent);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      background-color: var(--color-blue-soft);
+      color: var(--color-blue-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .card-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-navy-dark);
+      margin-bottom: 12px;
+    }
+
+    .card-description {
+      font-size: 0.98rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* --- CONTACT SECTION --- */
+    .contact-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-left: 6px solid var(--color-blue-primary);
+      border-radius: 10px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.04);
+    }
+
+    .contact-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--color-blue-soft);
+      color: var(--color-blue-primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--color-blue-primary);
+      border-radius: 50%;
+    }
+
+    .contact-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-navy-dark);
+      margin-bottom: 12px;
+    }
+
+    .contact-message {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background-color: var(--color-navy-dark);
+      color: #94a3b8;
+      padding: 36px 0;
+      border-top: 1px solid var(--color-navy-light);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .footer-link {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover,
+    .footer-link:focus-visible {
+      color: var(--color-white);
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: auto;
+      }
+
+      .header {
+        position: relative;
+        padding: 16px 0;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+      }
+
+      .hero-section {
+        padding: 64px 0 54px 0;
+      }
+
+      .hero-name {
+        font-size: 2.15rem;
+      }
+
+      .hero-headline {
+        font-size: 1.25rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .section-title {
+        font-size: 1.65rem;
+      }
+
+      .about-card,
+      .contact-card {
+        padding: 24px 20px;
+      }
+
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#home" class="brand-logo" aria-label="Go to Home section">Laxman Prasad Kuppili</a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#areas-of-interest" class="nav-link">Areas of Interest</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME / HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-badge">Personal Website</span>
+          <h1 class="hero-name">Laxman Prasad Kuppili</h1>
+          <p class="hero-headline">Agile, AI Adoption and Workflow Automation</p>
+          <p class="hero-description">
+            Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence adoption, workflow automation, and continuous improvement.
+          </p>
+          <div class="hero-actions">
+            <a href="#areas-of-interest" class="btn btn-primary">Explore Areas of Interest</a>
+            <a href="#about" class="btn btn-outline">Read About Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Overview</span>
+          <h2 class="section-title">About</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="about-card">
+          <p class="about-text">
+            Welcome to my personal site. My work and interests center on Agile delivery, AI adoption, workflow automation, and continuous improvement.
+          </p>
+          <p class="about-text">
+            This space provides a focused look at the core topics I follow and engage with: navigating practical ways to bring artificial intelligence into active workflows, strengthening Agile delivery methods, eliminating manual friction through automation, and maintaining an ongoing commitment to continuous improvement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AREAS OF INTEREST SECTION -->
+    <section id="areas-of-interest" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Focus Areas</span>
+          <h2 class="section-title">Areas of Interest</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="interest-grid">
+          
+          <!-- Area 1: Agile Delivery -->
+          <article class="interest-card">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Agile / Iterative Cycle Icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M21.5 2v6h-6"></path>
+                <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Agile Delivery</h3>
+            <p class="card-description">
+              Implementing iterative methodologies, adaptive planning, and collaborative practices to deliver meaningful value predictably and efficiently.
+            </p>
+          </article>
+
+          <!-- Area 2: AI Adoption -->
+          <article class="interest-card">
+            <div class="card-icon" aria-hidden="true">
+              <!-- AI / Innovation Spark Icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                <path d="M5 3v4"></path>
+                <path d="M3 5h4"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">AI Adoption</h3>
+            <p class="card-description">
+              Harnessing artificial intelligence tools and modern capabilities to augment decision-making, optimize outcomes, and accelerate day-to-day productivity.
+            </p>
+          </article>
+
+          <!-- Area 3: Workflow Automation -->
+          <article class="interest-card">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Automation / Process Gear Icon -->
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Workflow Automation</h3>
+            <p class="card-description">
+              Designing systematic, repeatable processes that reduce manual effort, prevent common bottlenecks, and ensure smooth operational consistency.
+            </p>
+          </article>
+
+          <!-- Area 4: Continuous Improvement -->
+          <article class="interest-card">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Continuous Improvement / Trend Up Icon -->
+              <svg viewBox="0 0 24 24">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">Continuous Improvement</h3>
+            <p class="card-description">
+              Cultivating an ongoing cycle of reflection, feedback, and refinement to enhance quality, performance, and collaboration over time.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Communication</span>
+          <h2 class="section-title">Contact</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-status">
+            <span class="status-dot"></span>
+            <span>Status Notice</span>
+          </div>
+          <h3 class="contact-heading">Get in Touch</h3>
+          <p class="contact-message">
+            Thank you for visiting my website. Direct contact details and communication channels will be added here later. Please check back soon for future updates.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li><a href="#home" class="footer-link">Home</a></li>
+          <li><a href="#about" class="footer-link">About</a></li>
+          <li><a href="#areas-of-interest" class="footer-link">Areas of Interest</a></li>
+          <li><a href="#contact" class="footer-link">Contact</a></li>
+        </ul>
+        <p class="footer-copy">
+          &copy; Laxman Prasad Kuppili. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
