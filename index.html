@@ -494,6 +494,52 @@
       box-shadow: 0 4px 12px rgba(10, 25, 47, 0.04);
     }
 
+    .contact-list {
+      list-style: none;
+      margin: 16px 0 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      font-size: 1.2rem;
+      width: 28px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      color: var(--color-text);
+    }
+
+    .contact-link {
+      font-size: 1rem;
+      color: var(--color-blue-primary);
+      text-decoration: none;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
     .contact-status {
       display: inline-flex;
       align-items: center;
@@ -952,14 +998,24 @@
           <div class="section-divider"></div>
         </div>
         <div class="contact-card">
-          <div class="contact-status">
-            <span class="status-dot"></span>
-            <span>Status Notice</span>
-          </div>
           <h3 class="contact-heading">Get in Touch</h3>
-          <p class="contact-message">
-            Thank you for visiting my website. Direct contact details and communication channels will be added here later. Please check back soon for future updates.
-          </p>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span class="contact-label">Location</span>
+              <span class="contact-value">Hyderabad, India</span>
+            </li>
+            <li class="contact-item">
+              <span class="contact-icon">💼</span>
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/laxman-prasad-kuppili/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/laxman-prasad-kuppili</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-icon">🐙</span>
+              <span class="contact-label">GitHub</span>
+              <a href="https://lpk-git.github.io/Laxman-Prasad-Kuppili.github.io/" target="_blank" rel="noopener noreferrer" class="contact-link">lpk-git.github.io</a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
