@@ -4,11 +4,50 @@
       "id": "sprint-summary",
       "title": "Automated Sprint Completion Summary",
       "file": "flowcraft/sprint-summary.html",
-      "tags": ["jira-automation", "webhook", "power-automate", "ms-teams", "json"],
-      "problem": "Teams manually compiled sprint stats from Jira and copy-pasted them into Teams — repetitive and error-prone.",
-      "automation": "A Jira Automation rule fires on sprint completion, builds a JSON payload, and triggers a Power Automate flow that posts a formatted summary card to Microsoft Teams.",
-      "technology": ["Jira Automation", "Webhook", "Power Automate", "Microsoft Teams", "JSON"]
+      "tags": ["jira-automation", "jira-smart-values", "webhook", "power-automate", "ms-teams", "json"],
+      "problem": "Sprint completion reporting required manually retrieving delivery metrics from Jira and communicating the results to the team, creating repetitive effort and inconsistent reporting.",
+      "automation": "When a Jira sprint completes, Jira Automation collects relevant sprint metrics, builds a structured JSON payload, and sends it through a webhook to Power Automate. Power Automate processes the payload, formats the sprint summary, and publishes it to Microsoft Teams.",
+      "technology": ["Jira Automation", "Jira Smart Values", "lookupIssues", "Webhook", "JSON", "Power Automate", "Microsoft Teams"]
     },
+    {
+      "id": "multi-squad-routing",
+      "title": "Multi-Squad Issue Routing",
+      "file": "flowcraft/multi-squad-routing.html",
+      "tags": [],
+      "problem": "",
+      "automation": "",
+      "technology": []
+    },
+    {
+      "id": "rollout-notification",
+      "title": "Release Rollout Notification",
+      "file": "flowcraft/rollout-notification.html",
+      "tags": [],
+      "problem": "",
+      "automation": "",
+      "technology": []
+    },
+    {
+      "id": "bug-alert",
+      "title": "Bug Alert Escalation",
+      "file": "flowcraft/bug-alert.html",
+      "tags": [],
+      "problem": "",
+      "automation": "",
+      "technology": []
+    },
+    {
+      "id": "slack-leave-planner",
+      "title": "Slack Leave Planner",
+      "file": "flowcraft/slack-leave-planner.html",
+      "tags": [],
+      "problem": "",
+      "automation": "",
+      "technology": []
+    }
+  ]
+}
+
     {
       "id": "multi-squad-routing",
       "title": "Multi-Squad Issue Routing",

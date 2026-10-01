@@ -1484,11 +1484,12 @@
         <div class="fc-card-grid">
 
           <!-- Use Case 1: Automated Sprint Completion Summary -->
-          <article class="fc-card" data-tags="jira-automation webhook power-automate ms-teams json">
+          <article class="fc-card" data-tags="jira-automation jira-smart-values webhook power-automate ms-teams json">
             <div class="fc-card-header">
               <span class="fc-card-number">UC-01</span>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="jira-smart-values">Jira Smart Values</span>
                 <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
                 <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
                 <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
@@ -1499,11 +1500,11 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">At the end of every sprint, teams spent time manually compiling completion stats, pulling numbers from Jira, and copy-pasting them into Teams — a repetitive, error-prone process that delayed post-sprint communication.</p>
+                <p class="fc-card-text">Sprint completion reporting required manually retrieving delivery metrics from Jira and communicating results to the team, creating repetitive effort and inconsistent reporting.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">A Jira Automation rule fires when a sprint completes, builds a JSON payload of sprint metrics, and sends it to a Power Automate webhook. Power Automate formats a structured summary card and posts it directly to the team's Microsoft Teams channel — no manual effort required.</p>
+                <p class="fc-card-text">When a sprint completes, Jira Automation collects metrics, builds a JSON payload, and sends it via webhook to Power Automate — which formats and publishes the summary to Microsoft Teams.</p>
               </div>
             </div>
             <div class="fc-card-footer">
