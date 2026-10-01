@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Sprint Insights from Jira | The Applied AI</title>
+  <link rel="stylesheet" href="applied-ai-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#applied-ai" class="back-btn">← Back to The Applied AI</a>
+    </nav>
+
+    <main>
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">AI-01</span>
+          <span class="tag-type">Use Case</span>
+          <span class="tag-category">Delivery Insights</span>
+        </div>
+        <h1 class="hero-title">AI-Powered Sprint Insights from Jira</h1>
+        <div class="hero-tags">
+          <span class="tag-tech">LLMs</span>
+          <span class="tag-tech">Jira</span>
+        </div>
+      </section>
+
+      <!-- 2. THE CHALLENGE -->
+      <section class="content-section">
+        <h2 class="section-title">The Challenge</h2>
+        <p class="content-text">Jira contains substantial delivery data, but dashboards and raw metrics alone do not automatically explain what the information means.</p>
+        <p class="content-text" style="margin-top: 12px;">Delivery teams must manually interpret delivery patterns, incomplete work, blockers, scope changes, issue distribution, and sprint progress to identify potential areas requiring attention.</p>
+      </section>
+
+      <!-- 3. WHY AI? -->
+      <section class="content-section">
+        <h2 class="section-title">Why AI?</h2>
+        <p class="content-text">Traditional reporting answers the question: <em>"What happened?"</em></p>
+        <p class="content-text" style="margin-top: 12px;">AI-assisted analysis adds a new dimension by exploring: <em>"What patterns or signals should I examine?"</em> It shifts the focus from manual data gathering to augmented interpretation.</p>
+      </section>
+
+      <!-- 4. SOLUTION CONCEPT -->
+      <section class="content-section">
+        <h2 class="section-title">Solution Concept</h2>
+        <p class="content-text">By extracting structured delivery data (such as stories, bugs, tasks, spikes, story points, completion status, blockers, and the sprint goal) from Jira, we can provide an AI with a detailed snapshot of the sprint's state.</p>
+        <p class="content-text" style="margin-top: 12px;">The AI analyzes this structured context to generate observations and identify potential patterns. Crucially, these AI-generated observations are designed to <strong>support human analysis</strong>, rather than automatically determining team performance.</p>
+      </section>
+
+      <!-- 5. ARCHITECTURE -->
+      <section class="content-section">
+        <h2 class="section-title">Architecture</h2>
+        <div class="arch-diagram" style="align-items: center; max-width: 600px; margin: 0 auto;">
+          <div class="arch-box" style="background-color: var(--color-blue-soft);">Jira Delivery Data</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box">Structured Sprint Information</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box ai-box">AI Analysis</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box ai-box" style="background-color: var(--color-white); border-style: dashed;">Patterns / Observations / Summary</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box">Human Review</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box" style="border-color: var(--color-blue-primary);">Discussion / Action</div>
+        </div>
+      </section>
+
+      <!-- 6. ROLE OF AI -->
+      <section class="content-section">
+        <h2 class="section-title">Role of AI</h2>
+        <p class="content-text">The AI acts as a pattern-recognition assistant. It analyzes the structured inputs to flag scope changes, highlight potential bottlenecks (like clustering of bugs or stalled story points), and summarize the overall state of the sprint against its stated goals.</p>
+      </section>
+
+      <!-- 7. HUMAN IN THE LOOP -->
+      <section class="content-section">
+        <h2 class="section-title">Human in the Loop</h2>
+        <p class="content-text">Delivery professionals interpret the AI's observations using their tacit knowledge of the business, the team's working dynamics, and the product context. The human decides whether an observation warrants further discussion or action.</p>
+      </section>
+
+      <!-- 8. TOOLS & TECHNOLOGIES -->
+      <section class="content-section">
+        <h2 class="section-title">Tools &amp; Technologies</h2>
+        <div class="hero-tags" style="margin-top: 12px;">
+          <span class="tag-tech">LLMs</span>
+          <span class="tag-tech">Jira</span>
+          <span class="tag-tech">Structured Data</span>
+        </div>
+      </section>
+
+      <!-- 9. OUTCOME / VALUE -->
+      <section class="content-section">
+        <h2 class="section-title">Outcome / Value</h2>
+        <p class="content-text">Faster interpretation of sprint data and the automatic surfacing of potentially useful questions and observations. This reduces the cognitive load of staring at raw dashboards and helps focus team discussions on meaningful delivery friction.</p>
+      </section>
+
+      <!-- 10. LIMITATIONS & GUARDRAILS -->
+      <section class="content-section">
+        <h2 class="section-title">Limitations &amp; Guardrails</h2>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>No Predictive Analytics:</strong> This pattern analyzes current/past state. It does not predict future delivery dates or velocities without an explicit, validated predictive model.</li>
+          <li><strong>Not a Performance Metric:</strong> AI output must <strong>never</strong> be used to score or evaluate individual developers.</li>
+          <li><strong>Context Blindness:</strong> AI cannot "see" unlogged work, offline discussions, or team morale unless explicitly provided in the data.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

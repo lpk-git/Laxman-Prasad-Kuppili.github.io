@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI in the SDLC — Human + AI Control Model | The Applied AI</title>
+  <link rel="stylesheet" href="applied-ai-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#applied-ai" class="back-btn">← Back to The Applied AI</a>
+    </nav>
+
+    <main>
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">AI-06</span>
+          <span class="tag-type">Framework</span>
+          <span class="tag-category">SDLC</span>
+        </div>
+        <h1 class="hero-title">AI in the SDLC — Human + AI Control Model</h1>
+        <div class="hero-tags">
+          <span class="tag-tech">LLMs</span>
+        </div>
+      </section>
+
+      <!-- 2. THE CHALLENGE -->
+      <section class="content-section">
+        <h2 class="section-title">The Challenge</h2>
+        <p class="content-text">AI tools can rapidly accelerate code generation and repetitive tasks within the Software Development Life Cycle (SDLC). However, simply increasing development speed without proportionally strengthening review, testing, and validation practices can simply shift bottlenecks downstream or introduce subtle architectural and security risks into production.</p>
+      </section>
+
+      <!-- 3. WHY AI? -->
+      <section class="content-section">
+        <h2 class="section-title">Why AI?</h2>
+        <p class="content-text">AI is exceptional at accelerating creation, performing initial analysis, and automating repetitive work. However, the value of AI in the SDLC is only realized if its output is properly governed. The challenge isn't whether to use AI, but how to integrate it safely. This framework balances AI-driven acceleration with mandatory engineering controls, ensuring that speed does not compromise quality, security, or product-specific context.</p>
+      </section>
+
+      <!-- 4. SOLUTION -->
+      <section class="content-section">
+        <h2 class="section-title">Solution</h2>
+        <p class="content-text">A Human + AI Control Model that structures the SDLC so AI acts as an accelerator during the creation phases (development, initial analysis) while human experts and robust automated testing maintain absolute authority over the validation and release phases (code review, security, architecture oversight).</p>
+      </section>
+
+      <!-- 5. HOW IT WORKS -->
+      <section class="content-section">
+        <h2 class="section-title">How It Works</h2>
+        <p class="content-text">The framework embeds AI assistance alongside human accountability at every major SDLC phase:</p>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>Analysis &amp; Development:</strong> AI assists with requirements analysis and generates initial code structures, significantly accelerating the "blank page" phase.</li>
+          <li><strong>Code Review:</strong> AI can perform first-pass linting or suggest improvements, but a human developer must conduct the formal code review to ensure logical correctness and contextual fit.</li>
+          <li><strong>Testing &amp; Validation:</strong> Automated testing suites validate AI-generated code, while human architects and security professionals provide necessary oversight for complex system interactions and vulnerabilities.</li>
+          <li><strong>Deployment &amp; Monitoring:</strong> Standard CI/CD pipelines handle deployment, with human monitoring ensuring ongoing service health.</li>
+        </ul>
+      </section>
+
+      <!-- 6. ARCHITECTURE -->
+      <section class="content-section">
+        <h2 class="section-title">Conceptual Lifecycle</h2>
+        <div class="arch-diagram" style="align-items: center; max-width: 600px; margin: 0 auto;">
+          <div class="arch-box">Requirement</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box ai-box" style="background-color: var(--color-blue-soft);">AI-Assisted Analysis &amp; Development</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box" style="border-color: var(--color-blue-primary);">Human + Automated Code Review</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box" style="border-color: var(--color-blue-primary);">Testing</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box" style="border-color: var(--color-blue-primary);">Security / Architecture Validation</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box">Deployment</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box">Monitoring &amp; Feedback</div>
+        </div>
+      </section>
+
+      <!-- 7. ROLE OF AI -->
+      <section class="content-section">
+        <h2 class="section-title">Role of AI</h2>
+        <p class="content-text">AI acts as a powerful co-pilot. It drafts code, generates boilerplate, explains complex legacy logic, and assists in first-pass reviews. It accelerates the mechanical aspects of software engineering, allowing humans to focus on higher-level problem-solving and system design.</p>
+      </section>
+
+      <!-- 8. HUMAN IN THE LOOP -->
+      <section class="content-section">
+        <h2 class="section-title">Human in the Loop</h2>
+        <p class="content-text">Human accountability is non-negotiable. This framework does not replace developers, QA engineers, architects, or security professionals. Humans must validate all AI-generated output for logical correctness, hallucinated dependencies, and product-specific business context. The ultimate responsibility for code quality and security rests entirely with the engineering team.</p>
+      </section>
+
+      <!-- 9. TOOLS & TECHNOLOGIES -->
+      <section class="content-section">
+        <h2 class="section-title">Tools &amp; Technologies</h2>
+        <div class="hero-tags" style="margin-top: 12px;">
+          <span class="tag-tech">AI Coding Assistants</span>
+          <span class="tag-tech">CI/CD Pipelines</span>
+          <span class="tag-tech">Automated Testing</span>
+        </div>
+      </section>
+
+      <!-- 10. OUTCOME / VALUE -->
+      <section class="content-section">
+        <h2 class="section-title">Outcome / Value</h2>
+        <p class="content-text">Provides a practical, governed approach to adopting AI in software delivery. It allows organizations to realize the speed benefits of AI-assisted development without sacrificing the rigor of traditional software engineering controls.</p>
+      </section>
+
+      <!-- 11. LIMITATIONS & GUARDRAILS -->
+      <section class="content-section">
+        <h2 class="section-title">Limitations &amp; Guardrails</h2>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>Hallucinations &amp; Incorrect Output:</strong> AI models can confidently generate incorrect logic or reference non-existent libraries; rigorous automated testing and human review are mandatory.</li>
+          <li><strong>Context Blindness:</strong> AI often lacks the nuanced understanding of a specific product's business rules, user expectations, or legacy architectural constraints.</li>
+          <li><strong>Accountability:</strong> AI cannot be held accountable for a production outage or security breach. Governance models must assign clear human ownership for all released code.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

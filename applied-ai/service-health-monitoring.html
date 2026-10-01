@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Service Health Monitoring | The Applied AI</title>
+  <link rel="stylesheet" href="applied-ai-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#applied-ai" class="back-btn">← Back to The Applied AI</a>
+    </nav>
+
+    <main>
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">AI-03</span>
+          <span class="tag-type">Experiment</span>
+          <span class="tag-category">Operations</span>
+        </div>
+        <h1 class="hero-title">AI-Assisted Service Health Monitoring</h1>
+        <div class="hero-tags">
+          <span class="tag-tech">LLMs</span>
+        </div>
+      </section>
+
+      <!-- 2. THE CHALLENGE -->
+      <section class="content-section">
+        <h2 class="section-title">The Challenge</h2>
+        <p class="content-text">Service health monitoring often involves navigating complex observability platforms, searching through disparate log files, and manually interpreting verbose alert payloads. For teams responding to incidents or performing routine checks, this manual effort delays their understanding of the system's state.</p>
+      </section>
+
+      <!-- 3. WHY AI? -->
+      <section class="content-section">
+        <h2 class="section-title">Why AI?</h2>
+        <p class="content-text">While conventional automation can route alerts and format log outputs, it cannot read stack traces or synthesize multiple warnings to summarize an ongoing issue. Applying AI assistance adds an analytical layer capable of parsing dense diagnostic data and highlighting the most critical signals, significantly reducing manual investigative effort.</p>
+      </section>
+
+      <!-- 4. SOLUTION -->
+      <section class="content-section">
+        <h2 class="section-title">Solution</h2>
+        <p class="content-text">Using Kiro as a diagnostic assistant, teams can query the current health state of services or ask the AI to analyze specific error logs and alert payloads. The AI assistant processes the raw diagnostic information and returns a human-readable summary of the service's status and any apparent anomalies.</p>
+      </section>
+
+      <!-- 5. HOW IT WORKS -->
+      <section class="content-section">
+        <h2 class="section-title">How It Works</h2>
+        <ol class="content-text" style="padding-left: 24px;">
+          <li><strong>Data Ingestion:</strong> <em>[Implementation detail to be documented]</em>.</li>
+          <li><strong>Query / Alert Trigger:</strong> A human user asks the assistant to check a specific service, or an alert payload is forwarded to the AI.</li>
+          <li><strong>AI Parsing:</strong> The AI extracts key error codes, timestamps, and stack traces from the raw logs.</li>
+          <li><strong>Summarisation:</strong> The AI provides a consolidated health summary.</li>
+          <li><strong>Human Review:</strong> The engineering team reviews the AI's summary to determine the appropriate remediation steps.</li>
+        </ol>
+      </section>
+
+      <!-- 6. ARCHITECTURE -->
+      <section class="content-section">
+        <h2 class="section-title">Architecture</h2>
+        <div class="arch-diagram" style="align-items: center; max-width: 600px; margin: 0 auto;">
+          <div class="arch-box" style="background-color: var(--color-blue-soft);">[Observability Platform / Logs TBD]</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box">Raw Diagnostic Data</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box ai-box">Kiro / AI Assistant Analysis</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box ai-box" style="background-color: var(--color-white); border-style: dashed;">Health Summary &amp; Error Highlighting</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-box" style="border-color: var(--color-blue-primary);">Human Review &amp; Remediation</div>
+        </div>
+      </section>
+
+      <!-- 7. ROLE OF AI -->
+      <section class="content-section">
+        <h2 class="section-title">Role of AI</h2>
+        <p class="content-text">The AI reduces cognitive load by reading through verbose log files and alert JSON payloads. It identifies key error messages, correlates related warnings if present in the context, and summarizes the apparent technical state of the service. It <strong>does not</strong> automatically remediate incidents or restart services.</p>
+      </section>
+
+      <!-- 8. HUMAN IN THE LOOP -->
+      <section class="content-section">
+        <h2 class="section-title">Human in the Loop</h2>
+        <p class="content-text">Engineers remain fully responsible for diagnosing the root cause and executing any remediation actions. The AI simply accelerates the initial information-gathering phase. Humans must verify the AI's interpretation against the actual logs before taking action.</p>
+      </section>
+
+      <!-- 9. TOOLS & TECHNOLOGIES -->
+      <section class="content-section">
+        <h2 class="section-title">Tools &amp; Technologies</h2>
+        <div class="hero-tags" style="margin-top: 12px;">
+          <span class="tag-tech">Kiro</span>
+          <span class="tag-tech">[Observability Tool TBD]</span>
+          <span class="tag-tech">[Alerting System TBD]</span>
+        </div>
+      </section>
+
+      <!-- 10. OUTCOME / VALUE -->
+      <section class="content-section">
+        <h2 class="section-title">Outcome / Value</h2>
+        <p class="content-text">Significantly reduces the manual effort required to parse dense diagnostic information during high-stress incidents or routine checks, allowing teams to arrive at a technical understanding faster.</p>
+      </section>
+
+      <!-- 11. LIMITATIONS & GUARDRAILS -->
+      <section class="content-section">
+        <h2 class="section-title">Limitations &amp; Guardrails</h2>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>No Autonomous Remediation:</strong> The AI does not have write-access to production systems to fix the issues it identifies.</li>
+          <li><strong>Hallucination Risk:</strong> AI may confidently misinterpret an error code or fabricate a stack trace interpretation. All summaries must be manually verified.</li>
+          <li><strong>Context Limits:</strong> The AI's analysis is strictly limited to the logs and alert payloads provided to it; it cannot see the broader network or system state.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

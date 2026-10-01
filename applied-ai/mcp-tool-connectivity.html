@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agents + MCP Tool Connectivity | The Applied AI</title>
+  <link rel="stylesheet" href="applied-ai-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#applied-ai" class="back-btn">← Back to The Applied AI</a>
+    </nav>
+
+    <main>
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">AI-05</span>
+          <span class="tag-type">Framework</span>
+          <span class="tag-category">AI Agents</span>
+        </div>
+        <h1 class="hero-title">AI Agents + MCP Tool Connectivity</h1>
+        <div class="hero-tags">
+          <span class="tag-tech">AI Agents</span>
+          <span class="tag-tech">MCP</span>
+          <span class="tag-tech">APIs</span>
+        </div>
+      </section>
+
+      <!-- 2. THE CHALLENGE -->
+      <section class="content-section">
+        <h2 class="section-title">The Challenge</h2>
+        <p class="content-text">A standalone Large Language Model (LLM) can reason brilliantly about information provided within its immediate context window, but it is inherently isolated. It cannot automatically access external enterprise systems, query live databases, or perform operational actions within tools.</p>
+      </section>
+
+      <!-- 3. AI APPLICATION -->
+      <section class="content-section">
+        <h2 class="section-title">AI Application</h2>
+        <p class="content-text">Tool connectivity and the Model Context Protocol (MCP) provide a standardized way for AI applications and agents to interact with external tools and contextual information. Instead of relying solely on pre-training data, the AI can securely reach out to external sources (like Jira, Slack, or internal APIs) to read current data or execute actions on behalf of the user.</p>
+      </section>
+
+      <!-- 4. SOLUTION -->
+      <section class="content-section">
+        <h2 class="section-title">Solution</h2>
+        <p class="content-text">Implementing tool connectivity requires understanding the distinction between several layers of the AI stack:</p>
+        <ul class="content-text" style="margin-top: 12px; padding-left: 24px;">
+          <li><strong>LLM:</strong> The underlying foundational model that performs reasoning.</li>
+          <li><strong>Agent:</strong> The application layer that guides the LLM, maintaining goals and determining which tools to use.</li>
+          <li><strong>API:</strong> The external system's interface (e.g., Jira REST API).</li>
+          <li><strong>Tool:</strong> A specific function exposed to the Agent (e.g., "search_jira_issues").</li>
+          <li><strong>MCP:</strong> An open standard protocol that standardizes how Agents discover and connect to these Tools.</li>
+        </ul>
+      </section>
+
+      <!-- 5. HOW IT WORKS -->
+      <section class="content-section">
+        <h2 class="section-title">How It Works</h2>
+        <p class="content-text">In a <strong>Standalone AI</strong> model, a user provides a prompt to the LLM, and the LLM responds based solely on its internal knowledge. In a <strong>Tool-Connected AI</strong> model, the Agent intercepts the user's request, uses MCP to query an external Tool or Data Source for necessary context, feeds that real-time result back into the LLM, and then delivers an informed response or action.</p>
+      </section>
+
+      <!-- 6. ARCHITECTURE -->
+      <section class="content-section">
+        <h2 class="section-title">Conceptual Architecture</h2>
+        <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-top: 24px;">
+          
+          <!-- Standalone AI -->
+          <div style="flex: 1; min-width: 250px;">
+            <h3 class="content-text" style="text-align: center; font-weight: 600; margin-bottom: 16px;">Standalone AI</h3>
+            <div class="arch-diagram" style="align-items: center;">
+              <div class="arch-box" style="background-color: var(--color-bg-page);">User</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box ai-box">LLM</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box">Response</div>
+            </div>
+          </div>
+          
+          <!-- Tool-Connected AI -->
+          <div style="flex: 1; min-width: 250px;">
+            <h3 class="content-text" style="text-align: center; font-weight: 600; margin-bottom: 16px;">Tool-Connected AI</h3>
+            <div class="arch-diagram" style="align-items: center;">
+              <div class="arch-box" style="background-color: var(--color-bg-page);">User</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box ai-box">AI / Agent</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box" style="border-style: dashed; padding: 12px;">Tool Interface / MCP</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box" style="background-color: var(--color-blue-soft);">External Tool / Data Source<br><span style="font-size: 0.8rem; font-weight:normal;">(Jira, Slack, APIs, Files)</span></div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box ai-box" style="border-style: dashed; background-color: var(--color-white); padding: 12px;">Context / Result to AI</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box" style="border-color: var(--color-blue-primary);">Response / Action</div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- 7. ROLE OF AI -->
+      <section class="content-section">
+        <h2 class="section-title">Role of AI</h2>
+        <p class="content-text">The AI reasoning engine evaluates the user's intent, decides which available external tools are necessary to fulfill the request, formulates the correct parameters to pass to those tools, and synthesizes the returned data into a cohesive action or response.</p>
+      </section>
+
+      <!-- 8. HUMAN IN THE LOOP -->
+      <section class="content-section">
+        <h2 class="section-title">Human in the Loop</h2>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>Authorization:</strong> Humans must authorize the agent's access to external systems.</li>
+          <li><strong>Access Control:</strong> Defining strictly what actions an AI agent is allowed to perform (e.g., read-only vs. write access).</li>
+          <li><strong>Validation:</strong> Reviewing the agent's proposed tool calls before they are executed, especially for sensitive operations.</li>
+        </ul>
+      </section>
+
+      <!-- 9. TOOLS & TECHNOLOGIES -->
+      <section class="content-section">
+        <h2 class="section-title">Tools &amp; Technologies</h2>
+        <div class="hero-tags" style="margin-top: 12px;">
+          <span class="tag-tech">MCP</span>
+          <span class="tag-tech">AI Agents</span>
+          <span class="tag-tech">APIs</span>
+          <span class="tag-tech">Jira</span>
+          <span class="tag-tech">Slack</span>
+        </div>
+      </section>
+
+      <!-- 10. OUTCOME / VALUE -->
+      <section class="content-section">
+        <h2 class="section-title">Outcome / Value</h2>
+        <p class="content-text">Connecting AI to enterprise tools transforms it from an isolated knowledge base into a practical workflow participant. This pattern unlocks the ability to automate complex, multi-system investigations and data retrieval tasks without manual context-switching.</p>
+      </section>
+
+      <!-- 11. LIMITATIONS & GUARDRAILS -->
+      <section class="content-section">
+        <h2 class="section-title">Limitations &amp; Guardrails</h2>
+        <ul class="content-text" style="padding-left: 24px;">
+          <li><strong>Permissions &amp; Authentication:</strong> Agents should operate using the principle of least privilege, inheriting the user's specific permissions.</li>
+          <li><strong>Data Exposure:</strong> Careful scoping must be applied to prevent the AI from ingesting or exposing sensitive data inadvertently.</li>
+          <li><strong>Unintended Actions:</strong> Write operations (like deleting or modifying records) require strict guardrails and explicit human approval.</li>
+          <li><strong>Tool Scope:</strong> The boundaries of what the tool can do must be clearly defined to prevent the agent from taking out-of-bounds actions.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
