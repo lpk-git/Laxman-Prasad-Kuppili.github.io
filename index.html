@@ -101,7 +101,8 @@
     }
 
     .nav-link:hover,
-    .nav-link:focus-visible {
+    .nav-link:focus-visible,
+    .nav-link.active {
       color: var(--color-blue-primary);
       background-color: var(--color-blue-soft);
       outline: none;
@@ -1145,6 +1146,7 @@
           <div class="hero-actions">
             <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
             <a href="#flow-craft" class="btn btn-outline">Explore Flow Craft</a>
+            <a href="#applied-ai" class="btn btn-outline">The Applied AI</a>
             <a href="#toolkit" class="btn btn-outline">Browse Toolkit</a>
           </div>
         </div>
@@ -2303,6 +2305,51 @@
         });
       });
     })();
+
+    // Scrollspy for navigation highlighting
+    (function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+      // Adjust threshold/rootMargin based on layout to trigger active state correctly
+      const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px',
+        threshold: 0
+      };
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            // Remove active from all links
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        sectionObserver.observe(section);
+      });
+    })();
+  </script>
+
+  <!-- Chatbase Chat Bubble Embed -->
+  <script>
+    window.chatbaseConfig = {
+      chatbotId: "YFsboKZUtt8U51eCtJ5wE",
+    }
+  </script>
+  <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="YFsboKZUtt8U51eCtJ5wE"
+    domain="www.chatbase.co"
+    defer>
   </script>
 </body>
 </html>
