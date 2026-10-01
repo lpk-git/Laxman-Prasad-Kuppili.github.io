@@ -166,14 +166,51 @@
       gap: 8px;
     }
 
+    .hero-main-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--color-white);
+    }
+    
+    .hero-main-title span {
+      color: #60a5fa;
+    }
+
     .hero-name {
       font-family: 'Century Gothic', 'AppleGothic', 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 300;
       line-height: 1.2;
       letter-spacing: 0.03em;
       margin: 0;
-      color: var(--color-white);
+      color: var(--color-navy-dark);
+    }
+    
+    .profile-connect-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    
+    .profile-summary-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .profile-avatar-frame {
+      flex-shrink: 0;
+      width: 90px;
+      height: 110px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--color-border);
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.08);
+      background-color: var(--color-navy);
     }
 
     .hero-headline {
@@ -652,6 +689,16 @@
         gap: 16px;
       }
 
+      .hero-main-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+      
+      .profile-connect-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
       .hero-name {
         font-size: 2.15rem;
       }
@@ -1085,23 +1132,20 @@
     <section id="home" class="hero-section">
       <div class="container">
         <div class="hero-content">
-          <span class="hero-badge">Profile</span>
-          <div class="hero-profile-header">
-            <div class="hero-avatar-frame">
-              <img src="assets/laxman-prasad-kuppili.jpg" alt="Laxman Prasad Kuppili" class="hero-avatar">
-            </div>
-            <div class="hero-title-group">
-              <h1 class="hero-name">LAXMAN PRASAD KUPPILI</h1>
-              <p class="hero-headline">Agile Delivery Lead, AI Agile Transformation Professional<br><span class="hero-certs">PSM-I, SAFe Agilist, SAFe SM, CSPO</span></p>
-            </div>
-          </div>
-          <p class="hero-description">
-            Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence adoption, workflow automation, and continuous improvement.
+          <span class="hero-badge">DELIVERY · AUTOMATION · APPLIED AI</span>
+          <h1 class="hero-main-title">
+            From delivery challenges to <br><span style="color: #60a5fa;">smarter ways of working.</span>
+          </h1>
+          <p class="hero-description" style="font-size: 1.25rem; margin-bottom: 24px; color: #f8fafc;">
+            Practical insights, automation use cases, AI applications, and reusable tools shaped by hands-on experience across enterprise delivery environments.
+          </p>
+          <p class="hero-headline" style="color: #93c5fd; font-weight: 500; letter-spacing: 0.02em; margin-bottom: 40px; max-width: none;">
+            Agile Delivery · Automation · AI Adoption · Continuous Improvement
           </p>
           <div class="hero-actions">
-            <a href="#about" class="btn btn-outline">Read About Me</a>
-            <a href="#areas-of-interest" class="btn btn-outline">Explore Areas of Interest</a>
-            <a href="#portfolio" class="btn btn-primary">Portfolio</a>
+            <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
+            <a href="#flow-craft" class="btn btn-outline">Explore Flow Craft</a>
+            <a href="#toolkit" class="btn btn-outline">Browse Toolkit</a>
           </div>
         </div>
       </div>
@@ -2108,33 +2152,55 @@
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- PROFILE & CONTACT SECTION -->
     <section id="contact" class="section section-alt">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Communication</span>
-          <h2 class="section-title">Contact</h2>
+          <span class="section-tag">About & Communication</span>
+          <h2 class="section-title">Profile & Connect</h2>
           <div class="section-divider"></div>
         </div>
         <div class="contact-card">
-          <h3 class="contact-heading">Get in Touch</h3>
-          <ul class="contact-list">
-            <li class="contact-item">
-              <span class="contact-icon">📍</span>
-              <span class="contact-label">Location</span>
-              <span class="contact-value">Hyderabad, India</span>
-            </li>
-            <li class="contact-item">
-              <span class="contact-icon">💼</span>
-              <span class="contact-label">LinkedIn</span>
-              <a href="https://www.linkedin.com/in/laxman-prasad-kuppili/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/laxman-prasad-kuppili</a>
-            </li>
-            <li class="contact-item">
-              <span class="contact-icon">🐙</span>
-              <span class="contact-label">GitHub</span>
-              <a href="https://lpk-git.github.io/Laxman-Prasad-Kuppili.github.io/" target="_blank" rel="noopener noreferrer" class="contact-link">lpk-git.github.io</a>
-            </li>
-          </ul>
+          <div class="profile-connect-layout">
+            <!-- Profile Area -->
+            <div>
+              <div class="profile-summary-header">
+                <div class="profile-avatar-frame">
+                  <img src="assets/laxman-prasad-kuppili.jpg" alt="Laxman Prasad Kuppili" class="hero-avatar">
+                </div>
+                <div>
+                  <h3 class="contact-heading" style="margin-bottom: 4px; font-family: 'Century Gothic', 'AppleGothic', 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--color-navy-dark);">Laxman Prasad Kuppili</h3>
+                  <p style="font-size: 0.85rem; color: var(--color-blue-primary); font-weight: 600; margin-bottom: 4px;">Agile Delivery Lead, AI Agile Transformation</p>
+                  <p style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500;">PSM-I, SAFe Agilist, SAFe SM, CSPO</p>
+                </div>
+              </div>
+              <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6;">
+                Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence adoption, workflow automation, and continuous improvement.
+              </p>
+            </div>
+            
+            <!-- Contact Area -->
+            <div>
+              <h3 class="contact-heading">Get in Touch</h3>
+              <ul class="contact-list">
+                <li class="contact-item">
+                  <span class="contact-icon">📍</span>
+                  <span class="contact-label">Location</span>
+                  <span class="contact-value">Hyderabad, India</span>
+                </li>
+                <li class="contact-item">
+                  <span class="contact-icon">💼</span>
+                  <span class="contact-label">LinkedIn</span>
+                  <a href="https://www.linkedin.com/in/laxman-prasad-kuppili/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/laxman-prasad-kuppili</a>
+                </li>
+                <li class="contact-item">
+                  <span class="contact-icon">🐙</span>
+                  <span class="contact-label">GitHub</span>
+                  <a href="https://lpk-git.github.io/Laxman-Prasad-Kuppili.github.io/" target="_blank" rel="noopener noreferrer" class="contact-link">lpk-git.github.io</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
