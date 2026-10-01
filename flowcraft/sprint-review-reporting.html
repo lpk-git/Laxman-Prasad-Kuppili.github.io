@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Craft UC-08 — Automated Sprint Review Reporting. Jira data and automation to reduce manual Sprint Review preparation overhead.">
+  <title>UC-08 Automated Sprint Review Reporting | Flow Craft</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Architecture diagram — shared styles ────────────── */
+    .arch-diagram {
+      display: flex; flex-direction: column; align-items: center; gap: 0; margin: 8px 0;
+    }
+    .arch-node {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; max-width: 360px; padding: 11px 20px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      text-align: center; line-height: 1.3;
+    }
+    .arch-node--trigger   { background: #0a192f; color: #ffffff; border: 2px solid #1d4ed8; }
+    .arch-node--process   { background: #eff6ff; color: #1e3a5f; border: 1px solid #bfdbfe; }
+    .arch-node--platform  { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+    .arch-node--output    { background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af; }
+    .arch-arrow {
+      display: flex; flex-direction: column; align-items: center; padding: 3px 0; user-select: none;
+    }
+    .arch-arrow::before { content: ''; display: block; width: 2px; height: 10px; background: #cbd5e1; }
+    .arch-arrow::after  { content: '▼'; font-size: 0.65rem; color: #94a3b8; }
+
+    /* ── Tech stack — reused ─────────────────────────────── */
+    .tech-stack-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .tech-stack-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--color-bg-page); border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 12px 16px;
+    }
+    .tech-stack-name { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); min-width: 170px; flex-shrink: 0; }
+    .tech-stack-role { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* ── Steps — reused ─────────────────────────────────── */
+    .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; list-style: none; padding: 0; }
+    .step-item  { display: flex; gap: 14px; align-items: flex-start; }
+    .step-number {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--color-blue-primary); color: #fff;
+      font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.65; padding-top: 3px; }
+
+    /* ── Value grid — reused ────────────────────────────── */
+    .value-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 4px; }
+    .value-item { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .value-icon  { font-size: 1.3rem; }
+    .value-label { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc  { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Metrics grid — reused from UC-01 ───────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .metric-item {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-blue-primary);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    /* ── Sprint report mock-up ──────────────────────────── */
+    .report-preview {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+      max-width: 560px;
+      margin-top: 8px;
+    }
+    .report-header {
+      background: #0a192f;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .report-header-title { color: #ffffff; font-size: 1rem; font-weight: 700; }
+    .report-header-sub   { color: #64748b; font-size: 0.78rem; }
+    .report-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .report-section-label {
+      font-size: 0.72rem; font-weight: 700; color: var(--color-blue-primary);
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;
+    }
+    .report-stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 8px;
+    }
+    .report-stat {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .report-stat-value { font-size: 1.4rem; font-weight: 700; color: var(--color-navy); line-height: 1; }
+    .report-stat-label { font-size: 0.72rem; color: var(--color-text-muted); margin-top: 4px; }
+    .report-divider { height: 1px; background: var(--color-border); }
+    .report-issue-list {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .report-issue-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--color-text-muted);
+    }
+    .report-issue-key { color: var(--color-blue-primary); font-weight: 600; min-width: 80px; }
+    .report-issue-type {
+      font-size: 0.7rem; font-weight: 600; padding: 2px 7px;
+      border-radius: 3px; flex-shrink: 0;
+    }
+    .type--story { background: #dbeafe; color: #1e40af; }
+    .type--bug   { background: #fee2e2; color: #991b1b; }
+    .type--task  { background: #f0fdf4; color: #166534; }
+    .type--spike { background: #fdf4ff; color: #7e22ce; }
+
+    /* ── Placeholder / TODO callout ─────────────────────── */
+    .todo-callout {
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+    .todo-callout p { font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0; }
+    .todo-callout code {
+      background: #e2e8f0; padding: 1px 5px;
+      border-radius: 3px; font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Lessons grid ───────────────────────────────────── */
+    .lessons-list {
+      display: flex; flex-direction: column; gap: 10px; margin-top: 4px;
+    }
+    .lesson-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--color-bg-page); border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 12px 14px;
+    }
+    .lesson-icon { font-size: 1rem; flex-shrink: 0; padding-top: 2px; }
+    .lesson-text { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    @media (max-width: 600px) {
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .report-preview { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fc-detail-header">
+    <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
+    <span class="fc-uc-id">UC-08</span>
+  </header>
+
+  <main class="fc-detail-main">
+    <div class="fc-detail-container">
+
+      <!-- ── Hero ─────────────────────────────────────────── -->
+      <div class="fc-detail-hero">
+        <h1 class="fc-detail-title">Automated Sprint Review Reporting</h1>
+        <div class="fc-detail-tags">
+          <span class="fc-tech-tag">Jira</span>
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Jira Query / Data</span>
+          <span class="fc-tech-tag">Dashboard / Reporting</span>
+        </div>
+      </div>
+
+      <!-- ── Challenge ────────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Challenge</h2>
+        <p>Sprint Review preparation can require manually gathering delivery information from Jira — opening issues, counting completions by type, tallying story points, and checking whether the sprint goal was met. This work happens before every Sprint Review, creating a recurring preparation overhead that grows with team size and sprint scope.</p>
+        <p style="margin-top:10px;">The typical manual process involves:</p>
+        <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Querying or filtering Jira issues for the completed sprint</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Counting completed items by issue type — stories, bugs, tasks, spikes</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Summing story points and comparing against the sprint commitment</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Identifying incomplete or rolled-over items</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Formatting everything into a presentable summary for stakeholders</li>
+        </ul>
+      </section>
+
+      <!-- ── Objective ─────────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Objective</h2>
+        <p>Use Jira data and automation to collect relevant sprint information, aggregate delivery metrics, and present them in a structured Sprint Review report — reducing the manual effort involved in preparing for the review and providing consistent, repeatable stakeholder visibility.</p>
+        <p style="margin-top:10px;">The goal is not to replace the Sprint Review conversation, but to remove the data-gathering burden so the team can focus on the discussion rather than the preparation.</p>
+      </section>
+
+      <!-- ── Architecture ─────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Architecture</h2>
+        <div class="arch-diagram" role="img" aria-label="Conceptual architecture: Jira sprint data and issues feed through automation and data processing to aggregate sprint information, producing a Sprint Review report for stakeholder visibility">
+
+          <div class="arch-node arch-node--trigger">📊 Jira Sprint Data</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Issues / Metrics<br><small style="font-weight:400;font-size:0.78rem;">stories · bugs · tasks · spikes · points</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Automation / Data Processing<br><small style="font-weight:400;font-size:0.78rem;">Jira Automation · queries · rules</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Aggregate Sprint Information</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Sprint Review Report<br><small style="font-weight:400;font-size:0.78rem;">structured · consistent · repeatable</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--output">👥 Stakeholder Visibility</div>
+
+        </div>
+
+        <div class="todo-callout" style="margin-top:16px;">
+          <p>📌 <strong>Implementation note:</strong> The specific automation mechanism — e.g. Jira Automation rule with <code>lookupIssues</code>, a Jira dashboard, a Power BI report connected to Jira, or a Power Automate flow triggered on sprint completion — is to be confirmed. Update this section with the chosen approach when implementation details are available.</p>
+        </div>
+      </section>
+
+      <!-- ── Data Collection ───────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Data Collection</h2>
+        <p>Sprint Review reporting draws on data that already exists in Jira at the point of sprint completion. The collection approach depends on the chosen implementation (see Architecture note), but the source data is consistent across approaches.</p>
+        <ol class="steps-list" style="margin-top:12px;">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Identify the sprint:</strong> The completed sprint is the scope boundary. All data collection is filtered to issues that were part of the sprint at the point of completion.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Query issues by type:</strong> Issues are grouped by type — Stories, Bugs, Tasks, Spikes — and by status (completed vs incomplete/rolled over).</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Aggregate counts and points:</strong> Totals are calculated per issue type and for story points — committed, completed, and delta.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>Capture sprint context:</strong> Sprint name, goal, start and end dates provide the framing context for the report.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">5</span>
+            <span class="step-text"><strong>Format and present:</strong> The aggregated data is structured into a report — via a Jira dashboard, a formatted Teams message, or a dedicated reporting view depending on the implementation.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Metrics ───────────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Metrics</h2>
+        <p>The following sprint data points are candidates for inclusion in the report. The final set should reflect what is consistently populated in Jira for the team's issues.</p>
+        <div class="metrics-grid">
+          <div class="metric-item">Sprint Name</div>
+          <div class="metric-item">Sprint Goal</div>
+          <div class="metric-item">Sprint Start Date</div>
+          <div class="metric-item">Sprint End Date</div>
+          <div class="metric-item">Completed Stories</div>
+          <div class="metric-item">Bug Count</div>
+          <div class="metric-item">Task Count</div>
+          <div class="metric-item">Spike Count</div>
+          <div class="metric-item">Total Issues</div>
+          <div class="metric-item">Story Points Completed</div>
+          <div class="metric-item">Incomplete / Rolled Over</div>
+          <div class="metric-item">Delivery Summary</div>
+        </div>
+      </section>
+
+      <!-- ── Reporting Approach ────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Reporting Approach</h2>
+        <p>The report format and delivery mechanism depends on the chosen implementation. Below is a sanitised HTML/CSS mock-up of what a structured Sprint Review report could look like — illustrating the layout concept using placeholder data. No real sprint names, issue keys, or delivery statistics are used.</p>
+
+        <div class="report-preview" role="img" aria-label="Sanitised mock-up of a Sprint Review report showing placeholder statistics and issue list">
+          <div class="report-header">
+            <div class="report-header-title">📋 Sprint Review Report</div>
+            <div class="report-header-sub">Sprint Name · Start Date – End Date · [Goal placeholder]</div>
+          </div>
+          <div class="report-body">
+
+            <div>
+              <div class="report-section-label">Delivery Summary</div>
+              <div class="report-stat-row">
+                <div class="report-stat">
+                  <div class="report-stat-value">–</div>
+                  <div class="report-stat-label">Stories</div>
+                </div>
+                <div class="report-stat">
+                  <div class="report-stat-value">–</div>
+                  <div class="report-stat-label">Bugs</div>
+                </div>
+                <div class="report-stat">
+                  <div class="report-stat-value">–</div>
+                  <div class="report-stat-label">Tasks</div>
+                </div>
+                <div class="report-stat">
+                  <div class="report-stat-value">–</div>
+                  <div class="report-stat-label">Spikes</div>
+                </div>
+                <div class="report-stat">
+                  <div class="report-stat-value">–</div>
+                  <div class="report-stat-label">Points</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="report-divider"></div>
+
+            <div>
+              <div class="report-section-label">Completed Issues (examples)</div>
+              <div class="report-issue-list">
+                <div class="report-issue-row">
+                  <span class="report-issue-key">PROJ-0001</span>
+                  <span class="report-issue-type type--story">Story</span>
+                  <span>Example story summary text</span>
+                </div>
+                <div class="report-issue-row">
+                  <span class="report-issue-key">PROJ-0002</span>
+                  <span class="report-issue-type type--bug">Bug</span>
+                  <span>Example bug fix description</span>
+                </div>
+                <div class="report-issue-row">
+                  <span class="report-issue-key">PROJ-0003</span>
+                  <span class="report-issue-type type--task">Task</span>
+                  <span>Example task description</span>
+                </div>
+                <div class="report-issue-row">
+                  <span class="report-issue-key">PROJ-0004</span>
+                  <span class="report-issue-type type--spike">Spike</span>
+                  <span>Example spike investigation</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="report-divider"></div>
+
+            <div>
+              <div class="report-section-label">Incomplete / Rolled Over</div>
+              <div class="report-issue-list">
+                <div class="report-issue-row" style="color:#94a3b8;font-style:italic;">
+                  — To be populated with actual sprint data —
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="todo-callout" style="margin-top:16px;">
+          <p>📌 <strong>Reporting format to confirm:</strong> Replace placeholder values (–) with actual sprint data once the data collection mechanism is confirmed. Options include: Jira dashboard gadgets, a Power Automate–formatted Teams message, a connected spreadsheet report, or a custom HTML view populated from Jira's API.</p>
+        </div>
+      </section>
+
+      <!-- ── Stakeholder Value ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Stakeholder Value</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">⏱️</span>
+            <span class="value-label">Reduced Prep Time</span>
+            <span class="value-desc">Sprint Review data is gathered automatically — less time spent before the review pulling numbers from Jira manually.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">📐</span>
+            <span class="value-label">Consistent Format</span>
+            <span class="value-desc">The same report structure every sprint makes it easier for stakeholders to read and compare results over time.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">👥</span>
+            <span class="value-label">Stakeholder Ready</span>
+            <span class="value-desc">A structured report gives stakeholders a clear view of what was delivered without needing to navigate Jira directly.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🔁</span>
+            <span class="value-label">Repeatable</span>
+            <span class="value-desc">Once the approach is configured, it runs each sprint with no additional setup required.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Technologies Used ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technologies Used</h2>
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira</span>
+            <span class="tech-stack-role">Primary data source — sprint metadata, issues, statuses, story points, and assignees are all held in Jira and queried for the report.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Automation</span>
+            <span class="tech-stack-role">Potential trigger and data processing layer — rules can fire on sprint completion, query issues using <code>lookupIssues</code>, and push aggregated data to a downstream destination.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Query / Data</span>
+            <span class="tech-stack-role">JQL (Jira Query Language) or Jira Automation query functions are used to filter and aggregate sprint issues by type and status.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Dashboard / Reporting</span>
+            <span class="tech-stack-role">The presentation layer — could be a Jira dashboard with sprint gadgets, a formatted Teams message, a spreadsheet report, or a dedicated view. Specific approach to be confirmed.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Automation</span>
+            <span class="tech-stack-role">The broader automation layer — the trigger, data collection, aggregation, and delivery steps that replace the manual preparation process.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Lessons Learned ───────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Lessons Learned</h2>
+        <div class="lessons-list">
+          <div class="lesson-item">
+            <span class="lesson-icon">💡</span>
+            <span class="lesson-text"><strong>Data quality determines report quality.</strong> Automated reporting exposes inconsistencies in how issues are logged — missing story points, incorrect issue types, or statuses not updated before sprint close all affect the output. Agreeing team norms around Jira hygiene before implementing the report makes a significant difference.</span>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-icon">💡</span>
+            <span class="lesson-text"><strong>Start with the question, not the data.</strong> Before deciding what to automate, identify what stakeholders actually want to know from the Sprint Review. A report that answers the wrong questions adds complexity without value.</span>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-icon">💡</span>
+            <span class="lesson-text"><strong>Automate the structure, not the narrative.</strong> Metrics and counts can be automated. The Sprint Goal assessment, team observations, and delivery narrative still benefit from a human voice — the report provides context, not the full story.</span>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-icon">💡</span>
+            <span class="lesson-text"><strong>Agree the definition of "done" before reporting on it.</strong> If the team's Definition of Done is inconsistent or not enforced in Jira statuses, "completed" in the report will not reflect what was truly done. Alignment on workflow states is a prerequisite.</span>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-icon">📌</span>
+            <span class="lesson-text"><strong>Implementation specifics to be added.</strong> This entry documents the approach and design intent. Once the specific automation mechanism and reporting destination are confirmed, this section should be updated with the implementation detail — tool configuration, query syntax, and output format.</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

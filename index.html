@@ -1032,6 +1032,31 @@
       text-decoration: underline;
     }
 
+    .fc-card-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .fc-card-category--collab {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .fc-card-category--jira {
+      background: var(--color-blue-soft);
+      color: var(--color-blue-primary);
+      border: 1px solid #bfdbfe;
+    }
+
   </style>
 </head>
 <body>
@@ -1478,6 +1503,9 @@
           <button class="fc-tag" data-filter="power-automate">Power Automate</button>
           <button class="fc-tag" data-filter="ms-teams">Microsoft Teams</button>
           <button class="fc-tag" data-filter="json">JSON</button>
+          <button class="fc-tag" data-filter="routing-logic">Routing Logic</button>
+          <button class="fc-tag" data-filter="adaptive-cards">Adaptive Cards</button>
+          <button class="fc-tag" data-filter="slack">Slack</button>
         </div>
 
         <!-- Use-case card grid -->
@@ -1509,6 +1537,200 @@
             </div>
             <div class="fc-card-footer">
               <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-summary.html'" aria-label="View use case: Automated Sprint Completion Summary">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 2: Multi-Squad Dynamic Channel Routing -->
+          <article class="fc-card" data-tags="jira-automation webhook power-automate ms-teams json routing-logic">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-02</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="routing-logic">Routing Logic</span>
+                <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Multi-Squad Dynamic Channel Routing</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">Multiple squads needed automation notifications delivered to their own Teams channels. Maintaining a separate flow per squad created duplication and growing maintenance overhead.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">One shared Jira-to-Power-Automate integration uses Switch/Condition routing logic to identify the squad from the payload and dynamically deliver the notification to the correct Teams channel.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/multi-squad-routing.html'" aria-label="View use case: Multi-Squad Dynamic Channel Routing">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 3: Ready-for-Rollout Notification -->
+          <article class="fc-card" data-tags="jira-automation webhook power-automate ms-teams json adaptive-cards">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-03</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="adaptive-cards">Adaptive Cards</span>
+                <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Ready-for-Rollout Notification</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">When work became ready for rollout, relevant people needed timely visibility without relying entirely on manual messages or checking Jira.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">When a Jira issue transitions to "Ready for Rollout", Jira Automation sends a webhook to Power Automate, which formats and delivers a structured Teams notification with key issue details.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/rollout-notification.html'" aria-label="View use case: Ready-for-Rollout Notification">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 4: New Bug Alert Automation -->
+          <article class="fc-card" data-tags="jira-automation webhook power-automate ms-teams json">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-04</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">New Bug Alert Automation</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">Newly reported bugs had no automatic visibility. Teams depended on someone manually posting to a channel, meaning defects could sit unnoticed until the next standup or check-in.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">When a Bug is created in Jira, Jira Automation validates the issue type, extracts key bug details, and sends a structured JSON payload via webhook to Power Automate, which formats and delivers an alert to Microsoft Teams.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/bug-alert.html'" aria-label="View use case: New Bug Alert Automation">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 5: Dynamic Microsoft Teams Adaptive Cards -->
+          <article class="fc-card" data-tags="webhook power-automate ms-teams json adaptive-cards">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-05</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="adaptive-cards">Adaptive Cards</span>
+                <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Dynamic Microsoft Teams Adaptive Cards</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">Plain text automation notifications are difficult to scan and provide limited structure for operational information delivered to Microsoft Teams.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">Power Automate receives a JSON payload from Jira via webhook, maps dynamic values, and constructs a structured Adaptive Card posted to Microsoft Teams — transforming raw data into a readable, actionable notification.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/adaptive-cards.html'" aria-label="View use case: Dynamic Microsoft Teams Adaptive Cards">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 6: Jira to Power Automate Webhook Integration -->
+          <article class="fc-card" data-tags="jira-automation webhook power-automate json">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-06</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Jira to Power Automate Webhook Integration</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Pattern</span>
+                <p class="fc-card-text">A technical deep-dive into the reusable integration pattern that underpins all Flow Craft automations — how Jira Automation triggers external workflows by sending structured data through a webhook.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Why it matters</span>
+                <p class="fc-card-text">Understanding this pattern enables any team to build reliable, scalable Jira-triggered automations without duplicating infrastructure — one architecture, many downstream actions.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/jira-powerautomate-integration.html'" aria-label="View use case: Jira to Power Automate Webhook Integration">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 7: Automated Team Leave Planner -->
+          <article class="fc-card" data-tags="slack">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-07</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="slack">Slack</span>
+                <span class="fc-tech-tag">Workflow Builder</span>
+                <span class="fc-tech-tag">Scheduled Automation</span>
+              </div>
+            </div>
+            <div class="fc-card-category fc-card-category--collab">🤝 Collaboration Automation</div>
+            <h3 class="fc-card-title">Automated Team Leave Planner</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">Collecting team leave plans through repeated manual messages makes coordination cumbersome and responses difficult to consolidate.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">A scheduled Slack Workflow Builder automation asks team members for their leave information on a recurring basis and captures structured responses in a shared location for team visibility.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/slack-leave-planner.html'" aria-label="View use case: Automated Team Leave Planner">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- Use Case 8: Automated Sprint Review Reporting -->
+          <article class="fc-card" data-tags="jira-automation json">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-08</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag">Jira Query</span>
+                <span class="fc-tech-tag">Dashboard / Reporting</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Automated Sprint Review Reporting</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">Sprint Review preparation can require gathering delivery information from multiple Jira issues and manually organising statistics and completed work — creating overhead before every review.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Approach</span>
+                <p class="fc-card-text">Use Jira data and automation to collect relevant sprint information, aggregate delivery metrics, and present them in a structured Sprint Review report for stakeholder visibility.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-review-reporting.html'" aria-label="View use case: Automated Sprint Review Reporting">View Use Case →</button>
             </div>
           </article>
 

@@ -3,10 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Release Rollout Notification | Flow Craft</title>
+  <meta name="description" content="Flow Craft UC-03 — Ready-for-Rollout Notification. Jira Automation, Webhook, Power Automate, Adaptive Cards, Microsoft Teams.">
+  <title>UC-03 Ready-for-Rollout Notification | Flow Craft</title>
   <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Shared architecture diagram styles ─────────────── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 8px 0;
+    }
+    .arch-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 360px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .arch-node--trigger   { background: #0a192f; color: #ffffff; border: 2px solid #1d4ed8; }
+    .arch-node--process   { background: #eff6ff; color: #1e3a5f; border: 1px solid #bfdbfe; }
+    .arch-node--transport { background: #fefce8; color: #713f12; border: 1px solid #fde68a; }
+    .arch-node--platform  { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+    .arch-node--output    { background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af; }
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3px 0;
+      user-select: none;
+    }
+    .arch-arrow::before { content: ''; display: block; width: 2px; height: 10px; background: #cbd5e1; }
+    .arch-arrow::after  { content: '▼'; font-size: 0.65rem; color: #94a3b8; }
+
+    /* ── Tech stack ─────────────────────────────────────── */
+    .tech-stack-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .tech-stack-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--color-bg-page); border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 12px 16px;
+    }
+    .tech-stack-name { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); min-width: 160px; flex-shrink: 0; }
+    .tech-stack-role { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* ── Steps ──────────────────────────────────────────── */
+    .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; list-style: none; padding: 0; }
+    .step-item  { display: flex; gap: 14px; align-items: flex-start; }
+    .step-number {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--color-blue-primary); color: #fff;
+      font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.65; padding-top: 3px; }
+
+    /* ── Value grid ─────────────────────────────────────── */
+    .value-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 4px; }
+    .value-item { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .value-icon  { font-size: 1.3rem; }
+    .value-label { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc  { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Payload fields grid ────────────────────────────── */
+    .payload-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .payload-item {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-blue-primary);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .payload-item code {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--color-blue-primary);
+      font-family: 'Courier New', monospace;
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
+    /* ── Adaptive Card mock-up ──────────────────────────── */
+    .ac-preview {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+      max-width: 440px;
+      margin-top: 8px;
+      font-family: var(--font-family);
+    }
+    .ac-header {
+      background: #1d4ed8;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ac-header-icon { font-size: 1.3rem; }
+    .ac-header-text { color: #ffffff; font-size: 0.88rem; font-weight: 700; line-height: 1.3; }
+    .ac-header-sub  { color: #bfdbfe; font-size: 0.75rem; font-weight: 400; }
+    .ac-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .ac-row  { display: flex; gap: 8px; align-items: baseline; }
+    .ac-key  { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; min-width: 100px; flex-shrink: 0; }
+    .ac-val  { font-size: 0.88rem; color: #0f172a; line-height: 1.4; }
+    .ac-val a { color: #1d4ed8; text-decoration: none; }
+    .ac-divider { height: 1px; background: #e2e8f0; }
+    .ac-footer { padding: 10px 18px 14px; display: flex; gap: 8px; }
+    .ac-btn {
+      font-size: 0.78rem; font-weight: 600; padding: 6px 14px;
+      border-radius: 5px; border: none; cursor: default;
+    }
+    .ac-btn--primary { background: #1d4ed8; color: #fff; }
+    .ac-btn--outline { background: transparent; color: #1d4ed8; border: 1px solid #1d4ed8; }
+
+    /* ── Security note ──────────────────────────────────── */
+    .security-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 4px;
+    }
+    .security-note p { font-size: 0.88rem; color: #78350f; line-height: 1.6; margin: 0; }
+    .security-note ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 5px; }
+    .security-note li { font-size: 0.85rem; color: #78350f; }
+
+    @media (max-width: 600px) {
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .ac-preview { max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="fc-detail-header">
     <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
     <span class="fc-uc-id">UC-03</span>
@@ -15,36 +162,231 @@
   <main class="fc-detail-main">
     <div class="fc-detail-container">
 
+      <!-- ── Hero ─────────────────────────────────────────── -->
       <div class="fc-detail-hero">
-        <h1 class="fc-detail-title">Release Rollout Notification</h1>
+        <h1 class="fc-detail-title">Ready-for-Rollout Notification</h1>
         <div class="fc-detail-tags">
-          <!-- Technology tags to be added -->
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Webhook</span>
+          <span class="fc-tech-tag">JSON</span>
+          <span class="fc-tech-tag">Power Automate</span>
+          <span class="fc-tech-tag">Adaptive Cards</span>
+          <span class="fc-tech-tag">Microsoft Teams</span>
         </div>
       </div>
 
+      <!-- ── Overview ─────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Problem</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Overview</h2>
+        <p>This automation provides instant, structured visibility when a Jira issue transitions to a "Ready for Rollout" status. Rather than relying on someone remembering to send a manual message, the notification is triggered automatically and delivered to the relevant Microsoft Teams channel the moment the status changes — with all the key details the team needs to act.</p>
       </section>
 
+      <!-- ── Problem ──────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Automation</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>The Problem</h2>
+        <p>When work became ready for rollout, the people who needed to know — release managers, ops teams, or squad leads — were not always aware in a timely manner. The typical approach involved manually sending a Teams message, tagging the right people, and including the relevant Jira details by hand.</p>
+        <p style="margin-top:10px;">This created several friction points:</p>
+        <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Notifications were inconsistent — some issues got missed entirely</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Manual messages varied in format and detail level</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">There was a delay between the status change and the notification</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">The person making the status change had to remember to also send the message</li>
+        </ul>
       </section>
 
+      <!-- ── Trigger ──────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Technology Stack</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Trigger</h2>
+        <p>The automation fires when a Jira issue transitions to the configured <strong>Ready for Rollout</strong> status. This is the single entry point — the entire downstream flow is driven by this one status change in Jira, requiring no additional action from the team member making the transition.</p>
       </section>
 
+      <!-- ── Architecture ─────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Flow Diagram</h2>
-        <p><em>Flow diagram to be added.</em></p>
+        <h2>Automation Architecture</h2>
+        <div class="arch-diagram" role="img" aria-label="Architecture: Jira issue status transitions to Ready for Rollout, triggers Jira Automation, builds JSON payload, sends via webhook to Power Automate, which formats an Adaptive Card and posts to Microsoft Teams">
+
+          <div class="arch-node arch-node--trigger">📋 Jira Issue</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Status → Ready for Rollout</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Jira Automation Rule</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--transport">🔗 Webhook + JSON Payload</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Power Automate</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Parse &amp; Format Notification<br><small style="font-weight:400;font-size:0.78rem;">Adaptive Card composition</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Microsoft Teams</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--output">🚀 Ready-for-Rollout Message</div>
+
+        </div>
       </section>
 
+      <!-- ── Payload / Data ────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Configuration Notes</h2>
-        <p><em>Step-by-step configuration to be added.</em></p>
+        <h2>Payload / Data</h2>
+        <p>The JSON payload built by Jira Automation carries the following fields to Power Automate:</p>
+        <div class="payload-grid">
+          <div class="payload-item">Issue Key <code>issueKey</code></div>
+          <div class="payload-item">Summary <code>summary</code></div>
+          <div class="payload-item">Assignee <code>assignee</code></div>
+          <div class="payload-item">Assigned Team <code>team</code></div>
+          <div class="payload-item">Current Status <code>status</code></div>
+          <div class="payload-item">Jira Issue Link <code>issueUrl</code></div>
+          <div class="payload-item">Timestamp <code>transitionTime</code></div>
+        </div>
+      </section>
+
+      <!-- ── Processing Logic ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Processing Logic</h2>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Receive Webhook:</strong> Power Automate's HTTP trigger receives the POST request from Jira Automation and parses the JSON body.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Extract Fields:</strong> Dynamic content expressions pull the required values from the payload — issue key, summary, assignee, team, status, link, and timestamp.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Compose Adaptive Card:</strong> The extracted values are inserted into an Adaptive Card JSON template. Adaptive Cards produce a structured, visually formatted message in Teams — not a plain text block.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>Post to Teams:</strong> The "Post adaptive card in a chat or channel" action delivers the card to the designated Teams channel. The channel can be a general delivery channel or squad-specific (combining with UC-02 routing logic).</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Teams Output (mock) ───────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Teams Output</h2>
+        <p>Below is a sanitised example of how the notification appears in Microsoft Teams as an Adaptive Card. All values shown are illustrative — no real issue data, names, or company information is used.</p>
+
+        <div class="ac-preview" role="img" aria-label="Sanitised example of a Ready-for-Rollout Adaptive Card notification in Microsoft Teams">
+          <div class="ac-header">
+            <span class="ac-header-icon">🚀</span>
+            <div>
+              <div class="ac-header-text">Ready for Rollout</div>
+              <div class="ac-header-sub">Jira · Flow Craft Automation</div>
+            </div>
+          </div>
+          <div class="ac-body">
+            <div class="ac-row">
+              <span class="ac-key">Issue</span>
+              <span class="ac-val"><a href="#">PROJ-1234</a></span>
+            </div>
+            <div class="ac-divider"></div>
+            <div class="ac-row">
+              <span class="ac-key">Summary</span>
+              <span class="ac-val">Example feature ready for deployment to production</span>
+            </div>
+            <div class="ac-row">
+              <span class="ac-key">Assignee</span>
+              <span class="ac-val">Team Member Name</span>
+            </div>
+            <div class="ac-row">
+              <span class="ac-key">Team</span>
+              <span class="ac-val">Squad Name</span>
+            </div>
+            <div class="ac-row">
+              <span class="ac-key">Status</span>
+              <span class="ac-val" style="color:#16a34a;font-weight:600;">✔ Ready for Rollout</span>
+            </div>
+            <div class="ac-row">
+              <span class="ac-key">Timestamp</span>
+              <span class="ac-val">01 Oct 2026, 09:42 AM</span>
+            </div>
+          </div>
+          <div class="ac-footer">
+            <button class="ac-btn ac-btn--primary">View in Jira</button>
+            <button class="ac-btn ac-btn--outline">Acknowledge</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Technologies Used ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technologies Used</h2>
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Automation</span>
+            <span class="tech-stack-role">Trigger and payload builder — fires on the "Ready for Rollout" status transition and constructs the JSON payload.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Webhook</span>
+            <span class="tech-stack-role">HTTP POST transport — delivers the JSON payload from Jira to the Power Automate trigger endpoint.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">JSON</span>
+            <span class="tech-stack-role">Structured payload format — carries all issue fields from Jira Automation to Power Automate.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Power Automate</span>
+            <span class="tech-stack-role">Processing and formatting layer — receives the webhook, parses the payload, builds the Adaptive Card, and posts to Teams.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Adaptive Cards</span>
+            <span class="tech-stack-role">Structured Teams message format — provides a clean, visually consistent notification layout instead of plain text.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Microsoft Teams</span>
+            <span class="tech-stack-role">Delivery channel — where the Adaptive Card notification is posted for the relevant team to see and act on.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Business Value ────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Business Value</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">⚡</span>
+            <span class="value-label">Instant Visibility</span>
+            <span class="value-desc">Relevant people are notified the moment the status changes — no delay, no manual step.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">📐</span>
+            <span class="value-label">Consistent Format</span>
+            <span class="value-desc">Every notification has the same structure and fields — easy to read and act on every time.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🔕</span>
+            <span class="value-label">Zero Manual Effort</span>
+            <span class="value-desc">The person transitioning the issue doesn't need to remember to notify anyone separately.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🔗</span>
+            <span class="value-label">Direct Link to Jira</span>
+            <span class="value-desc">The Teams card links directly to the issue — one click to the full context without searching.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Security / Privacy Notes ─────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Security &amp; Privacy Notes</h2>
+        <div class="security-note">
+          <p>When implementing this automation, the following considerations apply:</p>
+          <ul>
+            <li>The Power Automate HTTP trigger URL functions as a secret endpoint — it should be stored securely and not committed to version control or shared publicly.</li>
+            <li>Only include fields in the JSON payload that are necessary for the notification — avoid sending surplus issue data.</li>
+            <li>Ensure the Teams channel receiving notifications has appropriate membership — only people who should see rollout-ready items should have access.</li>
+            <li>No credentials, API keys, or tenant-specific identifiers should appear in the Jira Automation rule configuration in plain text.</li>
+            <li>Review whether issue summaries may contain sensitive or confidential information before routing them to shared channels.</li>
+          </ul>
+        </div>
       </section>
 
     </div>

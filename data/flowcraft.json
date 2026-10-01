@@ -11,78 +11,67 @@
     },
     {
       "id": "multi-squad-routing",
-      "title": "Multi-Squad Issue Routing",
+      "title": "Multi-Squad Dynamic Channel Routing",
       "file": "flowcraft/multi-squad-routing.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
+      "tags": ["jira-automation", "webhook", "power-automate", "ms-teams", "json", "routing-logic"],
+      "problem": "Multiple squads needed automation notifications delivered to their own Teams channels. Maintaining a separate flow per squad created duplication and growing maintenance overhead.",
+      "automation": "One shared Jira-to-Power-Automate integration uses Switch/Condition routing logic to identify the squad from the payload and dynamically deliver the notification to the correct Teams channel.",
+      "technology": ["Jira Automation", "Jira Custom Fields", "Webhook", "JSON", "Power Automate", "Switch / Condition Logic", "Microsoft Teams"]
     },
     {
       "id": "rollout-notification",
-      "title": "Release Rollout Notification",
+      "title": "Ready-for-Rollout Notification",
       "file": "flowcraft/rollout-notification.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
+      "tags": ["jira-automation", "webhook", "power-automate", "ms-teams", "json", "adaptive-cards"],
+      "problem": "When work became ready for rollout, relevant people needed timely visibility without relying entirely on manual messages or checking Jira.",
+      "automation": "When a Jira issue transitions to 'Ready for Rollout', Jira Automation sends a webhook to Power Automate, which formats and delivers a structured Teams notification with key issue details.",
+      "technology": ["Jira Automation", "Webhook", "JSON", "Power Automate", "Microsoft Teams", "Adaptive Cards"]
     },
     {
       "id": "bug-alert",
-      "title": "Bug Alert Escalation",
+      "title": "New Bug Alert Automation",
       "file": "flowcraft/bug-alert.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
+      "tags": ["jira-automation", "webhook", "power-automate", "ms-teams", "json"],
+      "problem": "Newly reported bugs had no automatic visibility. Teams depended on someone manually posting to a channel, meaning defects could sit unnoticed until the next standup or check-in.",
+      "automation": "When a Bug is created in Jira, Jira Automation validates the issue type, extracts key bug details, and sends a structured JSON payload via webhook to Power Automate, which formats and delivers an alert to Microsoft Teams.",
+      "technology": ["Jira Automation", "Smart Values", "Webhook", "JSON", "Power Automate", "Microsoft Teams"]
+    },
+    {
+      "id": "adaptive-cards",
+      "title": "Dynamic Microsoft Teams Adaptive Cards",
+      "file": "flowcraft/adaptive-cards.html",
+      "tags": ["webhook", "power-automate", "ms-teams", "json", "adaptive-cards"],
+      "problem": "Plain text automation notifications are difficult to scan and provide limited structure for operational information delivered to Microsoft Teams.",
+      "automation": "Power Automate receives a JSON payload from Jira via webhook, maps dynamic values, and constructs a structured Adaptive Card posted to Microsoft Teams — transforming raw data into a readable, actionable notification.",
+      "technology": ["Jira", "Webhook", "JSON", "Power Automate", "Microsoft Teams", "Adaptive Cards"]
+    },
+    {
+      "id": "jira-powerautomate-integration",
+      "title": "Jira to Power Automate Webhook Integration",
+      "file": "flowcraft/jira-powerautomate-integration.html",
+      "tags": ["jira-automation", "webhook", "power-automate", "json"],
+      "problem": "Teams need a reliable, reusable pattern for triggering external workflows from Jira events without building bespoke point-to-point integrations each time.",
+      "automation": "Jira Automation uses Smart Values to construct a JSON payload and sends it via HTTP POST to a Power Automate HTTP trigger. Power Automate parses the payload and executes any downstream business logic — notifications, routing, reporting, or data transformation.",
+      "technology": ["Jira Automation", "Smart Values", "Webhook", "HTTP", "JSON", "Power Automate"]
     },
     {
       "id": "slack-leave-planner",
-      "title": "Slack Leave Planner",
+      "title": "Automated Team Leave Planner",
       "file": "flowcraft/slack-leave-planner.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
-    }
-  ]
-}
-
-    {
-      "id": "multi-squad-routing",
-      "title": "Multi-Squad Issue Routing",
-      "file": "flowcraft/multi-squad-routing.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
+      "tags": ["slack"],
+      "category": "Collaboration Automation",
+      "problem": "Collecting team leave plans through repeated manual messages makes coordination cumbersome and responses difficult to consolidate.",
+      "automation": "A scheduled Slack Workflow Builder automation asks team members for their leave information on a recurring basis and captures structured responses in a shared location for team visibility.",
+      "technology": ["Slack", "Slack Workflow Builder", "Scheduled Automation", "Forms / Responses", "Slack Canvas"]
     },
     {
-      "id": "rollout-notification",
-      "title": "Release Rollout Notification",
-      "file": "flowcraft/rollout-notification.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
-    },
-    {
-      "id": "bug-alert",
-      "title": "Bug Alert Escalation",
-      "file": "flowcraft/bug-alert.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
-    },
-    {
-      "id": "slack-leave-planner",
-      "title": "Slack Leave Planner",
-      "file": "flowcraft/slack-leave-planner.html",
-      "tags": [],
-      "problem": "",
-      "automation": "",
-      "technology": []
+      "id": "sprint-review-reporting",
+      "title": "Automated Sprint Review Reporting",
+      "file": "flowcraft/sprint-review-reporting.html",
+      "tags": ["jira-automation", "json"],
+      "problem": "Sprint Review preparation can require gathering delivery information from multiple Jira issues and manually organising statistics and completed work — creating overhead before every review.",
+      "automation": "Use Jira data and automation to collect relevant sprint information, aggregate delivery metrics, and present them in a structured Sprint Review report for stakeholder visibility.",
+      "technology": ["Jira", "Jira Automation", "Jira Query / Data", "Dashboard / Reporting", "Automation"]
     }
   ]
 }

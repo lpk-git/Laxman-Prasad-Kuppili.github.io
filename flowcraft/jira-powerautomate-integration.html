@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Craft UC-06 — Jira to Power Automate Webhook Integration. A technical deep-dive into the reusable integration pattern behind all Flow Craft automations.">
+  <title>UC-06 Jira to Power Automate Webhook Integration | Flow Craft</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Architecture diagram — shared styles ────────────── */
+    .arch-diagram {
+      display: flex; flex-direction: column; align-items: center; gap: 0; margin: 8px 0;
+    }
+    .arch-node {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; max-width: 360px; padding: 11px 20px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      text-align: center; line-height: 1.3;
+    }
+    .arch-node--trigger   { background: #0a192f; color: #ffffff; border: 2px solid #1d4ed8; }
+    .arch-node--process   { background: #eff6ff; color: #1e3a5f; border: 1px solid #bfdbfe; }
+    .arch-node--transport { background: #fefce8; color: #713f12; border: 1px solid #fde68a; }
+    .arch-node--platform  { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+    .arch-node--output    { background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af; }
+    .arch-arrow {
+      display: flex; flex-direction: column; align-items: center; padding: 3px 0; user-select: none;
+    }
+    .arch-arrow::before { content: ''; display: block; width: 2px; height: 10px; background: #cbd5e1; }
+    .arch-arrow::after  { content: '▼'; font-size: 0.65rem; color: #94a3b8; }
+
+    /* ── Branch row for downstream actions ───────────────── */
+    .arch-branch-row {
+      display: flex; justify-content: center; gap: 10px;
+      width: 100%; max-width: 560px;
+    }
+    .arch-branch-col {
+      display: flex; flex-direction: column; align-items: center; flex: 1; gap: 0;
+    }
+    .arch-branch-node {
+      width: 100%; padding: 9px 8px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 600; text-align: center; line-height: 1.3;
+      background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af;
+    }
+    .arch-branch-connector {
+      display: flex; width: 100%; max-width: 560px;
+      height: 18px; position: relative; justify-content: center; align-items: flex-start;
+    }
+    .arch-branch-connector::before {
+      content: ''; position: absolute; top: 0;
+      left: calc(50% - 170px); right: calc(50% - 170px);
+      height: 2px; background: #cbd5e1;
+    }
+    .arch-branch-connector .branch-tick {
+      position: absolute; top: 0; width: 2px; height: 18px; background: #cbd5e1;
+    }
+    .arch-branch-connector .branch-tick:nth-child(1) { left: calc(50% - 170px); }
+    .arch-branch-connector .branch-tick:nth-child(2) { left: calc(50% - 57px); }
+    .arch-branch-connector .branch-tick:nth-child(3) { left: calc(50% + 57px); }
+    .arch-branch-connector .branch-tick:nth-child(4) { left: calc(50% + 168px); }
+
+    /* ── Tech stack — reused ─────────────────────────────── */
+    .tech-stack-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .tech-stack-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--color-bg-page); border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 12px 16px;
+    }
+    .tech-stack-name { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); min-width: 160px; flex-shrink: 0; }
+    .tech-stack-role { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* ── Steps — reused ─────────────────────────────────── */
+    .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; list-style: none; padding: 0; }
+    .step-item  { display: flex; gap: 14px; align-items: flex-start; }
+    .step-number {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--color-blue-primary); color: #fff;
+      font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.65; padding-top: 3px; }
+
+    /* ── Value grid — reused ────────────────────────────── */
+    .value-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 4px; }
+    .value-item { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .value-icon  { font-size: 1.3rem; }
+    .value-label { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc  { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Concept explainer cards ────────────────────────── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .concept-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-blue-primary);
+      border-radius: 8px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .concept-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .concept-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-navy);
+    }
+    .concept-card-body {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Code / JSON block ──────────────────────────────── */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      margin-top: 4px;
+    }
+    .code-block .kw  { color: #93c5fd; }
+    .code-block .str { color: #86efac; }
+    .code-block .num { color: #fcd34d; }
+    .code-block .cmt { color: #64748b; font-style: italic; }
+    .code-block .url { color: #f9a8d4; }
+
+    /* ── Layer diagram ──────────────────────────────────── */
+    .layer-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 8px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      max-width: 560px;
+    }
+    .layer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      font-size: 0.88rem;
+    }
+    .layer + .layer { border-top: 1px solid var(--color-border); }
+    .layer--source   { background: #0a192f; color: #fff; }
+    .layer--protocol { background: #fefce8; color: #713f12; }
+    .layer--receiver { background: #f0fdf4; color: #14532d; }
+    .layer--logic    { background: #eff6ff; color: #1e3a5f; }
+    .layer--action   { background: #1d4ed8; color: #fff; }
+    .layer-icon  { font-size: 1.1rem; flex-shrink: 0; }
+    .layer-title { font-weight: 700; font-size: 0.88rem; min-width: 160px; flex-shrink: 0; }
+    .layer-desc  { font-size: 0.82rem; opacity: 0.85; line-height: 1.4; }
+
+    /* ── Security note — reused ─────────────────────────── */
+    .security-note {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-left: 4px solid #f59e0b; border-radius: 8px;
+      padding: 14px 18px; margin-top: 4px;
+    }
+    .security-note p  { font-size: 0.88rem; color: #78350f; line-height: 1.6; margin: 0; }
+    .security-note ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 5px; }
+    .security-note li { font-size: 0.85rem; color: #78350f; }
+
+    @media (max-width: 600px) {
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .arch-branch-row { flex-direction: column; align-items: center; gap: 8px; }
+      .arch-branch-connector { display: none; }
+      .layer-title { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fc-detail-header">
+    <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
+    <span class="fc-uc-id">UC-06</span>
+  </header>
+
+  <main class="fc-detail-main">
+    <div class="fc-detail-container">
+
+      <!-- ── Hero ─────────────────────────────────────────── -->
+      <div class="fc-detail-hero">
+        <h1 class="fc-detail-title">Jira to Power Automate Webhook Integration</h1>
+        <div class="fc-detail-tags">
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Smart Values</span>
+          <span class="fc-tech-tag">Webhook</span>
+          <span class="fc-tech-tag">HTTP</span>
+          <span class="fc-tech-tag">JSON</span>
+          <span class="fc-tech-tag">Power Automate</span>
+        </div>
+      </div>
+
+      <!-- ── Objective ─────────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Objective</h2>
+        <p>This entry is a technical deep-dive into the integration pattern that underpins every Flow Craft automation. Understanding it once unlocks the ability to build any Jira-triggered workflow — notifications, routing, reporting, data transformation — without reinventing the infrastructure each time.</p>
+        <p style="margin-top:10px;">The pattern: <strong>Jira Automation detects an event → constructs a structured JSON payload using Smart Values → sends it via HTTP POST (webhook) → Power Automate receives, parses, and acts on it.</strong></p>
+      </section>
+
+      <!-- ── Core Concepts ────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Core Concepts</h2>
+        <div class="concept-grid">
+          <div class="concept-card">
+            <span class="concept-card-label">What is a Webhook?</span>
+            <span class="concept-card-title">Event-Driven HTTP Call</span>
+            <p class="concept-card-body">A webhook is an HTTP POST request sent automatically when a specific event occurs — in this case, a Jira event. Unlike polling (where a system periodically checks for changes), a webhook pushes data to a destination the moment the event fires. It is real-time and requires no scheduled checks.</p>
+          </div>
+          <div class="concept-card">
+            <span class="concept-card-label">Why JSON?</span>
+            <span class="concept-card-title">Structured, Universal Format</span>
+            <p class="concept-card-body">JSON (JavaScript Object Notation) is the standard format for passing structured data between systems over HTTP. It is human-readable, widely supported, and directly parseable by Power Automate without additional transformation. Each key-value pair maps cleanly to a field the downstream workflow can use.</p>
+          </div>
+          <div class="concept-card">
+            <span class="concept-card-label">Jira as Event Source</span>
+            <span class="concept-card-title">The Trigger Layer</span>
+            <p class="concept-card-body">Jira Automation rules define the conditions that initiate the integration — issue created, status changed, sprint completed, etc. Smart Values act as dynamic references that extract live issue data and embed it into the outbound payload at the time the rule fires.</p>
+          </div>
+          <div class="concept-card">
+            <span class="concept-card-label">Power Automate</span>
+            <span class="concept-card-title">The Orchestration Layer</span>
+            <p class="concept-card-body">Power Automate's HTTP trigger acts as a publicly accessible endpoint that receives the webhook. Once the payload arrives, Power Automate becomes the orchestration engine: it parses the JSON, applies business logic (conditions, routing, formatting), and executes one or more downstream actions.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Architecture ─────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Architecture</h2>
+        <div class="arch-diagram" role="img" aria-label="Architecture: Jira event fires automation rule, Smart Values populate JSON, HTTP POST sends to Power Automate trigger, which parses JSON, applies business logic, and executes downstream actions">
+
+          <div class="arch-node arch-node--trigger">⚡ Jira Event</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Jira Automation Rule</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Smart Values<br><small style="font-weight:400;font-size:0.78rem;">dynamic field extraction</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Construct JSON Payload</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--transport">🔗 HTTP POST / Webhook</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Power Automate HTTP Trigger<br><small style="font-weight:400;font-size:0.78rem;">receives &amp; accepts payload</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Parse JSON</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Business Logic<br><small style="font-weight:400;font-size:0.78rem;">conditions · routing · formatting</small></div>
+          <div class="arch-arrow"></div>
+
+          <!-- Downstream fanout -->
+          <div class="arch-branch-connector">
+            <div class="branch-tick"></div>
+            <div class="branch-tick"></div>
+            <div class="branch-tick"></div>
+            <div class="branch-tick"></div>
+          </div>
+          <div class="arch-branch-row">
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">📢 Teams Notification</div>
+            </div>
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">⑂ Routing</div>
+            </div>
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">📊 Reporting</div>
+            </div>
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">🔄 Data Transform</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Integration Layers ────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Integration Layers</h2>
+        <p>The architecture separates concerns across five distinct layers. Each layer has a single responsibility — making the integration easy to debug, modify, and extend independently.</p>
+        <div class="layer-diagram" role="img" aria-label="Five integration layers: event source, transport protocol, receiver endpoint, parse and logic, downstream action">
+          <div class="layer layer--source">
+            <span class="layer-icon">⚡</span>
+            <span class="layer-title">Event Source</span>
+            <span class="layer-desc">Jira Automation rule — detects the triggering condition and populates Smart Values from issue data.</span>
+          </div>
+          <div class="layer layer--protocol">
+            <span class="layer-icon">🔗</span>
+            <span class="layer-title">Transport Protocol</span>
+            <span class="layer-desc">HTTP POST carrying a JSON body — the universal integration protocol. The webhook URL is the destination address.</span>
+          </div>
+          <div class="layer layer--receiver">
+            <span class="layer-icon">📥</span>
+            <span class="layer-title">Receiver Endpoint</span>
+            <span class="layer-desc">Power Automate HTTP Trigger — a managed, publicly accessible endpoint that accepts the inbound POST and returns HTTP 202 Accepted.</span>
+          </div>
+          <div class="layer layer--logic">
+            <span class="layer-icon">⚙️</span>
+            <span class="layer-title">Parse &amp; Logic</span>
+            <span class="layer-desc">Power Automate parse JSON action + condition/switch blocks — transforms the raw payload into typed variables and applies routing or formatting logic.</span>
+          </div>
+          <div class="layer layer--action">
+            <span class="layer-icon">🎯</span>
+            <span class="layer-title">Downstream Action</span>
+            <span class="layer-desc">Any Power Automate connector action — Teams message, SharePoint update, email, data write, or further API calls.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── How It Works (step by step) ──────────────────── -->
+      <section class="fc-detail-section">
+        <h2>How It Works</h2>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Event fires in Jira:</strong> A configured condition is met — an issue is created, a status changes, a sprint completes. Jira Automation's rule engine detects the event.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Smart Values resolve:</strong> The rule uses Smart Value expressions (e.g. <code>{{issue.key}}</code>, <code>{{issue.status.name}}</code>) to pull live data from the triggering issue into the rule context.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>JSON payload constructed:</strong> The rule's "Send web request" action assembles the payload as a JSON body, embedding the resolved Smart Values as key-value pairs.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>HTTP POST dispatched:</strong> Jira sends the POST request to the Power Automate HTTP trigger URL. The Content-Type header is set to <code>application/json</code>.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">5</span>
+            <span class="step-text"><strong>Power Automate receives the request:</strong> The HTTP trigger endpoint accepts the request and immediately returns HTTP 202 Accepted to Jira, confirming delivery. The flow then continues asynchronously.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">6</span>
+            <span class="step-text"><strong>JSON parsed:</strong> A "Parse JSON" action reads the body using a schema definition, creating typed dynamic content variables (strings, numbers, booleans) usable in subsequent steps.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">7</span>
+            <span class="step-text"><strong>Business logic applied:</strong> Condition or Switch blocks evaluate the parsed values — routing by squad, filtering by priority, branching by issue type — and direct execution to the appropriate downstream steps.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">8</span>
+            <span class="step-text"><strong>Downstream action executes:</strong> The flow performs its intended action — posting to Teams, writing a record, sending a notification, or calling another API.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── JSON Payload Example ──────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>JSON Payload Example</h2>
+        <p>The following is a sanitised, illustrative example of the JSON body sent by Jira Automation. All values are fictional — no real project keys, issue identifiers, names, or URLs are used.</p>
+        <div class="code-block" aria-label="Sanitised example JSON payload">
+<span class="cmt">// Example payload — all values are illustrative</span>
+{
+  <span class="kw">"issueKey"</span>:        <span class="str">"PROJ-0000"</span>,
+  <span class="kw">"summary"</span>:         <span class="str">"Example issue summary"</span>,
+  <span class="kw">"status"</span>:          <span class="str">"In Progress"</span>,
+  <span class="kw">"priority"</span>:        <span class="str">"High"</span>,
+  <span class="kw">"issueType"</span>:       <span class="str">"Story"</span>,
+  <span class="kw">"assignee"</span>:        <span class="str">"Team Member Name"</span>,
+  <span class="kw">"team"</span>:            <span class="str">"Squad Name"</span>,
+  <span class="kw">"sprint"</span>:          <span class="str">"Sprint 00"</span>,
+  <span class="kw">"issueUrl"</span>:        <span class="url">"https://example.invalid/browse/PROJ-0000"</span>,
+  <span class="kw">"timestamp"</span>:       <span class="str">"2026-01-01T00:00:00Z"</span>
+}
+        </div>
+        <p style="margin-top:12px; font-size:0.88rem; color:var(--color-text-muted);">
+          The fields included in the payload are defined by the Jira Automation rule author. Only the fields needed by the downstream flow should be included — avoid sending surplus data.
+        </p>
+      </section>
+
+      <!-- ── How Power Automate Interprets the Payload ─────── -->
+      <section class="fc-detail-section">
+        <h2>How the Receiving Flow Interprets the Payload</h2>
+        <p>When Power Automate receives the webhook, it processes the payload in two stages before any business logic runs:</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Trigger body:</strong> The raw JSON body is available as <code>triggerBody()</code>. Individual fields can be referenced directly using expressions like <code>triggerBody()?['issueKey']</code> — useful for simple flows with few fields.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Parse JSON action:</strong> For flows that use multiple fields, a "Parse JSON" action converts the body into a typed schema. This generates named dynamic content tokens — <em>issueKey</em>, <em>status</em>, <em>priority</em> — that appear as selectable values in subsequent steps, making the flow easier to build and maintain.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Schema generation:</strong> The Parse JSON schema can be generated automatically by pasting a sample payload into Power Automate's schema generator. The schema defines the expected field names and data types, enabling proper type handling downstream.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Why This Architecture Is Reusable ─────────────── -->
+      <section class="fc-detail-section">
+        <h2>Why This Architecture Is Reusable</h2>
+        <p>The Jira → Webhook → Power Automate pattern is not tied to any specific use case. Its reusability comes from the separation between the event layer and the action layer:</p>
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">🔌</span>
+            <span class="value-label">Decoupled layers</span>
+            <span class="value-desc">Jira doesn't know what Power Automate does with the payload. Power Automate doesn't care which Jira event triggered it. Each side can change independently.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🧩</span>
+            <span class="value-label">Swappable endpoints</span>
+            <span class="value-desc">The same Jira rule can point to different Power Automate flows for different purposes — or the same flow can accept payloads from multiple Jira rules.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">📦</span>
+            <span class="value-label">Payload as contract</span>
+            <span class="value-desc">The JSON payload is the agreed interface between Jira and Power Automate. As long as the agreed fields are present, either side can evolve without breaking the other.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">➕</span>
+            <span class="value-label">Extensible</span>
+            <span class="value-desc">Adding a new field to the payload adds capability without changing the integration architecture. Adding a new downstream action adds a new branch — not a new integration.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Technologies Used ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technologies Used</h2>
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Automation</span>
+            <span class="tech-stack-role">Rule engine and event source — detects trigger conditions and orchestrates the outbound request.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Smart Values</span>
+            <span class="tech-stack-role">Dynamic field resolution — Jira's template syntax for extracting live issue data into the payload at rule execution time.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Webhook / HTTP POST</span>
+            <span class="tech-stack-role">Transport protocol — the mechanism that carries the payload from Jira to the external endpoint. Standard HTTP, no special library required.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">JSON</span>
+            <span class="tech-stack-role">Payload format — the structured, human-readable data contract between the Jira rule and the Power Automate flow.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Power Automate</span>
+            <span class="tech-stack-role">Orchestration and action layer — receives the webhook, parses the payload, applies logic, and executes downstream actions via its connector ecosystem.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">APIs / Integration</span>
+            <span class="tech-stack-role">General concept — this pattern follows standard API integration principles: event-driven triggers, structured payloads, and decoupled producer/consumer layers.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Security Note ─────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Security Note</h2>
+        <div class="security-note">
+          <p><strong>The Power Automate HTTP trigger URL must be treated as a secret.</strong> It contains embedded authentication tokens that grant anyone with the URL the ability to invoke the flow. Never expose it in:</p>
+          <ul>
+            <li>Version control repositories (Git, etc.)</li>
+            <li>Public documentation, wikis, or this website</li>
+            <li>Shared chat messages or emails</li>
+            <li>Browser history or network logs in shared environments</li>
+          </ul>
+          <p style="margin-top:10px;">Store the URL in a secrets manager, a secure configuration store, or an environment variable. Rotate the trigger URL (regenerate it in Power Automate) if it is believed to have been exposed. All code and documentation examples — including this page — use <code>https://example.invalid/webhook</code> as a safe, non-functional placeholder.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

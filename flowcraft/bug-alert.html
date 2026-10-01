@@ -3,10 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bug Alert Escalation | Flow Craft</title>
+  <meta name="description" content="Flow Craft UC-04 — New Bug Alert Automation. Jira Automation, Smart Values, Webhook, Power Automate, Microsoft Teams.">
+  <title>UC-04 New Bug Alert Automation | Flow Craft</title>
   <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Architecture diagram ───────────────────────────── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 8px 0;
+    }
+    .arch-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 360px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .arch-node--trigger   { background: #0a192f; color: #ffffff; border: 2px solid #1d4ed8; }
+    .arch-node--process   { background: #eff6ff; color: #1e3a5f; border: 1px solid #bfdbfe; }
+    .arch-node--transport { background: #fefce8; color: #713f12; border: 1px solid #fde68a; }
+    .arch-node--platform  { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+    .arch-node--output    { background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af; }
+    .arch-node--validate  { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; }
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3px 0;
+      user-select: none;
+    }
+    .arch-arrow::before { content: ''; display: block; width: 2px; height: 10px; background: #cbd5e1; }
+    .arch-arrow::after  { content: '▼'; font-size: 0.65rem; color: #94a3b8; }
+
+    /* ── Tech stack ─────────────────────────────────────── */
+    .tech-stack-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .tech-stack-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--color-bg-page); border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 12px 16px;
+    }
+    .tech-stack-name { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); min-width: 160px; flex-shrink: 0; }
+    .tech-stack-role { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* ── Steps ──────────────────────────────────────────── */
+    .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; list-style: none; padding: 0; }
+    .step-item  { display: flex; gap: 14px; align-items: flex-start; }
+    .step-number {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--color-blue-primary); color: #fff;
+      font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.65; padding-top: 3px; }
+
+    /* ── Payload grid ───────────────────────────────────── */
+    .payload-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .payload-item {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-blue-primary);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .payload-item code {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--color-blue-primary);
+      font-family: 'Courier New', monospace;
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
+    /* ── Priority badge row ─────────────────────────────── */
+    .priority-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .priority-badge--critical { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+    .priority-badge--high     { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+    .priority-badge--medium   { background: #fefce8; color: #854d0e; border-color: #fef08a; }
+    .priority-badge--low      { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+
+    /* ── Alert card mock-up ─────────────────────────────── */
+    .alert-preview {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+      max-width: 440px;
+      margin-top: 8px;
+    }
+    .alert-header {
+      background: #7f1d1d;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .alert-header-icon { font-size: 1.3rem; }
+    .alert-header-text { color: #ffffff; font-size: 0.88rem; font-weight: 700; line-height: 1.3; }
+    .alert-header-sub  { color: #fca5a5; font-size: 0.75rem; font-weight: 400; }
+    .alert-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .alert-row  { display: flex; gap: 8px; align-items: baseline; }
+    .alert-key  { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; min-width: 80px; flex-shrink: 0; }
+    .alert-val  { font-size: 0.88rem; color: #0f172a; line-height: 1.4; }
+    .alert-val a { color: #1d4ed8; text-decoration: none; }
+    .alert-divider { height: 1px; background: #e2e8f0; }
+    .alert-footer { padding: 10px 18px 14px; display: flex; gap: 8px; }
+    .alert-btn { font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 5px; border: none; cursor: default; }
+    .alert-btn--primary { background: #1d4ed8; color: #fff; }
+    .alert-btn--outline { background: transparent; color: #1d4ed8; border: 1px solid #1d4ed8; }
+
+    /* ── Value grid ─────────────────────────────────────── */
+    .value-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 4px; }
+    .value-item { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .value-icon  { font-size: 1.3rem; }
+    .value-label { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc  { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Security note ──────────────────────────────────── */
+    .security-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 4px;
+    }
+    .security-note p  { font-size: 0.88rem; color: #78350f; line-height: 1.6; margin: 0; }
+    .security-note ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 5px; }
+    .security-note li { font-size: 0.85rem; color: #78350f; }
+
+    @media (max-width: 600px) {
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .alert-preview { max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="fc-detail-header">
     <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
     <span class="fc-uc-id">UC-04</span>
@@ -15,36 +181,255 @@
   <main class="fc-detail-main">
     <div class="fc-detail-container">
 
+      <!-- ── Hero ─────────────────────────────────────────── -->
       <div class="fc-detail-hero">
-        <h1 class="fc-detail-title">Bug Alert Escalation</h1>
+        <h1 class="fc-detail-title">New Bug Alert Automation</h1>
         <div class="fc-detail-tags">
-          <!-- Technology tags to be added -->
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Smart Values</span>
+          <span class="fc-tech-tag">Webhook</span>
+          <span class="fc-tech-tag">JSON</span>
+          <span class="fc-tech-tag">Power Automate</span>
+          <span class="fc-tech-tag">Microsoft Teams</span>
         </div>
       </div>
 
+      <!-- ── Overview ─────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Problem</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Overview</h2>
+        <p>This automation ensures that every new Bug reported in Jira generates an immediate, structured alert in Microsoft Teams. The moment a Bug issue is created, the relevant team receives a notification containing the key defect details — without anyone needing to manually post, tag, or copy information from Jira.</p>
       </section>
 
+      <!-- ── Business Problem ─────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Automation</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Business Problem</h2>
+        <p>In active delivery environments, bugs are reported continuously — during testing, in production, and through user feedback. Without an automatic notification mechanism, newly reported defects lack immediate visibility unless a team member happens to check Jira or someone remembers to post in the team channel.</p>
+        <p style="margin-top:10px;">This dependence on manual communication introduced several risks:</p>
+        <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Bugs sat unnoticed in the backlog until the next standup or check-in</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">High-priority defects were not distinguished from low-priority ones in informal messages</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">There was no consistent format — different people communicated bugs differently</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">The reporting process depended on individuals remembering to notify the team</li>
+        </ul>
       </section>
 
+      <!-- ── Trigger ──────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Technology Stack</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Trigger</h2>
+        <p>The automation fires when a <strong>new Jira issue is created</strong> where the <strong>Issue Type = Bug</strong>. This is the only condition required. The rule does not depend on any additional field being populated — it fires on creation, at the point of earliest possible visibility.</p>
+        <p style="margin-top:10px;">A validation step inside the rule confirms the issue type before proceeding, ensuring the automation only fires for bugs and not for other issue types that may be created concurrently.</p>
       </section>
 
+      <!-- ── Architecture ─────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Flow Diagram</h2>
-        <p><em>Flow diagram to be added.</em></p>
+        <h2>Automation Architecture</h2>
+        <div class="arch-diagram" role="img" aria-label="Architecture: Bug created in Jira triggers automation, validates issue type, extracts bug info, sends JSON via webhook to Power Automate, which formats an alert and posts to Microsoft Teams">
+
+          <div class="arch-node arch-node--trigger">🐛 Bug Created in Jira</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Jira Automation Trigger<br><small style="font-weight:400;font-size:0.78rem;">Issue Created event</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--validate">Validate Issue Type = Bug</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Extract Bug Information<br><small style="font-weight:400;font-size:0.78rem;">Smart Values</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--transport">🔗 JSON / Webhook</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Power Automate</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Format Alert</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Microsoft Teams</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--output">🔔 Bug Alert Posted</div>
+
+        </div>
       </section>
 
+      <!-- ── Payload / Data ────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Configuration Notes</h2>
-        <p><em>Step-by-step configuration to be added.</em></p>
+        <h2>Payload / Data</h2>
+        <p>Jira Smart Values populate the following fields in the JSON payload sent to Power Automate:</p>
+        <div class="payload-grid">
+          <div class="payload-item">Bug Key <code>issueKey</code></div>
+          <div class="payload-item">Summary <code>summary</code></div>
+          <div class="payload-item">Priority <code>priority</code></div>
+          <div class="payload-item">Assignee <code>assignee</code></div>
+          <div class="payload-item">Team <code>team</code></div>
+          <div class="payload-item">Status <code>status</code></div>
+          <div class="payload-item">Jira Link <code>issueUrl</code></div>
+        </div>
+
+        <p style="margin-top:16px;">The <strong>Priority</strong> field is particularly important in this use case. It allows Power Automate to apply conditional formatting or route the alert to different channels based on severity:</p>
+        <div class="priority-row">
+          <span class="priority-badge priority-badge--critical">🔴 Critical</span>
+          <span class="priority-badge priority-badge--high">🟠 High</span>
+          <span class="priority-badge priority-badge--medium">🟡 Medium</span>
+          <span class="priority-badge priority-badge--low">🟢 Low</span>
+        </div>
+      </section>
+
+      <!-- ── Technical Automation Pattern ─────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technical Automation Pattern</h2>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Trigger:</strong> The Jira Automation rule listens for the "Issue Created" event across the configured project scope.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Validate:</strong> A condition block checks that <code>{{issue.issueType.name}}</code> equals "Bug". If the condition is not met, the rule exits without action — preventing false alerts for Stories, Tasks, or Spikes.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Extract:</strong> Jira Smart Values populate the payload fields — <code>{{issue.key}}</code>, <code>{{issue.summary}}</code>, <code>{{issue.priority.name}}</code>, <code>{{issue.assignee.displayName}}</code>, <code>{{issue.status.name}}</code>, and the issue URL.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>Send Webhook:</strong> The rule sends an HTTP POST request with the JSON payload to the Power Automate trigger endpoint.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">5</span>
+            <span class="step-text"><strong>Parse in Power Automate:</strong> The flow parses the incoming JSON body and maps each field to a variable for use in the Teams message.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">6</span>
+            <span class="step-text"><strong>Format Alert:</strong> Power Automate composes a structured Teams message — optionally an Adaptive Card — incorporating all bug fields. Priority can be used to apply conditional colour or header text.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">7</span>
+            <span class="step-text"><strong>Post to Teams:</strong> The alert is delivered to the configured channel. The message includes a direct link to the Jira issue for one-click access.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Teams Alert Mock-up ───────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Teams Alert Example</h2>
+        <p>A sanitised example of how the bug alert appears in Microsoft Teams. All data shown is illustrative — no real issue data, names, or company identifiers are used.</p>
+
+        <div class="alert-preview" role="img" aria-label="Sanitised example of a New Bug Alert notification in Microsoft Teams">
+          <div class="alert-header">
+            <span class="alert-header-icon">🐛</span>
+            <div>
+              <div class="alert-header-text">New Bug Reported</div>
+              <div class="alert-header-sub">Jira · Flow Craft Automation</div>
+            </div>
+          </div>
+          <div class="alert-body">
+            <div class="alert-row">
+              <span class="alert-key">Bug</span>
+              <span class="alert-val"><a href="#">PROJ-5678</a></span>
+            </div>
+            <div class="alert-divider"></div>
+            <div class="alert-row">
+              <span class="alert-key">Summary</span>
+              <span class="alert-val">Example: Login page returns an error on valid credentials</span>
+            </div>
+            <div class="alert-row">
+              <span class="alert-key">Priority</span>
+              <span class="alert-val" style="color:#991b1b;font-weight:600;">🔴 High</span>
+            </div>
+            <div class="alert-row">
+              <span class="alert-key">Assignee</span>
+              <span class="alert-val">Unassigned</span>
+            </div>
+            <div class="alert-row">
+              <span class="alert-key">Team</span>
+              <span class="alert-val">Squad Name</span>
+            </div>
+            <div class="alert-row">
+              <span class="alert-key">Status</span>
+              <span class="alert-val">To Do</span>
+            </div>
+          </div>
+          <div class="alert-footer">
+            <button class="alert-btn alert-btn--primary">View Bug in Jira</button>
+            <button class="alert-btn alert-btn--outline">Assign</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Technologies Used ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technologies Used</h2>
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Automation</span>
+            <span class="tech-stack-role">Rule engine — triggers on Issue Created, validates issue type, and orchestrates the outbound payload.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Smart Values</span>
+            <span class="tech-stack-role">Dynamic field references within the rule — used to extract bug key, summary, priority, assignee, status, and URL into the payload.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Webhook</span>
+            <span class="tech-stack-role">HTTP POST transport — delivers the JSON payload from Jira Automation to the Power Automate endpoint.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">JSON</span>
+            <span class="tech-stack-role">Payload format — structured object carrying all bug fields from Jira to Power Automate.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Power Automate</span>
+            <span class="tech-stack-role">Processing layer — receives the webhook, parses the JSON, formats the alert, and posts to Teams.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Microsoft Teams</span>
+            <span class="tech-stack-role">Delivery channel — where the bug alert is posted for the team to see and act on immediately.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Business Value ────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Business Value</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">👁️</span>
+            <span class="value-label">Immediate Visibility</span>
+            <span class="value-desc">Bugs surface in the team channel the moment they are created — no waiting for standups.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🚫</span>
+            <span class="value-label">No Manual Step</span>
+            <span class="value-desc">The reporter does not need to remember to notify anyone — the automation handles it.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">📐</span>
+            <span class="value-label">Consistent Format</span>
+            <span class="value-desc">Every bug alert has the same structure — priority, assignee, link — regardless of who reported it.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🎯</span>
+            <span class="value-label">Priority Context</span>
+            <span class="value-desc">The alert includes priority, helping the team quickly judge urgency without opening Jira.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Security / Privacy Notes ─────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Security &amp; Privacy Notes</h2>
+        <div class="security-note">
+          <p>Consider the following when implementing this automation:</p>
+          <ul>
+            <li>The Power Automate HTTP trigger URL acts as a shared secret — store it securely and do not expose it in version control or documentation.</li>
+            <li>Only include fields in the payload that are needed for the alert — avoid sending surplus issue data or internal metadata.</li>
+            <li>Review whether bug summaries may contain sensitive information (e.g. security vulnerabilities, PII) before routing to a shared Teams channel.</li>
+            <li>For security-related bugs, consider routing to a restricted, private channel rather than a general team channel.</li>
+            <li>Ensure the scope of the Jira Automation rule is intentionally set — project-level vs global — to avoid unintended cross-project triggers.</li>
+          </ul>
+        </div>
       </section>
 
     </div>

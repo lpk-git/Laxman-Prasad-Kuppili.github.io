@@ -3,10 +3,266 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Squad Issue Routing | Flow Craft</title>
+  <meta name="description" content="Flow Craft UC-02 — Multi-Squad Dynamic Channel Routing. Jira Automation, Webhook, Power Automate, Routing Logic, Microsoft Teams.">
+  <title>UC-02 Multi-Squad Dynamic Channel Routing | Flow Craft</title>
   <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Architecture diagram (shared with UC-01) ───────── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 8px 0;
+    }
+
+    .arch-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 360px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .arch-node--trigger  { background: #0a192f; color: #ffffff; border: 2px solid #1d4ed8; }
+    .arch-node--process  { background: #eff6ff; color: #1e3a5f; border: 1px solid #bfdbfe; }
+    .arch-node--transport{ background: #fefce8; color: #713f12; border: 1px solid #fde68a; }
+    .arch-node--platform { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+    .arch-node--decision { background: #fdf4ff; color: #581c87; border: 2px dashed #d8b4fe; }
+    .arch-node--output   { background: #1d4ed8; color: #ffffff; border: 2px solid #1e40af; }
+
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3px 0;
+      user-select: none;
+    }
+    .arch-arrow::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 10px;
+      background: #cbd5e1;
+    }
+    .arch-arrow::after {
+      content: '▼';
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+
+    /* ── Branching rows ─────────────────────────────────── */
+    .arch-branch-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 560px;
+      margin: 0;
+    }
+
+    .arch-branch-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      gap: 0;
+    }
+
+    .arch-branch-node {
+      width: 100%;
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      background: #f0fdf4;
+      color: #14532d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .arch-branch-output {
+      width: 100%;
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      background: #1d4ed8;
+      color: #ffffff;
+      border: 2px solid #1e40af;
+    }
+
+    .arch-branch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3px 0;
+      user-select: none;
+    }
+    .arch-branch-arrow::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 10px;
+      background: #cbd5e1;
+    }
+    .arch-branch-arrow::after {
+      content: '▼';
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+
+    /* horizontal connector line above branch nodes */
+    .arch-branch-connector {
+      display: flex;
+      width: 100%;
+      max-width: 560px;
+      height: 18px;
+      position: relative;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .arch-branch-connector::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: calc(50% - 140px);
+      right: calc(50% - 140px);
+      height: 2px;
+      background: #cbd5e1;
+    }
+    .arch-branch-connector::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 18px;
+      background: #cbd5e1;
+    }
+    .arch-branch-connector .branch-tick {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 18px;
+      background: #cbd5e1;
+    }
+    .arch-branch-connector .branch-tick:first-child { left: calc(50% - 140px); }
+    .arch-branch-connector .branch-tick:last-child  { left: calc(50% + 138px); }
+
+    /* ── Tech stack / steps / value — same as UC-01 ─────── */
+    .tech-stack-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .tech-stack-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+    .tech-stack-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      min-width: 180px;
+      flex-shrink: 0;
+    }
+    .tech-stack-role {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+      list-style: none;
+      padding: 0;
+    }
+    .step-item { display: flex; gap: 14px; align-items: flex-start; }
+    .step-number {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-blue-primary);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-text {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      padding-top: 3px;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .value-item {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .value-icon  { font-size: 1.3rem; }
+    .value-label { font-size: 0.88rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc  { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Routing logic code-style block ─────────────────── */
+    .routing-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      margin-top: 4px;
+    }
+    .routing-block .kw  { color: #93c5fd; }
+    .routing-block .val { color: #86efac; }
+    .routing-block .cmt { color: #64748b; font-style: italic; }
+
+    @media (max-width: 600px) {
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .arch-branch-row { flex-direction: column; align-items: center; gap: 8px; }
+      .arch-branch-connector { display: none; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="fc-detail-header">
     <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
     <span class="fc-uc-id">UC-02</span>
@@ -15,36 +271,229 @@
   <main class="fc-detail-main">
     <div class="fc-detail-container">
 
+      <!-- ── Hero ─────────────────────────────────────────── -->
       <div class="fc-detail-hero">
-        <h1 class="fc-detail-title">Multi-Squad Issue Routing</h1>
+        <h1 class="fc-detail-title">Multi-Squad Dynamic Channel Routing</h1>
         <div class="fc-detail-tags">
-          <!-- Technology tags to be added -->
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Jira Custom Fields</span>
+          <span class="fc-tech-tag">Webhook</span>
+          <span class="fc-tech-tag">JSON</span>
+          <span class="fc-tech-tag">Power Automate</span>
+          <span class="fc-tech-tag">Switch / Condition Logic</span>
+          <span class="fc-tech-tag">Microsoft Teams</span>
         </div>
       </div>
 
+      <!-- ── Overview ─────────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Problem</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Overview</h2>
+        <p>A single, reusable integration that routes Jira automation notifications to the correct Microsoft Teams channel for each squad — without duplicating flows. Squad identity is read from the incoming payload, and Power Automate's routing logic dispatches the message to the right destination automatically.</p>
       </section>
 
+      <!-- ── The Challenge ────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Automation</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>The Challenge</h2>
+        <p>Multiple squads each needed automation notifications delivered to their own dedicated Microsoft Teams channel. The straightforward approach — one complete Power Automate flow per squad — would work, but at a cost: every new squad required a new flow to be built, tested, and maintained. Over time, this created:</p>
+        <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Significant duplication across flows that were nearly identical</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Increased maintenance burden whenever the message format or logic changed</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Inconsistency as individual flows drifted from each other over time</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);">Higher onboarding effort when adding a new squad to the system</li>
+        </ul>
       </section>
 
+      <!-- ── Design Approach ──────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Technology Stack</h2>
-        <p><em>Content to be added.</em></p>
+        <h2>Design Approach</h2>
+        <p>Rather than one flow per squad, the integration is designed as a <strong>single shared flow with a routing layer</strong>. Jira sends all squad events to one webhook endpoint. Power Automate receives the payload, inspects a squad identifier field, and uses a Switch or Condition block to route the notification to the appropriate Teams channel.</p>
+        <p style="margin-top:10px;">Adding a new squad requires only a new branch in the Switch — not a new flow. The upstream Jira rule and webhook remain unchanged.</p>
       </section>
 
+      <!-- ── Architecture ─────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Flow Diagram</h2>
-        <p><em>Flow diagram to be added.</em></p>
+        <h2>Architecture / Workflow</h2>
+        <div class="arch-diagram" role="img" aria-label="Architecture: Jira event triggers automation rule, builds JSON payload, sends via webhook to Power Automate, which identifies squad and routes via Switch to Squad A, B, or C Teams channels">
+
+          <div class="arch-node arch-node--trigger">⚡ Jira Event</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Jira Automation Rule</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--process">Build JSON Payload<br><small style="font-weight:400;font-size:0.78rem;">includes squad identifier field</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--transport">🔗 Webhook (HTTP POST)</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Power Automate</div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--platform">Identify Squad<br><small style="font-weight:400;font-size:0.78rem;">read squad field from payload</small></div>
+          <div class="arch-arrow"></div>
+
+          <div class="arch-node arch-node--decision">⑂ Switch / Routing Logic</div>
+
+          <!-- branching connector -->
+          <div class="arch-branch-connector">
+            <div class="branch-tick"></div>
+            <div class="branch-tick"></div>
+          </div>
+
+          <!-- three branch columns -->
+          <div class="arch-branch-row">
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">Squad A</div>
+              <div class="arch-branch-arrow"></div>
+              <div class="arch-branch-output">📢 Teams Channel A</div>
+            </div>
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">Squad B</div>
+              <div class="arch-branch-arrow"></div>
+              <div class="arch-branch-output">📢 Teams Channel B</div>
+            </div>
+            <div class="arch-branch-col">
+              <div class="arch-branch-node">Squad C</div>
+              <div class="arch-branch-arrow"></div>
+              <div class="arch-branch-output">📢 Teams Channel C</div>
+            </div>
+          </div>
+
+        </div>
       </section>
 
+      <!-- ── Routing Logic ─────────────────────────────────── -->
       <section class="fc-detail-section">
-        <h2>Configuration Notes</h2>
-        <p><em>Step-by-step configuration to be added.</em></p>
+        <h2>Routing Logic</h2>
+        <p>Inside Power Automate, the routing uses a <strong>Switch</strong> control on the squad identifier field extracted from the JSON payload. Each case maps to a "Post message in a chat or channel" action pointing to the corresponding Teams channel.</p>
+        <div class="routing-block" aria-label="Pseudocode for Switch routing logic">
+<span class="cmt">// Power Automate — Switch routing (pseudocode)</span>
+
+<span class="kw">Switch</span> ( <span class="val">triggerBody()?['squadId']</span> )
+
+  <span class="kw">Case:</span> <span class="val">"squad-a"</span>
+    → Post to <span class="val">Teams Channel A</span>
+
+  <span class="kw">Case:</span> <span class="val">"squad-b"</span>
+    → Post to <span class="val">Teams Channel B</span>
+
+  <span class="kw">Case:</span> <span class="val">"squad-c"</span>
+    → Post to <span class="val">Teams Channel C</span>
+
+  <span class="kw">Default:</span>
+    → Log unmatched payload <span class="cmt">// no squad matched</span>
+        </div>
+      </section>
+
+      <!-- ── How It Works ─────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>How It Works</h2>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>Trigger:</strong> A Jira Automation rule fires on a configured event — such as an issue being created, transitioned, or assigned.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>Enrich Payload:</strong> The rule reads the squad identifier from a Jira custom field (e.g. a team label or component field) and includes it in the JSON payload alongside relevant issue context.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Send via Webhook:</strong> The JSON payload is sent as an HTTP POST to a single shared Power Automate HTTP trigger endpoint.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>Receive &amp; Parse:</strong> Power Automate receives and parses the JSON payload, extracting the squad identifier field.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">5</span>
+            <span class="step-text"><strong>Route:</strong> A Switch control evaluates the squad identifier and directs execution to the matching case branch.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">6</span>
+            <span class="step-text"><strong>Deliver:</strong> The matching branch posts the formatted notification to that squad's dedicated Microsoft Teams channel.</span>
+          </li>
+          <li class="step-item">
+            <span class="step-number">7</span>
+            <span class="step-text"><strong>Default case:</strong> If no matching squad is found, the payload is logged or handled gracefully — preventing silent failures.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Technologies Used ─────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Technologies Used</h2>
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Automation</span>
+            <span class="tech-stack-role">Automation rule engine — triggers on the configured Jira event and builds the outbound payload.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Jira Custom Fields</span>
+            <span class="tech-stack-role">Source of the squad identifier — a team label, component, or custom field that identifies which squad owns the issue.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Webhook</span>
+            <span class="tech-stack-role">Single shared HTTP POST endpoint — all squads' events route through one trigger URL, keeping the Jira side simple.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">JSON</span>
+            <span class="tech-stack-role">Payload format — carries issue data and the squad identifier from Jira to Power Automate.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Power Automate</span>
+            <span class="tech-stack-role">Integration and routing engine — receives the webhook, parses the JSON, and applies the Switch routing logic.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Switch / Condition Logic</span>
+            <span class="tech-stack-role">The routing layer inside Power Automate — evaluates the squad identifier and directs the message to the correct Teams channel.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Microsoft Teams</span>
+            <span class="tech-stack-role">Delivery destination — each squad has its own channel where notifications are posted.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Benefits ──────────────────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Benefits</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">♻️</span>
+            <span class="value-label">No Duplication</span>
+            <span class="value-desc">One flow handles all squads. No repeated logic, no near-identical copies to keep in sync.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">🔧</span>
+            <span class="value-label">Easy to Maintain</span>
+            <span class="value-desc">Changes to message format or logic need to be made in one place only.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">➕</span>
+            <span class="value-label">Easy to Scale</span>
+            <span class="value-desc">Adding a new squad means adding one Switch case — the Jira rule and webhook are untouched.</span>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">📐</span>
+            <span class="value-label">Consistent Output</span>
+            <span class="value-desc">Every squad receives notifications in the same format, from the same underlying logic.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Lessons / Reusability ─────────────────────────── -->
+      <section class="fc-detail-section">
+        <h2>Lessons &amp; Reusability</h2>
+        <p>This pattern is not limited to squad routing. The same design — <strong>one webhook, one flow, a Switch on an identifier field</strong> — can be reused for:</p>
+        <ul style="margin-top:10px;padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:0.92rem;color:var(--color-text-muted);"><strong>Priority routing</strong> — route to different channels based on issue priority (Critical → incident channel, Low → backlog channel)</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);"><strong>Environment routing</strong> — route deployment notifications by environment (Dev / Staging / Production)</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);"><strong>Issue type routing</strong> — route bugs, stories, and tasks to different audiences or channels</li>
+          <li style="font-size:0.92rem;color:var(--color-text-muted);"><strong>Cross-tool routing</strong> — the same JSON payload could be extended to route to Slack, email, or other platforms by adding branches alongside Teams</li>
+        </ul>
+        <p style="margin-top:12px;">The key principle: <em>keep the integration point generic, push the routing decision downstream into the flow where it is cheaper to change.</em></p>
       </section>
 
     </div>
