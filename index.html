@@ -132,21 +132,54 @@
       margin-bottom: 20px;
     }
 
+    .hero-profile-header {
+      display: flex;
+      align-items: stretch;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    .hero-avatar-frame {
+      flex-shrink: 0;
+      display: flex;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2.5px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      background-color: var(--color-navy);
+    }
+
+    .hero-avatar {
+      height: 100%;
+      width: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+
+    .hero-title-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+
     .hero-name {
       font-size: 2.85rem;
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.12;
       letter-spacing: -0.03em;
-      margin-bottom: 16px;
+      margin: 0;
       color: var(--color-white);
     }
 
     .hero-headline {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 1.35;
       color: #bfdbfe;
-      margin-bottom: 24px;
+      margin: 0;
     }
 
     .hero-description {
@@ -245,20 +278,143 @@
     .about-card {
       background-color: var(--color-white);
       border: 1px solid var(--color-border);
-      border-radius: 10px;
-      padding: 36px 32px;
-      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.04);
+      border-radius: 12px;
+      padding: 40px 36px;
+      box-shadow: 0 4px 16px rgba(10, 25, 47, 0.04);
+    }
+
+    .about-block {
+      margin-bottom: 32px;
+    }
+
+    .about-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--color-border) 0%, rgba(226, 232, 240, 0.4) 100%);
+      margin: 32px 0;
+      border: none;
+    }
+
+    .about-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-navy-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .about-heading::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 1.1em;
+      background-color: var(--color-blue-primary);
+      border-radius: 2px;
+      flex-shrink: 0;
     }
 
     .about-text {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--color-text-muted);
-      line-height: 1.8;
-      margin-bottom: 20px;
+      line-height: 1.75;
+      margin-bottom: 16px;
     }
 
     .about-text:last-child {
       margin-bottom: 0;
+    }
+
+    .about-lead-text {
+      font-weight: 600;
+      color: var(--color-navy-dark);
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    .about-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 12px 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-list li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 1.02rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .about-list li::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 10px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--color-blue-primary);
+    }
+
+    /* Certifications Grid */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin: 12px 0 24px 0;
+    }
+
+    .cert-card {
+      background-color: var(--color-blue-soft);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-navy-dark);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-blue-primary);
+    }
+
+    .cert-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--color-blue-primary);
+      flex-shrink: 0;
+    }
+
+    /* What Drives Me Callout Banner */
+    .about-drives-me {
+      background: linear-gradient(135deg, var(--color-blue-soft) 0%, #e0e7ff 100%);
+      border-left: 5px solid var(--color-blue-primary);
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin-top: 12px;
+    }
+
+    .about-drives-me-text {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--color-navy-dark);
+      line-height: 1.7;
+      font-style: italic;
+      margin: 0;
     }
 
     /* --- AREAS OF INTEREST SECTION --- */
@@ -436,12 +592,20 @@
         padding: 64px 0 54px 0;
       }
 
+      .hero-profile-header {
+        gap: 16px;
+      }
+
       .hero-name {
         font-size: 2.15rem;
       }
 
       .hero-headline {
         font-size: 1.25rem;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
       }
 
       .hero-description {
@@ -490,8 +654,15 @@
       <div class="container">
         <div class="hero-content">
           <span class="hero-badge">Personal Portfolio</span>
-          <h1 class="hero-name">Laxman Prasad Kuppili</h1>
-          <p class="hero-headline">Agile, AI Adoption and Workflow Automation</p>
+          <div class="hero-profile-header">
+            <div class="hero-avatar-frame">
+              <img src="assets/laxman-prasad-kuppili.jpg" alt="Laxman Prasad Kuppili" class="hero-avatar">
+            </div>
+            <div class="hero-title-group">
+              <h1 class="hero-name">Laxman Prasad Kuppili</h1>
+              <p class="hero-headline">Agile, AI Adoption and Workflow Automation</p>
+            </div>
+          </div>
           <p class="hero-description">
             Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence adoption, workflow automation, and continuous improvement.
           </p>
@@ -512,12 +683,178 @@
           <div class="section-divider"></div>
         </div>
         <div class="about-card">
-          <p class="about-text">
-            Welcome to my personal site. My work and interests center on Agile delivery, AI adoption, workflow automation, and continuous improvement.
-          </p>
-          <p class="about-text">
-            This space provides a focused look at the core topics I follow and engage with: navigating practical ways to bring artificial intelligence into active workflows, strengthening Agile delivery methods, eliminating manual friction through automation, and maintaining an ongoing commitment to continuous improvement.
-          </p>
+          <!-- 1. Welcome -->
+          <article class="about-block">
+            <h3 class="about-heading">Welcome</h3>
+            <p class="about-text">
+              Welcome to my portfolio. My work and interests centre on Agile delivery, AI adoption, workflow automation and continuous improvement.
+            </p>
+            <p class="about-lead-text">
+              Through this space, I share practical ideas, experiences and use cases related to:
+            </p>
+            <ul class="about-list">
+              <li>Applying AI within real delivery workflows</li>
+              <li>Strengthening Agile ways of working</li>
+              <li>Improving multi-team delivery and collaboration</li>
+              <li>Eliminating repetitive manual effort through automation</li>
+              <li>Using data and metrics to support better decisions</li>
+              <li>Building a culture of continuous learning and improvement</li>
+            </ul>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 2. About Me -->
+          <article class="about-block">
+            <h3 class="about-heading">About Me</h3>
+            <p class="about-text">
+              I am an Agile delivery professional with 14+ years of IT experience, including seven years as a Scrum Master and Agile Delivery Lead across banking, cards, payments and gaming.
+            </p>
+            <p class="about-lead-text">
+              My experience spans:
+            </p>
+            <ul class="about-list">
+              <li>Agile transformation and team coaching</li>
+              <li>Multi-squad delivery coordination</li>
+              <li>Project and program-level planning</li>
+              <li>Stakeholder and leadership engagement</li>
+              <li>Risk, dependency and impediment management</li>
+              <li>Delivery governance and continuous improvement</li>
+              <li>AI-enabled reporting and workflow automation</li>
+            </ul>
+            <p class="about-text">
+              In my Agile Lead role, I coordinate delivery across four squads, aligning priorities, capacity, milestones, risks and cross-team dependencies. I work closely with Product Owners, engineering leaders and stakeholders to strengthen delivery predictability, transparency and team ownership.
+            </p>
+            <p class="about-text">
+              My SAFe experience includes supporting PI Planning across three teams, participating in Scrum of Scrums, resolving cross-team dependencies and enabling coordinated delivery at program level.
+            </p>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 3. Flagship Initiatives -->
+          <article class="about-block">
+            <h3 class="about-heading">Flagship Initiatives</h3>
+            <p class="about-lead-text">
+              Some of the key initiatives I have led or contributed to include:
+            </p>
+            <ul class="about-list">
+              <li>Led Agile Ways of Working workshops across 10 squads, receiving 90% positive feedback</li>
+              <li>Created the Delivery Disruptors framework to identify recurring systemic impediments and guide focused resolution</li>
+              <li>Built more than 15 Jira Automation and Power Automate workflows integrated with Microsoft Teams and Slack</li>
+              <li>Developed AI-enabled delivery dashboards to improve visibility into delivery health, blockers and dependencies</li>
+              <li>Automated service-health monitoring using Amazon Q Kiro</li>
+              <li>Supported Jira Cloud and Slack migrations through pillar-level enablement, adoption and ongoing support</li>
+              <li>Partnered with Jira specialists and administration teams to introduce nine Jira Data Center capabilities</li>
+              <li>Contributed to improved Jira governance, workflow standardisation and platform adoption through the Jira Community of Practice</li>
+            </ul>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 4. Measurable Impact -->
+          <article class="about-block">
+            <h3 class="about-heading">Measurable Impact</h3>
+            <p class="about-lead-text">
+              My improvement initiatives have contributed to:
+            </p>
+            <ul class="about-list">
+              <li>Up to 90% reduction in manual reporting and service-monitoring effort</li>
+              <li>70% reduction in UAT defect backlog and closure time</li>
+              <li>60% improvement in cross-team dependency and conflict resolution</li>
+              <li>Greater delivery transparency through automated dashboards and notifications</li>
+              <li>Faster identification and escalation of team-level and organisational impediments</li>
+              <li>Stronger collaboration among Product, Engineering, QA and stakeholder groups</li>
+            </ul>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 5. Communities of Practice -->
+          <article class="about-block">
+            <h3 class="about-heading">Communities of Practice</h3>
+            <p class="about-text">
+              I actively engage with Communities of Practice to exchange ideas, learn from practitioners and contribute to platform and process improvements.
+            </p>
+            <p class="about-lead-text">
+              My involvement includes:
+            </p>
+            <ul class="about-list">
+              <li>Sharing delivery challenges and practical solutions</li>
+              <li>Collaborating with Jira specialists and administrators</li>
+              <li>Supporting workflow and governance improvements</li>
+              <li>Encouraging adoption of standardised practices</li>
+              <li>Contributing feedback from delivery teams</li>
+              <li>Helping translate recurring challenges into scalable solutions</li>
+            </ul>
+            <p class="about-text">
+              I enjoy combining Agile practices, systems thinking, automation and AI to solve problems that extend beyond a single team.
+            </p>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 6. Continuous Learning -->
+          <article class="about-block">
+            <h3 class="about-heading">Continuous Learning</h3>
+            <p class="about-lead-text">
+              I hold the following certifications:
+            </p>
+            <div class="cert-grid">
+              <div class="cert-card">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
+                  <circle cx="12" cy="9" r="6"></circle>
+                </svg>
+                <span>Professional Scrum Master I</span>
+              </div>
+              <div class="cert-card">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
+                  <circle cx="12" cy="9" r="6"></circle>
+                </svg>
+                <span>SAFe Scrum Master</span>
+              </div>
+              <div class="cert-card">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
+                  <circle cx="12" cy="9" r="6"></circle>
+                </svg>
+                <span>SAFe Agilist</span>
+              </div>
+              <div class="cert-card">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
+                  <circle cx="12" cy="9" r="6"></circle>
+                </svg>
+                <span>Certified Scrum Product Owner</span>
+              </div>
+            </div>
+
+            <p class="about-lead-text">
+              I continue to expand my knowledge in:
+            </p>
+            <ul class="about-list">
+              <li>AI-enabled software delivery</li>
+              <li>Project and program management</li>
+              <li>Business analysis</li>
+              <li>Payments and financial services</li>
+              <li>Workflow automation</li>
+              <li>Data-informed delivery management</li>
+            </ul>
+          </article>
+
+          <hr class="about-divider">
+
+          <!-- 7. What Drives Me -->
+          <article class="about-block">
+            <h3 class="about-heading">What Drives Me</h3>
+            <div class="about-drives-me">
+              <p class="about-drives-me-text">
+                &ldquo;What drives me most is helping teams move beyond simply being busy to delivering meaningful outcomes with clarity, collaboration and confidence.&rdquo;
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
