@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON / Webhook Payload Starter Template | Toolkit | Laxman Prasad Kuppili</title>
+  <link rel="stylesheet" href="toolkit-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#toolkit" class="back-btn">← Back to Toolkit</a>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">TK-06</span>
+          <span class="tag-type">Template</span>
+          <span class="tag-category">Automation</span>
+        </div>
+        <h1 class="hero-title">JSON / Webhook Payload Starter Template</h1>
+        <p class="content-text">Provide a safe starter structure for designing JSON payloads passed between workflow systems through webhooks.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">1. WHAT IS THIS?</h2>
+        <p class="content-text">JSON (JavaScript Object Notation) provides a lightweight, structured format for exchanging data between systems. These starter templates ensure your event payloads are clean, predictable, and decoupled from any specific tool.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">2. ISSUE EVENT TEMPLATE</h2>
+        <p class="content-text" style="margin-bottom: 16px;">A generic, sanitized template for single-issue updates (e.g., passing issue data from Jira to Power Automate).</p>
+        <div class="tk-code-block">
+          <button class="tk-copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>{
+  "eventType": "issue.updated",
+  "issueKey": "DEMO-123",
+  "summary": "Example issue summary",
+  "status": "Ready",
+  "team": "Example Team",
+  "assignee": "Example User",
+  "timestamp": "2026-01-01T10:00:00Z"
+}</code></pre>
+        </div>
+        <div style="margin-top: 16px;">
+          <ul class="content-text" style="padding-left: 20px;">
+            <li><code>eventType</code>: Tells the receiving system what happened.</li>
+            <li><code>issueKey</code>: Unique identifier for cross-reference.</li>
+            <li><code>summary</code>, <code>status</code>, <code>team</code>, <code>assignee</code>: Key business context required for routing or notifications.</li>
+            <li><code>timestamp</code>: ISO 8601 formatted time of the event.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">3. SPRINT EVENT TEMPLATE</h2>
+        <p class="content-text" style="margin-bottom: 16px;">A generic template for aggregated events, such as sprint reporting or cycle closures.</p>
+        <div class="tk-code-block">
+          <button class="tk-copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>{
+  "eventType": "sprint.completed",
+  "sprintName": "Sprint 10",
+  "sprintGoal": "Example sprint goal",
+  "storyCount": 8,
+  "bugCount": 2,
+  "taskCount": 3,
+  "spikeCount": 1,
+  "totalCount": 14,
+  "storyPoints": 34
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">4. PAYLOAD DESIGN PRINCIPLES</h2>
+        <ul class="content-text" style="padding-left: 20px;">
+          <li>Use <strong>meaningful property names</strong> (e.g., <code>storyCount</code> instead of just <code>stories</code>).</li>
+          <li>Enforce a <strong>consistent naming convention</strong> (camelCase is highly recommended for JSON).</li>
+          <li>Maintain <strong>predictable data types</strong> (keep strings as strings, numbers as numbers).</li>
+          <li>Send <strong>only required information</strong> to minimize payload size and complexity.</li>
+          <li>Avoid unnecessary <strong>sensitive data</strong>.</li>
+          <li><strong>Validate required fields</strong> before sending the payload.</li>
+          <li><strong>Version payloads</strong> if integrations become complex and contracts evolve (e.g., adding a <code>version: "1.0"</code> field).</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">5. SECURITY</h2>
+        <div style="background-color: #fff1f2; border-left: 4px solid #e11d48; padding: 16px; border-radius: 4px;">
+          <p class="content-text" style="color: #9f1239; font-weight: 600; margin-bottom: 8px;">Never include the following in unencrypted webhooks:</p>
+          <ul class="content-text" style="font-size: 0.95rem; margin-bottom: 0; padding-left: 20px;">
+            <li>Passwords</li>
+            <li>API tokens</li>
+            <li>Authentication secrets</li>
+            <li>Production webhook URLs</li>
+            <li>Unnecessary personal or sensitive information</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">RELATED RESOURCES</h2>
+        <div class="tk-related-grid">
+          <a href="automation-design-canvas.html" class="tk-related-card">
+            <span class="tk-related-id">TK-04</span>
+            <span class="tk-related-title">Automation Design Canvas</span>
+          </a>
+          <a href="jira-webhook-powerautomate.html" class="tk-related-card">
+            <span class="tk-related-id">TK-05</span>
+            <span class="tk-related-title">Jira → Webhook → Power Automate Reference Architecture</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function copyCode(button) {
+        const pre = button.nextElementSibling;
+        const code = pre.textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = button.textContent;
+          button.textContent = "Copied!";
+          button.classList.add("copied");
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.remove("copied");
+          }, 2000);
+        });
+      }
+    </script>
+  </div>
+</body>
+</html>

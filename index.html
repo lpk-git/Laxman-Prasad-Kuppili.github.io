@@ -1937,12 +1937,174 @@
           <span class="section-tag">Tools</span>
           <h2 class="section-title">Toolkit</h2>
           <div class="section-divider"></div>
+          <p class="section-intro">Practical templates, canvases, checklists and reference resources for delivery, automation and applied AI.</p>
         </div>
-        <div class="coming-soon-card">
-          <div class="coming-soon-icon">🧰</div>
-          <h3 class="coming-soon-heading">Content Coming Soon</h3>
-          <p class="coming-soon-text">The Toolkit section is being prepared. Check back soon for tools, templates, frameworks, and resources used in Agile delivery and AI adoption.</p>
+        
+        <!-- Filter / tag area -->
+        <div class="fc-filter-bar" role="group" aria-label="Explore toolkit by category">
+          <span class="fc-filter-label">Explore by:</span>
+          <button class="fc-tag fc-tag--active" data-filter="all">All</button>
+          <button class="fc-tag" data-filter="delivery">Delivery</button>
+          <button class="fc-tag" data-filter="automation">Automation</button>
+          <button class="fc-tag" data-filter="ai">AI</button>
         </div>
+
+        <!-- Toolkit card grid -->
+        <div class="fc-card-grid">
+
+          <!-- TK-01 -->
+          <article class="fc-card" data-tags="delivery">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-01</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Team Charter Canvas</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A structured canvas for aligning teams on purpose, ways of working, and operational boundaries.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/team-charter.html'" aria-label="View Canvas: Team Charter Canvas">View Canvas →</button>
+            </div>
+          </article>
+
+          <!-- TK-02 -->
+          <article class="fc-card" data-tags="delivery">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-02</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Sprint Health Check</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A practical checklist for assessing sprint predictability, flow, and team health metrics.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/sprint-health-check.html'" aria-label="View Checklist: Sprint Health Check">View Checklist →</button>
+            </div>
+          </article>
+
+          <!-- TK-03 -->
+          <article class="fc-card" data-tags="delivery">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-03</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Flow Metrics Cheat Sheet</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A quick reference guide for understanding Cycle Time, Lead Time, Throughput, and WIP.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/flow-metrics.html'" aria-label="View Reference: Flow Metrics Cheat Sheet">View Reference →</button>
+            </div>
+          </article>
+
+          <!-- TK-04 -->
+          <article class="fc-card" data-tags="automation">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-04</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Automation Design Canvas</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A template for mapping out triggers, conditions, and actions before building automation workflows.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/automation-design-canvas.html'" aria-label="View Canvas: Automation Design Canvas">View Canvas →</button>
+            </div>
+          </article>
+
+          <!-- TK-05 -->
+          <article class="fc-card" data-tags="automation">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-05</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Jira → Webhook → Power Automate Reference Architecture</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A reference architecture for establishing event-driven integrations between Jira and Office 365.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/jira-webhook-powerautomate.html'" aria-label="View Reference: Jira to Power Automate">View Reference →</button>
+            </div>
+          </article>
+
+          <!-- TK-06 -->
+          <article class="fc-card" data-tags="automation">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-06</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Template</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">JSON / Webhook Payload Starter Template</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">Reusable JSON payload structures for common webhook integrations and Adaptive Cards.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/webhook-payload-template.html'" aria-label="View Template: JSON Webhook Payload">View Template →</button>
+            </div>
+          </article>
+
+          <!-- TK-07 -->
+          <article class="fc-card" data-tags="ai">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-07</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI Use-Case Canvas</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">A structured approach to evaluating the viability, risks, and human-in-the-loop requirements for new AI applications.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-use-case-canvas.html'" aria-label="View Canvas: AI Use-Case Canvas">View Canvas →</button>
+            </div>
+          </article>
+
+          <!-- TK-08 -->
+          <article class="fc-card" data-tags="ai">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">TK-08</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Human-in-the-Loop &amp; AI Guardrails Checklist</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <p class="fc-card-text">An essential checklist for ensuring AI systems maintain proper oversight and do not autonomously perform critical actions.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-guardrails-checklist.html'" aria-label="View Checklist: Human-in-the-Loop Guardrails">View Checklist →</button>
+            </div>
+          </article>
+
+        </div><!-- /fc-card-grid -->
       </div>
     </section>
 

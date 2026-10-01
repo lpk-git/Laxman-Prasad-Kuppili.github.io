@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jira → Webhook → Power Automate Reference Architecture | Toolkit | Laxman Prasad Kuppili</title>
+  <link rel="stylesheet" href="toolkit-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#toolkit" class="back-btn">← Back to Toolkit</a>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">TK-05</span>
+          <span class="tag-type">Reference</span>
+          <span class="tag-category">Automation</span>
+        </div>
+        <h1 class="hero-title">Jira → Webhook → Power Automate Reference Architecture</h1>
+        <p class="content-text">Provide a reusable reference architecture showing how an event in Jira can trigger an external workflow in Power Automate and ultimately produce an action in another system.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">1. ARCHITECTURE FLOW</h2>
+        <div style="background-color: var(--color-bg-page); padding: 32px; border-radius: 8px; border: 1px dashed var(--color-border); font-weight: 600; color: var(--color-navy-dark); line-height: 1.8; text-align: center; font-size: 1.1rem;">
+          <div style="display: inline-block; text-align: center;">
+            Jira Event <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Jira Automation <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Smart Values / Issue Data <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            JSON Payload <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Webhook / HTTP Request <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Power Automate Trigger <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Parse JSON <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Business Logic <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Condition / Switch / Transformation <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Destination <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Teams / Slack / Other Action
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">2. ARCHITECTURE LAYERS</h2>
+        <div class="tk-table-wrapper">
+          <table class="tk-table">
+            <thead>
+              <tr>
+                <th style="width: 30%;">Layer</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. EVENT SOURCE</strong></td>
+                <td class="content-text">The specific action in Jira that initiates the process (e.g., Issue Transitioned, Sprint Closed, Issue Created).</td>
+              </tr>
+              <tr>
+                <td><strong>2. JIRA AUTOMATION</strong></td>
+                <td class="content-text">The native Jira rule that catches the event and determines if it meets the criteria to proceed.</td>
+              </tr>
+              <tr>
+                <td><strong>3. PAYLOAD CONSTRUCTION</strong></td>
+                <td class="content-text">Using Jira Smart Values to map internal issue data into a structured format (usually JSON) that an external system can read.</td>
+              </tr>
+              <tr>
+                <td><strong>4. WEBHOOK / TRANSPORT</strong></td>
+                <td class="content-text">The HTTP POST request sending the JSON payload securely from Jira to the Power Automate endpoint.</td>
+              </tr>
+              <tr>
+                <td><strong>5. POWER AUTOMATE TRIGGER</strong></td>
+                <td class="content-text">An 'When an HTTP request is received' trigger in Power Automate listening on the specific webhook URL.</td>
+              </tr>
+              <tr>
+                <td><strong>6. DATA PARSING</strong></td>
+                <td class="content-text">Using the 'Parse JSON' action in Power Automate to convert the raw payload back into usable dynamic variables.</td>
+              </tr>
+              <tr>
+                <td><strong>7. WORKFLOW LOGIC</strong></td>
+                <td class="content-text">The business logic layer where conditions, switches, or data transformations are applied to the parsed data.</td>
+              </tr>
+              <tr>
+                <td><strong>8. DESTINATION / ACTION</strong></td>
+                <td class="content-text">The final step where Power Automate interacts with a destination system (e.g., sending a Teams message, updating a database).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">3. WHEN THIS PATTERN IS USEFUL</h2>
+        <p class="content-text">This decoupled, event-driven pattern is highly effective for scenarios such as:</p>
+        <ul class="content-text" style="padding-left: 20px;">
+          <li>Notifications and alerts</li>
+          <li>Work routing</li>
+          <li>Sprint reporting</li>
+          <li>Issue alerts</li>
+          <li>Workflow integration across different systems</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">4. DESIGN CONSIDERATIONS</h2>
+        <ul class="content-text" style="padding-left: 20px;">
+          <li><strong>Payload Design:</strong> Send only the data needed by the destination system to reduce complexity.</li>
+          <li><strong>Required Fields:</strong> Ensure your Jira Automation checks that fields are not empty before sending them in a payload.</li>
+          <li><strong>Authentication/Security:</strong> Protect the webhook endpoints and consider adding secret headers or tokens.</li>
+          <li><strong>Error Handling:</strong> Plan for what happens if the webhook fails or the payload is malformed.</li>
+          <li><strong>Idempotency:</strong> Design the flow so that receiving the same event twice does not cause duplicate negative actions.</li>
+          <li><strong>Monitoring:</strong> Track both the Jira Automation audit log and Power Automate run history.</li>
+          <li><strong>Maintainability:</strong> Document your payloads and use clear naming conventions for automation rules.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">5. SECURITY WARNING</h2>
+        <div style="background-color: #fff1f2; border-left: 4px solid #e11d48; padding: 16px; border-radius: 4px;">
+          <p class="content-text" style="color: #9f1239; font-weight: 600; margin-bottom: 8px;">Never expose real Power Automate webhook URLs.</p>
+          <p class="content-text" style="font-size: 0.95rem; margin-bottom: 0;">Webhook URLs may contain access and security information. Use generic URLs for documentation (e.g., <code>https://example.invalid/webhook</code>) and avoid using real Jira project names, IDs, tenant information, credentials, or company information in examples.</p>
+        </div>
+      </section>
+
+
+      <section class="content-section">
+        <h2 class="section-title">RELATED RESOURCES</h2>
+        <div class="tk-related-grid">
+          <a href="automation-design-canvas.html" class="tk-related-card">
+            <span class="tk-related-id">TK-04</span>
+            <span class="tk-related-title">Automation Design Canvas</span>
+          </a>
+          <a href="webhook-payload-template.html" class="tk-related-card">
+            <span class="tk-related-id">TK-06</span>
+            <span class="tk-related-title">JSON / Webhook Payload Starter Template</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

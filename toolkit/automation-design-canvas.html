@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Design Canvas | Toolkit | Laxman Prasad Kuppili</title>
+  <link rel="stylesheet" href="toolkit-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#toolkit" class="back-btn">← Back to Toolkit</a>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">TK-04</span>
+          <span class="tag-type">Canvas</span>
+          <span class="tag-category">Automation</span>
+        </div>
+        <h1 class="hero-title">Automation Design Canvas</h1>
+        <p class="content-text">Provide a reusable framework for thinking through an automation before building it.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">1. WHAT IS THIS?</h2>
+        <p class="content-text">Use this canvas to move from 'we should automate this' to a clearly defined automation design covering the problem, trigger, data, processing, integration, output, exceptions, security and success.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">2. THE CANVAS</h2>
+        <div class="tk-canvas">
+          <!-- 1. PROBLEM -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">1. Problem</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What manual or repetitive problem are we solving?</li>
+              <li>Who experiences the problem?</li>
+              <li>Why is automation appropriate?</li>
+              <li>What happens if we do nothing?</li>
+            </ul>
+          </div>
+          <!-- 2. DESIRED OUTCOME -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">2. Desired Outcome</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What should happen automatically?</li>
+              <li>What does success look like?</li>
+              <li>What should no longer require manual intervention?</li>
+            </ul>
+          </div>
+          <!-- 3. TRIGGER -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">3. Trigger</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What starts the automation?</li>
+              <li>Event? Schedule? Status change?</li>
+              <li>User action? Incoming webhook/API call?</li>
+            </ul>
+          </div>
+          <!-- 4. SOURCE -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">4. Source</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>Where does the information originate?</li>
+              <li>Jira, Form, API, Database, Collaboration tool?</li>
+              <li>Another workflow?</li>
+            </ul>
+          </div>
+          <!-- 5. INPUT DATA -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">5. Input Data</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What fields/data are required?</li>
+              <li>Which fields are mandatory?</li>
+              <li>What data needs validation?</li>
+            </ul>
+          </div>
+          <!-- 6. PROCESSING & LOGIC -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">6. Processing & Logic</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What decisions must the workflow make?</li>
+              <li>Conditions? Switch/routing?</li>
+              <li>Calculations, Transformations, Aggregation?</li>
+            </ul>
+          </div>
+          <!-- 7. INTEGRATION -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">7. Integration</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>How do systems communicate?</li>
+              <li>Connector, Webhook, API, HTTP?</li>
+              <li>MCP where applicable?</li>
+            </ul>
+          </div>
+          <!-- 8. DESTINATION -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">8. Destination</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>Where does the processed information go?</li>
+              <li>Teams, Slack, Jira, Email, Dashboard?</li>
+              <li>External system?</li>
+            </ul>
+          </div>
+          <!-- 9. OUTPUT / ACTION -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">9. Output / Action</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What should the automation produce?</li>
+              <li>Notification, Record update, Report?</li>
+              <li>Workflow action, API action?</li>
+            </ul>
+          </div>
+          <!-- 10. EXCEPTIONS & FAILURE HANDLING -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">10. Exceptions & Failure</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What can fail?</li>
+              <li>What happens when required data is missing?</li>
+              <li>What happens when the destination is unavailable?</li>
+              <li>Who needs to know about failures?</li>
+            </ul>
+          </div>
+          <!-- 11. HUMAN IN THE LOOP -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">11. Human In The Loop</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>Where is human judgement required?</li>
+              <li>Which actions require approval?</li>
+              <li>What should NOT be automated?</li>
+            </ul>
+          </div>
+          <!-- 12. SECURITY & ACCESS -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">12. Security & Access</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What credentials/permissions are required?</li>
+              <li>Is sensitive information involved?</li>
+              <li>Are webhook URLs/secrets protected?</li>
+              <li>Is least-privilege access being followed?</li>
+            </ul>
+          </div>
+          <!-- 13. MONITORING -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">13. Monitoring</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>How will we know the automation is working?</li>
+              <li>How are failures detected?</li>
+              <li>Is logging required?</li>
+            </ul>
+          </div>
+          <!-- 14. SUCCESS MEASURES -->
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">14. Success Measures</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li>What manual step was removed?</li>
+              <li>What improvement are we expecting?</li>
+              <li>How will we validate that the automation is useful?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">3. HOW TO USE THIS CANVAS</h2>
+        <p class="content-text">When designing a new automation, work through the canvas in the following suggested sequence:</p>
+        <div style="background-color: var(--color-bg-page); padding: 20px 24px; border-radius: 8px; border: 1px dashed var(--color-border); margin-top: 16px; font-weight: 600; color: var(--color-navy-dark); line-height: 2.2;">
+          Problem <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Outcome <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Trigger <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Source/Input <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Processing <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Integration <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Destination/Output <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Exceptions <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Human Control <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Security <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Monitoring <span style="color: var(--color-blue-primary); margin: 0 4px;">→</span> 
+          Success
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">4. EXAMPLE</h2>
+        <p class="content-text"><strong>Scenario:</strong> Jira Sprint Completion → Teams Summary</p>
+        <div class="tk-canvas" style="margin-top: 20px;">
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">Problem & Outcome</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li><strong>Problem:</strong> Scrum Master spends 30 minutes manually gathering sprint metrics to post in Teams.</li>
+              <li><strong>Outcome:</strong> A summary is automatically posted when the sprint is closed.</li>
+            </ul>
+          </div>
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">Trigger & Input</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li><strong>Trigger:</strong> Sprint state changes to 'Closed' in Jira.</li>
+              <li><strong>Input Data:</strong> Sprint Name, Completed Points, Incomplete Points, Goal.</li>
+            </ul>
+          </div>
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">Processing & Integration</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li><strong>Logic:</strong> Calculate completion percentage. Format as an Adaptive Card.</li>
+              <li><strong>Integration:</strong> Jira Automation sends a JSON payload to a Teams incoming webhook.</li>
+            </ul>
+          </div>
+          <div class="tk-canvas-zone">
+            <h3 class="tk-canvas-zone-title">Output & Exceptions</h3>
+            <ul class="content-text" style="font-size: 0.9rem; padding-left: 20px; margin: 0;">
+              <li><strong>Destination & Output:</strong> Delivery Team's Teams Channel notification.</li>
+              <li><strong>Exceptions:</strong> If the webhook fails, the Scrum Master receives an email alert.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="content-section">
+        <h2 class="section-title">RELATED RESOURCES</h2>
+        <div class="tk-related-grid">
+          <a href="jira-webhook-powerautomate.html" class="tk-related-card">
+            <span class="tk-related-id">TK-05</span>
+            <span class="tk-related-title">Jira → Webhook → Power Automate Reference Architecture</span>
+          </a>
+          <a href="webhook-payload-template.html" class="tk-related-card">
+            <span class="tk-related-id">TK-06</span>
+            <span class="tk-related-title">JSON / Webhook Payload Starter Template</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

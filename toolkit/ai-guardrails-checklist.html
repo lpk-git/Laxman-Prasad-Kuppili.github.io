@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-in-the-Loop & AI Guardrails Checklist | Toolkit | Laxman Prasad Kuppili</title>
+  <link rel="stylesheet" href="toolkit-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#toolkit" class="back-btn">← Back to Toolkit</a>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">TK-08</span>
+          <span class="tag-type">Checklist</span>
+          <span class="tag-category">AI</span>
+        </div>
+        <h1 class="hero-title">Human-in-the-Loop & AI Guardrails Checklist</h1>
+        <p class="content-text">Provide a practical checklist for reviewing AI-enabled workflows before allowing AI-generated outputs to influence decisions or actions.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">1. WHAT IS THIS?</h2>
+        <p class="content-text">This is a practical working checklist to verify that human-in-the-loop controls, data privacy, and security guardrails are established before an AI tool goes live. <br><br><em>Note: This is a practical delivery resource and is not a substitute for your organisation's formal security, legal, compliance, or risk policies.</em></p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">2. THE CHECKLIST</h2>
+
+        <!-- Group 1 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 16px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">1. PURPOSE</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is the AI use case clearly defined?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is AI actually necessary?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is the expected output understood?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 2 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">2. DATA</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Do we know what data is being provided?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is sensitive/confidential information appropriately protected?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is unnecessary data excluded?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are data access permissions appropriate?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 3 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">3. OUTPUT VALIDATION</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is AI output validated before critical use?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Can users identify uncertain/incorrect output?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is there a fallback when AI cannot provide a reliable result?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 4 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">4. HUMAN OVERSIGHT</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is a human accountable for important decisions?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are approval points defined?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Can a human override AI recommendations?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is autonomous action restricted where necessary?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 5 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">5. SECURITY</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are credentials protected?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are tool permissions appropriately scoped?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is least-privilege access applied?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are external actions controlled?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 6 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">6. TOOL-CONNECTED AI / AGENTS</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Do we know which tools the AI can access?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are read and write permissions distinguished?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are sensitive actions approval-gated?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Can actions be traced/audited?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 7 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">7. QUALITY</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Has the solution been tested with realistic scenarios?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Have incorrect/hallucinated outputs been considered?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is product/domain context sufficient?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 8 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">8. MONITORING</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Can failures be detected?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Can AI actions be traced?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is there a mechanism for user feedback?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are unexpected behaviours reviewed?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 9 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">9. GOVERNANCE</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Is ownership clear?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are limitations communicated?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are appropriate organisational policies followed?</span></div>
+          </li>
+        </ul>
+
+        <!-- Group 10 -->
+        <h3 style="font-size: 1.1rem; color: var(--color-navy-dark); margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid var(--color-blue-soft); padding-bottom: 8px;">10. CONTINUOUS REVIEW</h3>
+        <ul class="tk-checklist">
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are outputs periodically reviewed?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are prompts/configuration updated when required?</span></div>
+          </li>
+          <li class="tk-checklist-item">
+            <div class="tk-check-box"></div>
+            <div class="tk-checklist-content"><span class="tk-checklist-title">Are new risks considered as the solution evolves?</span></div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">3. GO / REVIEW / STOP DECISION</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+          <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 16px; border-radius: 4px;">
+            <p class="content-text" style="color: #047857; font-weight: 700; margin-bottom: 8px;">GO</p>
+            <p class="content-text" style="font-size: 0.9rem; margin-bottom: 0;">Controls are adequate for the intended low-risk use.</p>
+          </div>
+          <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 4px;">
+            <p class="content-text" style="color: #b45309; font-weight: 700; margin-bottom: 8px;">REVIEW</p>
+            <p class="content-text" style="font-size: 0.9rem; margin-bottom: 0;">Important controls or validation are incomplete.</p>
+          </div>
+          <div style="background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 16px; border-radius: 4px;">
+            <p class="content-text" style="color: #b91c1c; font-weight: 700; margin-bottom: 8px;">STOP</p>
+            <p class="content-text" style="font-size: 0.9rem; margin-bottom: 0;">Sensitive/high-impact action lacks appropriate human oversight, security or validation.</p>
+          </div>
+        </div>
+      </section>
+      <section class="content-section">
+        <h2 class="section-title">RELATED RESOURCES</h2>
+        <div class="tk-related-grid">
+          <a href="ai-use-case-canvas.html" class="tk-related-card">
+            <span class="tk-related-id">TK-07</span>
+            <span class="tk-related-title">AI Use-Case Canvas</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

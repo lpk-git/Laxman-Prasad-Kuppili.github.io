@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Metrics Cheat Sheet | Toolkit | Laxman Prasad Kuppili</title>
+  <link rel="stylesheet" href="toolkit-detail.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="../index.html#toolkit" class="back-btn">← Back to Toolkit</a>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="tag-id">TK-03</span>
+          <span class="tag-type">Reference</span>
+          <span class="tag-category">Delivery</span>
+        </div>
+        <h1 class="hero-title">Flow Metrics Cheat Sheet</h1>
+        <p class="content-text">Provide a concise practical reference for understanding delivery flow and measuring predictability.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">1. CORE FLOW METRICS</h2>
+        <div class="tk-table-wrapper">
+          <table class="tk-table">
+            <thead>
+              <tr>
+                <th style="width: 25%">Metric</th>
+                <th style="width: 45%">Definition</th>
+                <th style="width: 30%">Question Answered</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. CYCLE TIME</strong></td>
+                <td>Time from work starting to work finishing.</td>
+                <td>"How long does work typically take once started?"</td>
+              </tr>
+              <tr>
+                <td><strong>2. LEAD TIME</strong></td>
+                <td>Time from request/commitment to delivery, depending on the measurement boundary being used.</td>
+                <td>"How long does a customer/request wait for delivery?"</td>
+              </tr>
+              <tr>
+                <td><strong>3. THROUGHPUT</strong></td>
+                <td>Number of work items completed during a given period.</td>
+                <td>"How much work is actually finishing?"</td>
+              </tr>
+              <tr>
+                <td><strong>4. WORK IN PROGRESS (WIP)</strong></td>
+                <td>Work started but not yet completed.</td>
+                <td>"How much work are we carrying simultaneously?"</td>
+              </tr>
+              <tr>
+                <td><strong>5. WORK ITEM AGE</strong></td>
+                <td>How long an unfinished work item has already been in progress.</td>
+                <td>"Which current items may require attention?"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">2. ADVANCED FLOW CONCEPTS</h2>
+        
+        <div style="background-color: var(--color-bg-page); padding: 20px; border-radius: 8px; border: 1px solid var(--color-border); margin-bottom: 20px;">
+          <h3 style="color: var(--color-navy-dark); font-size: 1.1rem; margin-top: 0; margin-bottom: 8px;">6. FLOW EFFICIENCY</h3>
+          <p class="content-text" style="margin-top: 0;">Active working time compared with total elapsed flow time. Measuring flow efficiency often reveals that work spends more time waiting than being actively worked on. Identifying and reducing waiting time often exposes significant opportunities for improvement.</p>
+        </div>
+
+        <div style="background-color: var(--color-bg-page); padding: 20px; border-radius: 8px; border: 1px solid var(--color-border);">
+          <h3 style="color: var(--color-navy-dark); font-size: 1.1rem; margin-top: 0; margin-bottom: 8px;">7. CUMULATIVE FLOW DIAGRAM (CFD)</h3>
+          <p class="content-text" style="margin-top: 0;">Shows how work accumulates across workflow states over time. A CFD can visually help identify growing queues, bottlenecks, and expanding WIP before they severely impact delivery speed.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">3. READ METRICS TOGETHER</h2>
+        <p class="content-text">Flow metrics are connected. Changing one aspect of the system reliably influences others. For example, high WIP cascades into lower predictability:</p>
+
+        <div style="background-color: var(--color-bg-page); padding: 24px; border-radius: 8px; border: 1px dashed var(--color-border); font-weight: 600; color: var(--color-navy-dark); line-height: 1.8; text-align: center; font-size: 1.1rem; margin-top: 20px;">
+          <div style="display: inline-block; text-align: center;">
+            High WIP <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Longer queues <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Increasing work-item age <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Longer cycle time <br>
+            <span style="color: var(--color-blue-primary); font-size: 1.5rem;">↓</span> <br>
+            Lower predictability
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">4. AVOID MISUSE</h2>
+        <ul class="content-text" style="padding-left: 20px; line-height: 1.6;">
+          <li>Do not use individual-level flow metrics to rank people.</li>
+          <li>Do not optimise one metric in isolation.</li>
+          <li>Understand workflow boundaries (where does the clock start and stop?).</li>
+          <li>Compare trends and context rather than blindly targeting arbitrary numbers.</li>
+        </ul>
+      </section>
+      <section class="content-section">
+        <h2 class="section-title">RELATED RESOURCES</h2>
+        <div class="tk-related-grid">
+          <a href="sprint-health-check.html" class="tk-related-card">
+            <span class="tk-related-id">TK-02</span>
+            <span class="tk-related-title">Sprint Health Check</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
