@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automated Sprint Completion Summary | Flow Craft</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <header class="fc-detail-header">
+    <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
+    <span class="fc-uc-id">UC-01</span>
+  </header>
+
+  <main class="fc-detail-main">
+    <div class="fc-detail-container">
+
+      <div class="fc-detail-hero">
+        <h1 class="fc-detail-title">Automated Sprint Completion Summary</h1>
+        <div class="fc-detail-tags">
+          <span class="fc-tech-tag">Jira Automation</span>
+          <span class="fc-tech-tag">Webhook</span>
+          <span class="fc-tech-tag">Power Automate</span>
+          <span class="fc-tech-tag">Microsoft Teams</span>
+          <span class="fc-tech-tag">JSON</span>
+        </div>
+      </div>
+
+      <section class="fc-detail-section">
+        <h2>Problem</h2>
+        <p>At the end of every sprint, teams spent time manually compiling completion stats, pulling numbers from Jira, and copy-pasting them into Teams — a repetitive, error-prone process that delayed post-sprint communication.</p>
+      </section>
+
+      <section class="fc-detail-section">
+        <h2>Automation</h2>
+        <p>A Jira Automation rule fires when a sprint completes, builds a JSON payload of sprint metrics, and sends it to a Power Automate webhook. Power Automate formats a structured summary card and posts it directly to the team's Microsoft Teams channel — no manual effort required.</p>
+      </section>
+
+      <section class="fc-detail-section">
+        <h2>Technology Stack</h2>
+        <ul>
+          <li><strong>Jira Automation</strong> — trigger on sprint completion, build JSON payload</li>
+          <li><strong>Webhook</strong> — HTTP POST to Power Automate endpoint</li>
+          <li><strong>Power Automate</strong> — receive, format, and route the summary</li>
+          <li><strong>Microsoft Teams</strong> — destination channel for the summary card</li>
+          <li><strong>JSON</strong> — data structure carrying sprint metrics</li>
+        </ul>
+      </section>
+
+      <section class="fc-detail-section">
+        <h2>Flow Diagram</h2>
+        <p><em>Flow diagram to be added.</em></p>
+      </section>
+
+      <section class="fc-detail-section">
+        <h2>Configuration Notes</h2>
+        <p><em>Step-by-step configuration to be added.</em></p>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
