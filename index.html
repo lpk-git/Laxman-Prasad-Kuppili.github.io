@@ -1737,16 +1737,196 @@
     <!-- THE APPLIED AI SECTION -->
     <section id="applied-ai" class="section">
       <div class="container">
+        <!-- Section header -->
         <div class="section-header">
           <span class="section-tag">AI</span>
           <h2 class="section-title">The Applied AI</h2>
           <div class="section-divider"></div>
+          <p class="section-intro">Practical applications of AI across delivery, software workflows and operations — exploring where AI can augment analysis, automation and decision-making while keeping human judgement in the loop.</p>
         </div>
-        <div class="coming-soon-card">
-          <div class="coming-soon-icon">🧠</div>
-          <h3 class="coming-soon-heading">Content Coming Soon</h3>
-          <p class="coming-soon-text">The Applied AI content is being prepared. Check back soon for practical AI use cases, tools, and real-world applications in Agile and delivery.</p>
+        
+        <!-- Filter / tag area -->
+        <div class="fc-filter-bar" role="group" aria-label="Explore use cases by category">
+          <span class="fc-filter-label">Explore by:</span>
+          <button class="fc-tag fc-tag--active" data-filter="all">All</button>
+          <button class="fc-tag" data-filter="delivery-insights">Delivery Insights</button>
+          <button class="fc-tag" data-filter="sdlc">SDLC</button>
+          <button class="fc-tag" data-filter="operations">Operations</button>
+          <button class="fc-tag" data-filter="ai-agents">AI Agents</button>
+          <button class="fc-tag" data-filter="productivity">Productivity</button>
         </div>
+
+        <!-- Use-case card grid -->
+        <div class="fc-card-grid">
+
+          <!-- AI-01 -->
+          <article class="fc-card" data-tags="delivery-insights">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-01</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Use Case</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">LLMs</span>
+                <span class="fc-tech-tag">Jira</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI-Powered Sprint Insights from Jira</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Extracting meaningful narrative insights from raw sprint data is time-consuming and often misses subtle delivery patterns.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Using AI to analyse structured Jira data exports, identify trends, and generate plain-language summaries of sprint health to support Scrum Masters and Delivery Leads.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sprint-insights.html'" aria-label="View use case: AI-Powered Sprint Insights from Jira">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- AI-02 -->
+          <article class="fc-card" data-tags="delivery-insights productivity">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-02</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Implementation</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">LLMs</span>
+                <span class="fc-tech-tag">Jira</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI-Enabled Sprint Review &amp; Retrospective Insights</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Sprint reviews and retrospectives can lack data-backed focus, leading to repetitive discussions and missed systemic issues.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Applying AI to summarise sprint achievements, surface qualitative themes from retro boards, and suggest data-informed continuous improvement actions.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/retro-insights.html'" aria-label="View use case: AI-Enabled Sprint Review &amp; Retrospective Insights">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- AI-03 -->
+          <article class="fc-card" data-tags="operations">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-03</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Experiment</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">LLMs</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI-Assisted Service Health Monitoring</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Operations teams face alert fatigue and struggle to quickly correlate complex system events during major incidents.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Experimenting with AI to parse operational logs, identify root-cause patterns, and draft preliminary incident summaries for human review.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/service-health.html'" aria-label="View use case: AI-Assisted Service Health Monitoring">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- AI-04 -->
+          <article class="fc-card" data-tags="productivity sdlc">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-04</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Pattern</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">LLMs</span>
+                <span class="fc-tech-tag">Kiro</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI-Assisted Automation Development</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Developing complex JSON payloads and API integrations manually slows down the creation of new automation workflows.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Utilising AI tools like Amazon Q (Kiro) to rapidly prototype JSON schemas, write boilerplate code, and troubleshoot integration errors during workflow development.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/automation-development.html'" aria-label="View use case: AI-Assisted Automation Development">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- AI-05 -->
+          <article class="fc-card" data-tags="ai-agents">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-05</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">AI Agents</span>
+                <span class="fc-tech-tag">MCP</span>
+                <span class="fc-tech-tag">APIs</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI Agents + MCP Tool Connectivity</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Stand-alone LLMs lack context regarding internal tools and real-time project states, limiting their effectiveness in delivery environments.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Designing frameworks to connect AI agents with workplace systems via Model Context Protocol (MCP) and APIs, extending their reasoning to actual project data.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/agent-connectivity.html'" aria-label="View use case: AI Agents + MCP Tool Connectivity">View Use Case →</button>
+            </div>
+          </article>
+
+          <!-- AI-06 -->
+          <article class="fc-card" data-tags="sdlc">
+            <div class="fc-card-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="fc-card-number">AI-06</span>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
+              </div>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag">LLMs</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">AI in the SDLC — Human + AI Control Model</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem / Opportunity</span>
+                <p class="fc-card-text">Unregulated AI use in software development risks introducing quality issues and compliance breaches without proper oversight.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">AI Application</span>
+                <p class="fc-card-text">Defining a control framework that safely integrates AI at key SDLC stages, ensuring AI augments creation while humans remain accountable for review and approval.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sdlc-control-model.html'" aria-label="View use case: AI in the SDLC — Human + AI Control Model">View Use Case →</button>
+            </div>
+          </article>
+
+        </div><!-- /fc-card-grid -->
       </div>
     </section>
 
@@ -1864,26 +2044,33 @@
         });
       });
     })();
-    // Flow Craft: filter bar tag filtering
+    // Filter bar tag filtering for Flow Craft and Applied AI
     (function () {
-      const filterBtns = document.querySelectorAll('.fc-tag');
-      const cards = document.querySelectorAll('.fc-card');
+      const filterBars = document.querySelectorAll('.fc-filter-bar');
+      
+      filterBars.forEach(bar => {
+        const filterBtns = bar.querySelectorAll('.fc-tag');
+        const grid = bar.nextElementSibling;
+        
+        if (!grid || !grid.classList.contains('fc-card-grid')) return;
+        const cards = grid.querySelectorAll('.fc-card');
 
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-          const filter = this.dataset.filter;
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function () {
+            const filter = this.dataset.filter;
 
-          // Update active state
-          filterBtns.forEach(b => b.classList.remove('fc-tag--active'));
-          this.classList.add('fc-tag--active');
+            // Update active state only within this specific filter bar
+            filterBtns.forEach(b => b.classList.remove('fc-tag--active'));
+            this.classList.add('fc-tag--active');
 
-          // Show / hide cards
-          cards.forEach(card => {
-            if (filter === 'all' || card.dataset.tags.includes(filter)) {
-              card.classList.remove('fc-card--hidden');
-            } else {
-              card.classList.add('fc-card--hidden');
-            }
+            // Show / hide cards only within this specific grid
+            cards.forEach(card => {
+              if (filter === 'all' || card.dataset.tags.split(' ').includes(filter)) {
+                card.classList.remove('fc-card--hidden');
+              } else {
+                card.classList.add('fc-card--hidden');
+              }
+            });
           });
         });
       });
