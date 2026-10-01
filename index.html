@@ -866,6 +866,172 @@
       margin: 0 auto;
     }
 
+    /* --- FLOW CRAFT SECTION --- */
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 680px;
+      margin-top: 12px;
+    }
+
+    .fc-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .fc-filter-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 4px;
+    }
+
+    .fc-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .fc-tag:hover,
+    .fc-tag--active {
+      background: var(--color-blue-primary);
+      color: var(--color-white);
+      border-color: var(--color-blue-primary);
+    }
+
+    .fc-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .fc-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .fc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      border-color: var(--color-blue-accent);
+    }
+
+    .fc-card--hidden {
+      display: none;
+    }
+
+    .fc-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .fc-card-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-primary);
+      background: var(--color-blue-soft);
+      border-radius: 4px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .fc-card-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .fc-tech-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    .fc-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .fc-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .fc-card-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .fc-card-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-blue-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .fc-card-text {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .fc-card-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .fc-view-btn {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-blue-primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.15s ease;
+    }
+
+    .fc-view-btn:hover {
+      color: var(--color-blue-hover);
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
@@ -1294,16 +1460,58 @@
     <!-- FLOW CRAFT SECTION -->
     <section id="flow-craft" class="section section-alt">
       <div class="container">
+
+        <!-- Section header -->
         <div class="section-header">
-          <span class="section-tag">Delivery</span>
+          <span class="section-tag">Automation Library</span>
           <h2 class="section-title">Flow Craft</h2>
           <div class="section-divider"></div>
+          <p class="section-intro">A curated library of real-world automation use cases built across Agile delivery, tooling, and team operations. Each flow is documented with the problem it solves, the technology stack, and how it works.</p>
         </div>
-        <div class="coming-soon-card">
-          <div class="coming-soon-icon">🌊</div>
-          <h3 class="coming-soon-heading">Content Coming Soon</h3>
-          <p class="coming-soon-text">Flow Craft content is being prepared. Check back soon for updates on delivery flow, throughput optimisation, and process design.</p>
+
+        <!-- Filter / tag area -->
+        <div class="fc-filter-bar" role="group" aria-label="Filter use cases by technology">
+          <span class="fc-filter-label">Filter by:</span>
+          <button class="fc-tag fc-tag--active" data-filter="all">All</button>
+          <button class="fc-tag" data-filter="jira-automation">Jira Automation</button>
+          <button class="fc-tag" data-filter="webhook">Webhook</button>
+          <button class="fc-tag" data-filter="power-automate">Power Automate</button>
+          <button class="fc-tag" data-filter="ms-teams">Microsoft Teams</button>
+          <button class="fc-tag" data-filter="json">JSON</button>
         </div>
+
+        <!-- Use-case card grid -->
+        <div class="fc-card-grid">
+
+          <!-- Use Case 1: Automated Sprint Completion Summary -->
+          <article class="fc-card" data-tags="jira-automation webhook power-automate ms-teams json">
+            <div class="fc-card-header">
+              <span class="fc-card-number">UC-01</span>
+              <div class="fc-card-tech-tags">
+                <span class="fc-tech-tag" data-filter="jira-automation">Jira Automation</span>
+                <span class="fc-tech-tag" data-filter="webhook">Webhook</span>
+                <span class="fc-tech-tag" data-filter="power-automate">Power Automate</span>
+                <span class="fc-tech-tag" data-filter="ms-teams">Microsoft Teams</span>
+                <span class="fc-tech-tag" data-filter="json">JSON</span>
+              </div>
+            </div>
+            <h3 class="fc-card-title">Automated Sprint Completion Summary</h3>
+            <div class="fc-card-body">
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Problem</span>
+                <p class="fc-card-text">At the end of every sprint, teams spent time manually compiling completion stats, pulling numbers from Jira, and copy-pasting them into Teams — a repetitive, error-prone process that delayed post-sprint communication.</p>
+              </div>
+              <div class="fc-card-section">
+                <span class="fc-card-section-label">Automation</span>
+                <p class="fc-card-text">A Jira Automation rule fires when a sprint completes, builds a JSON payload of sprint metrics, and sends it to a Power Automate webhook. Power Automate formats a structured summary card and posts it directly to the team's Microsoft Teams channel — no manual effort required.</p>
+              </div>
+            </div>
+            <div class="fc-card-footer">
+              <button class="fc-view-btn" aria-label="View use case: Automated Sprint Completion Summary">View Use Case →</button>
+            </div>
+          </article>
+
+        </div><!-- /fc-card-grid -->
       </div>
     </section>
 
@@ -1434,6 +1642,30 @@
             // Scroll back up to the master tiles
             tile.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
+        });
+      });
+    })();
+    // Flow Craft: filter bar tag filtering
+    (function () {
+      const filterBtns = document.querySelectorAll('.fc-tag');
+      const cards = document.querySelectorAll('.fc-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const filter = this.dataset.filter;
+
+          // Update active state
+          filterBtns.forEach(b => b.classList.remove('fc-tag--active'));
+          this.classList.add('fc-tag--active');
+
+          // Show / hide cards
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.tags.includes(filter)) {
+              card.classList.remove('fc-card--hidden');
+            } else {
+              card.classList.add('fc-card--hidden');
+            }
+          });
         });
       });
     })();
