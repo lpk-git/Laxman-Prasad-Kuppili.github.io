@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="icon" type="image/x-icon" href="https://valuebridge.in/assets/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="https://valuebridge.in/assets/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal website of Laxman Prasad Kuppili - Agile delivery, AI adoption, workflow automation, and continuous improvement.">
+  <meta name="description"
+    content="Personal website of Laxman Prasad Kuppili - Agile delivery, AI adoption, workflow automation, and continuous improvement.">
   <title>Laxman Prasad Kuppili | Agile, AI Adoption and Workflow Automation</title>
   <style>
     /* --- CSS RESET & BASE STYLES --- */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -177,7 +181,7 @@
       margin-bottom: 24px;
       color: var(--color-white);
     }
-    
+
     .hero-main-title span {
       color: #60a5fa;
     }
@@ -191,13 +195,13 @@
       margin: 0;
       color: var(--color-navy-dark);
     }
-    
+
     .profile-connect-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
     }
-    
+
     .profile-summary-header {
       display: flex;
       align-items: center;
@@ -707,7 +711,7 @@
         font-size: 2.5rem;
         margin-bottom: 20px;
       }
-      
+
       .profile-connect-layout {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -746,6 +750,7 @@
         grid-template-columns: 1fr;
       }
     }
+
     /* --- PORTFOLIO SECTION --- */
     .portfolio-master-grid {
       display: grid;
@@ -816,8 +821,15 @@
     }
 
     @keyframes pf-fade-in {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .pf-sub-header {
@@ -1125,14 +1137,16 @@
       max-height: 600px !important;
       height: calc(100vh - 120px) !important;
       max-width: 380px !important;
-      bottom: 20px !important; /* ensure it stays somewhat grounded */
+      bottom: 20px !important;
+      /* ensure it stays somewhat grounded */
     }
 
     /* --- NOTIFICATION CENTER --- */
     .nc-trigger {
       position: fixed;
       bottom: 16px;
-      right: 90px; /* Positioned beside the Chatbase bubble */
+      right: 90px;
+      /* Positioned beside the Chatbase bubble */
       width: 46px;
       height: 46px;
       border-radius: 50%;
@@ -1148,10 +1162,12 @@
       justify-content: center;
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
+
     .nc-trigger:hover {
       background-color: var(--color-blue-hover);
       transform: translateY(-2px);
     }
+
     .nc-trigger:focus-visible {
       outline: 2px solid var(--color-navy-dark);
       outline-offset: 2px;
@@ -1184,6 +1200,7 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       visibility: hidden;
     }
+
     .nc-panel.is-open {
       opacity: 1;
       transform: translateY(0);
@@ -1200,11 +1217,13 @@
       background-color: var(--color-bg-page);
       border-radius: 12px 12px 0 0;
     }
+
     .nc-title {
       font-weight: 600;
       color: var(--color-navy-dark);
       font-size: 1.05rem;
     }
+
     .nc-close {
       background: none;
       border: none;
@@ -1215,10 +1234,12 @@
       line-height: 1;
       border-radius: 4px;
     }
+
     .nc-close:hover {
       color: var(--color-text-main);
       background-color: var(--color-border);
     }
+
     .nc-close:focus-visible {
       outline: 2px solid var(--color-navy-dark);
     }
@@ -1230,38 +1251,44 @@
       margin: 0;
       list-style: none;
     }
-    
+
     .nc-item {
       padding: 16px 20px;
       border-bottom: 1px solid var(--color-border);
     }
+
     .nc-item:last-child {
       border-bottom: none;
     }
+
     .nc-item-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 8px;
     }
+
     .nc-item-title {
       font-weight: 600;
       color: var(--color-navy-dark);
       font-size: 0.95rem;
       margin-bottom: 4px;
     }
+
     .nc-item-meta {
       font-size: 0.75rem;
       color: var(--color-text-muted);
       font-weight: 500;
       margin-bottom: 8px;
     }
+
     .nc-item-message {
       font-size: 0.85rem;
       color: var(--color-text-main);
       margin-bottom: 12px;
       line-height: 1.5;
     }
+
     .nc-item-link {
       font-size: 0.8rem;
       font-weight: 600;
@@ -1270,6 +1297,7 @@
       display: inline-flex;
       align-items: center;
     }
+
     .nc-item-link:hover {
       color: var(--color-blue-hover);
       text-decoration: underline;
@@ -1283,6 +1311,7 @@
         left: 16px;
         max-height: 60vh;
       }
+
       .nc-trigger {
         bottom: 16px;
         right: 76px;
@@ -1291,12 +1320,15 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVIGATION HEADER -->
   <header class="header">
     <div class="nav-container">
-      <a href="https://valuebridge.in/" class="brand-logo" aria-label="Go to Home section" style="display: flex; align-items: center;"><img src="assets/logo.png" alt="ValueBridge Logo" style="max-height: 80px; height: 100%; width: auto;"></a>
+      <a href="https://valuebridge.in/" class="brand-logo" aria-label="Go to Home section"
+        style="display: flex; align-items: center;"><img src="assets/logo.png" alt="ValueBridge Logo"
+          style="max-height: 80px; height: 100%; width: auto;"></a>
       <nav aria-label="Primary navigation">
         <ul class="nav-menu">
           <li><a href="#about" class="nav-link">About</a></li>
@@ -1321,9 +1353,11 @@
             From delivery challenges to <br><span style="color: #60a5fa;">smarter ways of working.</span>
           </h1>
           <p class="hero-description" style="font-size: 1.25rem; margin-bottom: 24px; color: #f8fafc;">
-            Practical insights, automation use cases, AI applications, and reusable tools shaped by hands-on experience across enterprise delivery environments.
+            Practical insights, automation use cases, AI applications, and reusable tools shaped by hands-on experience
+            across enterprise delivery environments.
           </p>
-          <p class="hero-headline" style="color: #93c5fd; font-weight: 500; letter-spacing: 0.02em; margin-bottom: 40px; max-width: none;">
+          <p class="hero-headline"
+            style="color: #93c5fd; font-weight: 500; letter-spacing: 0.02em; margin-bottom: 40px; max-width: none;">
             Agile Delivery · Automation · AI Adoption · Continuous Improvement
           </p>
           <div class="hero-actions">
@@ -1349,7 +1383,8 @@
           <article class="about-block">
             <h3 class="about-heading">Welcome</h3>
             <p class="about-text">
-              Welcome to my portfolio. My work and interests centre on Agile delivery, AI adoption, workflow automation and continuous improvement.
+              Welcome to my portfolio. My work and interests centre on Agile delivery, AI adoption, workflow automation
+              and continuous improvement.
             </p>
             <p class="about-lead-text">
               Through this space, I share practical ideas, experiences and use cases related to:
@@ -1370,7 +1405,8 @@
           <article class="about-block">
             <h3 class="about-heading">About Me</h3>
             <p class="about-text">
-              I am an Agile delivery professional with 14+ years of IT experience, including seven years as a Scrum Master and Agile Delivery Lead across banking, cards, payments and gaming.
+              I am an Agile delivery professional with 14+ years of IT experience, including seven years as a Scrum
+              Master and Agile Delivery Lead across banking, cards, payments and gaming.
             </p>
             <p class="about-lead-text">
               My experience spans:
@@ -1385,10 +1421,13 @@
               <li>AI-enabled reporting and workflow automation</li>
             </ul>
             <p class="about-text">
-              In my Agile Lead role, I coordinate delivery across four squads, aligning priorities, capacity, milestones, risks and cross-team dependencies. I work closely with Product Owners, engineering leaders and stakeholders to strengthen delivery predictability, transparency and team ownership.
+              In my Agile Lead role, I coordinate delivery across four squads, aligning priorities, capacity,
+              milestones, risks and cross-team dependencies. I work closely with Product Owners, engineering leaders and
+              stakeholders to strengthen delivery predictability, transparency and team ownership.
             </p>
             <p class="about-text">
-              My SAFe experience includes supporting PI Planning across three teams, participating in Scrum of Scrums, resolving cross-team dependencies and enabling coordinated delivery at program level.
+              My SAFe experience includes supporting PI Planning across three teams, participating in Scrum of Scrums,
+              resolving cross-team dependencies and enabling coordinated delivery at program level.
             </p>
           </article>
 
@@ -1402,13 +1441,19 @@
             </p>
             <ul class="about-list">
               <li>Led Agile Ways of Working workshops across 10 squads, receiving 90% positive feedback</li>
-              <li>Created the Delivery Disruptors framework to identify recurring systemic impediments and guide focused resolution</li>
-              <li>Built more than 15 Jira Automation and Power Automate workflows integrated with Microsoft Teams and Slack</li>
-              <li>Developed AI-enabled delivery dashboards to improve visibility into delivery health, blockers and dependencies</li>
+              <li>Created the Delivery Disruptors framework to identify recurring systemic impediments and guide focused
+                resolution</li>
+              <li>Built more than 15 Jira Automation and Power Automate workflows integrated with Microsoft Teams and
+                Slack</li>
+              <li>Developed AI-enabled delivery dashboards to improve visibility into delivery health, blockers and
+                dependencies</li>
               <li>Automated service-health monitoring using Amazon Q Kiro</li>
-              <li>Supported Jira Cloud and Slack migrations through pillar-level enablement, adoption and ongoing support</li>
-              <li>Partnered with Jira specialists and administration teams to introduce nine Jira Data Center capabilities</li>
-              <li>Contributed to improved Jira governance, workflow standardisation and platform adoption through the Jira Community of Practice</li>
+              <li>Supported Jira Cloud and Slack migrations through pillar-level enablement, adoption and ongoing
+                support</li>
+              <li>Partnered with Jira specialists and administration teams to introduce nine Jira Data Center
+                capabilities</li>
+              <li>Contributed to improved Jira governance, workflow standardisation and platform adoption through the
+                Jira Community of Practice</li>
             </ul>
           </article>
 
@@ -1436,7 +1481,8 @@
           <article class="about-block">
             <h3 class="about-heading">Communities of Practice</h3>
             <p class="about-text">
-              I actively engage with Communities of Practice to exchange ideas, learn from practitioners and contribute to platform and process improvements.
+              I actively engage with Communities of Practice to exchange ideas, learn from practitioners and contribute
+              to platform and process improvements.
             </p>
             <p class="about-lead-text">
               My involvement includes:
@@ -1450,7 +1496,8 @@
               <li>Helping translate recurring challenges into scalable solutions</li>
             </ul>
             <p class="about-text">
-              I enjoy combining Agile practices, systems thinking, automation and AI to solve problems that extend beyond a single team.
+              I enjoy combining Agile practices, systems thinking, automation and AI to solve problems that extend
+              beyond a single team.
             </p>
           </article>
 
@@ -1464,28 +1511,32 @@
             </p>
             <div class="cert-grid">
               <div class="cert-card">
-                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
                   <circle cx="12" cy="9" r="6"></circle>
                 </svg>
                 <span>Professional Scrum Master I</span>
               </div>
               <div class="cert-card">
-                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
                   <circle cx="12" cy="9" r="6"></circle>
                 </svg>
                 <span>SAFe Scrum Master</span>
               </div>
               <div class="cert-card">
-                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
                   <circle cx="12" cy="9" r="6"></circle>
                 </svg>
                 <span>SAFe Agilist</span>
               </div>
               <div class="cert-card">
-                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 15l-2 5l4 -2l4 2l-2 -5"></path>
                   <circle cx="12" cy="9" r="6"></circle>
                 </svg>
@@ -1513,7 +1564,8 @@
             <h3 class="about-heading">What Drives Me</h3>
             <div class="about-drives-me">
               <p class="about-drives-me-text">
-                &ldquo;What drives me most is helping teams move beyond simply being busy to delivering meaningful outcomes with clarity, collaboration and confidence.&rdquo;
+                &ldquo;What drives me most is helping teams move beyond simply being busy to delivering meaningful
+                outcomes with clarity, collaboration and confidence.&rdquo;
               </p>
             </div>
           </article>
@@ -1530,7 +1582,7 @@
           <div class="section-divider"></div>
         </div>
         <div class="interest-grid">
-          
+
           <!-- Area 1: Agile Delivery -->
           <article class="interest-card">
             <div class="card-icon" aria-hidden="true">
@@ -1542,7 +1594,8 @@
             </div>
             <h3 class="card-title">Agile Delivery</h3>
             <p class="card-description">
-              Implementing iterative methodologies, adaptive planning, and collaborative practices to deliver meaningful value predictably and efficiently.
+              Implementing iterative methodologies, adaptive planning, and collaborative practices to deliver meaningful
+              value predictably and efficiently.
             </p>
           </article>
 
@@ -1551,14 +1604,17 @@
             <div class="card-icon" aria-hidden="true">
               <!-- AI / Innovation Spark Icon -->
               <svg viewBox="0 0 24 24">
-                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z">
+                </path>
                 <path d="M5 3v4"></path>
                 <path d="M3 5h4"></path>
               </svg>
             </div>
             <h3 class="card-title">AI Adoption</h3>
             <p class="card-description">
-              Harnessing artificial intelligence tools and modern capabilities to augment decision-making, optimize outcomes, and accelerate day-to-day productivity.
+              Harnessing artificial intelligence tools and modern capabilities to augment decision-making, optimize
+              outcomes, and accelerate day-to-day productivity.
             </p>
           </article>
 
@@ -1568,12 +1624,15 @@
               <!-- Automation / Process Gear Icon -->
               <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
               </svg>
             </div>
             <h3 class="card-title">Workflow Automation</h3>
             <p class="card-description">
-              Designing systematic, repeatable processes that reduce manual effort, prevent common bottlenecks, and ensure smooth operational consistency.
+              Designing systematic, repeatable processes that reduce manual effort, prevent common bottlenecks, and
+              ensure smooth operational consistency.
             </p>
           </article>
 
@@ -1588,7 +1647,8 @@
             </div>
             <h3 class="card-title">Continuous Improvement</h3>
             <p class="card-description">
-              Cultivating an ongoing cycle of reflection, feedback, and refinement to enhance quality, performance, and collaboration over time.
+              Cultivating an ongoing cycle of reflection, feedback, and refinement to enhance quality, performance, and
+              collaboration over time.
             </p>
           </article>
 
@@ -1643,13 +1703,41 @@
               <h3 class="pf-sub-title">🔄 Agile Transformation</h3>
             </div>
             <div class="pf-sub-grid">
-              <div class="pf-sub-tile"><h4>Outcome-Driven Delivery</h4><p>Guiding teams to shift focus from measuring output to connecting daily delivery activities with meaningful business and customer outcomes.</p></div>
-              <div class="pf-sub-tile"><h4>Team Design &amp; Ways of Working</h4><p>Establishing clear team structures, shared responsibilities, and practical working agreements to build resilient, cross-functional units.</p></div>
-              <div class="pf-sub-tile"><h4>Iterative Product Delivery</h4><p>Breaking large initiatives into manageable, testable increments to establish strong delivery foundations and enable continuous feedback loops.</p></div>
-              <div class="pf-sub-tile"><h4>Planning &amp; Roadmapping</h4><p>Bridging the gap between long-term strategic direction and near-term execution through transparent prioritisation and adaptive planning.</p></div>
-              <div class="pf-sub-tile"><h4>Risk &amp; Dependency Management</h4><p>Proactively identifying, visualising, and resolving cross-team dependencies and delivery impediments before they impact flow.</p></div>
-              <div class="pf-sub-tile"><h4>Stakeholder &amp; Delivery Alignment</h4><p>Maintaining clear communication and transparency to ensure ongoing alignment between delivery teams, product stakeholders, and leadership.</p></div>
-              <div class="pf-sub-tile"><h4>Continuous Improvement</h4><p>Fostering a culture of inspection and adaptation through structured retrospectives to drive systemic improvements in ways of working.</p></div>
+              <div class="pf-sub-tile">
+                <h4>Outcome-Driven Delivery</h4>
+                <p>Guiding teams to shift focus from measuring output to connecting daily delivery activities with
+                  meaningful business and customer outcomes.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Team Design &amp; Ways of Working</h4>
+                <p>Establishing clear team structures, shared responsibilities, and practical working agreements to
+                  build resilient, cross-functional units.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Iterative Product Delivery</h4>
+                <p>Breaking large initiatives into manageable, testable increments to establish strong delivery
+                  foundations and enable continuous feedback loops.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Planning &amp; Roadmapping</h4>
+                <p>Bridging the gap between long-term strategic direction and near-term execution through transparent
+                  prioritisation and adaptive planning.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Risk &amp; Dependency Management</h4>
+                <p>Proactively identifying, visualising, and resolving cross-team dependencies and delivery impediments
+                  before they impact flow.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Stakeholder &amp; Delivery Alignment</h4>
+                <p>Maintaining clear communication and transparency to ensure ongoing alignment between delivery teams,
+                  product stakeholders, and leadership.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Continuous Improvement</h4>
+                <p>Fostering a culture of inspection and adaptation through structured retrospectives to drive systemic
+                  improvements in ways of working.</p>
+              </div>
             </div>
           </div>
 
@@ -1660,15 +1748,40 @@
               <h3 class="pf-sub-title">🤖 AI Adoption</h3>
             </div>
             <div class="pf-sub-grid">
-              <div class="pf-sub-tile"><h4>AI-Assisted Delivery</h4><p>Using AI to support delivery activities, analysis, reporting, decision support and workflow efficiency.</p></div>
-              <div class="pf-sub-tile"><h4>AI-Enabled Process Optimisation</h4><p>Identifying repetitive or information-heavy processes where AI can reduce manual effort and improve how information is processed.</p></div>
-              <div class="pf-sub-tile"><h4>AI-Driven Delivery Insights</h4><p>Leveraging AI to synthesise sprint metrics, surface delivery patterns, and provide actionable observations to assist human decision-making.</p></div>
-              <div class="pf-sub-tile"><h4>AI-Assisted Reviews &amp; Retrospectives</h4><p>Supporting sprint reviews and retrospectives by summarising outcomes and identifying themes to aid continuous improvement.</p></div>
-              <div class="pf-sub-tile"><h4>AI Development &amp; Experimentation</h4><p>Experimenting with AI-assisted environments like Amazon Q (Kiro) and prototyping to learn how AI can accelerate solution creation.</p></div>
-              <div class="pf-sub-tile"><h4>AI Agents &amp; Tool Connectivity</h4><p>Exploring AI agents, MCPs, and APIs to extend an AI system's ability to interact with real tools and external workflows.</p></div>
+              <div class="pf-sub-tile">
+                <h4>AI-Assisted Delivery</h4>
+                <p>Using AI to support delivery activities, analysis, reporting, decision support and workflow
+                  efficiency.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>AI-Enabled Process Optimisation</h4>
+                <p>Identifying repetitive or information-heavy processes where AI can reduce manual effort and improve
+                  how information is processed.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>AI-Driven Delivery Insights</h4>
+                <p>Leveraging AI to synthesise sprint metrics, surface delivery patterns, and provide actionable
+                  observations to assist human decision-making.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>AI-Assisted Reviews &amp; Retrospectives</h4>
+                <p>Supporting sprint reviews and retrospectives by summarising outcomes and identifying themes to aid
+                  continuous improvement.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>AI Development &amp; Experimentation</h4>
+                <p>Experimenting with AI-assisted environments like Amazon Q (Kiro) and prototyping to learn how AI can
+                  accelerate solution creation.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>AI Agents &amp; Tool Connectivity</h4>
+                <p>Exploring AI agents, MCPs, and APIs to extend an AI system's ability to interact with real tools and
+                  external workflows.</p>
+              </div>
             </div>
             <div style="margin-top: 20px; text-align: right;">
-              <a href="#applied-ai" class="contact-link" style="font-size: 0.9rem; font-weight: 600;">Explore practical AI use cases → The Applied AI</a>
+              <a href="#applied-ai" class="contact-link" style="font-size: 0.9rem; font-weight: 600;">Explore practical
+                AI use cases → The Applied AI</a>
             </div>
           </div>
 
@@ -1679,11 +1792,31 @@
               <h3 class="pf-sub-title">🏆 Change Champion</h3>
             </div>
             <div class="pf-sub-grid">
-              <div class="pf-sub-tile"><h4>Platform Change &amp; Migration</h4><p>Supporting Jira Data Center to Cloud transitions by driving team readiness, validating changes, and ensuring continuity of ways of working.</p></div>
-              <div class="pf-sub-tile"><h4>Workflow &amp; Process Improvement</h4><p>Identifying friction in Jira workflows and standardising processes to establish practical governance and make daily work easier to navigate.</p></div>
-              <div class="pf-sub-tile"><h4>User Enablement &amp; Adoption</h4><p>Facilitating enablement sessions and knowledge sharing to help teams confidently understand, adopt, and navigate new tools and processes.</p></div>
-              <div class="pf-sub-tile"><h4>Collaboration Platform Transition</h4><p>Guiding user adoption during Microsoft Teams to Slack migrations, ensuring workflow continuity and helping teams adjust to new practices.</p></div>
-              <div class="pf-sub-tile"><h4>Change Advocacy</h4><p>Acting as a bridge between users and change initiatives by collecting feedback, representing practitioner needs, and encouraging adoption.</p></div>
+              <div class="pf-sub-tile">
+                <h4>Platform Change &amp; Migration</h4>
+                <p>Supporting Jira Data Center to Cloud transitions by driving team readiness, validating changes, and
+                  ensuring continuity of ways of working.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Workflow &amp; Process Improvement</h4>
+                <p>Identifying friction in Jira workflows and standardising processes to establish practical governance
+                  and make daily work easier to navigate.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>User Enablement &amp; Adoption</h4>
+                <p>Facilitating enablement sessions and knowledge sharing to help teams confidently understand, adopt,
+                  and navigate new tools and processes.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Collaboration Platform Transition</h4>
+                <p>Guiding user adoption during Microsoft Teams to Slack migrations, ensuring workflow continuity and
+                  helping teams adjust to new practices.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Change Advocacy</h4>
+                <p>Acting as a bridge between users and change initiatives by collecting feedback, representing
+                  practitioner needs, and encouraging adoption.</p>
+              </div>
             </div>
           </div>
 
@@ -1694,15 +1827,40 @@
               <h3 class="pf-sub-title">⚙️ Automation</h3>
             </div>
             <div class="pf-sub-grid">
-              <div class="pf-sub-tile"><h4>Jira Workflow Automation</h4><p>Building event-driven automation using triggers, conditions, and smart values to execute workflow actions based on issue data.</p></div>
-              <div class="pf-sub-tile"><h4>Workflow Orchestration</h4><p>Creating multi-step workflows in Power Automate to process incoming data, apply conditional routing, and trigger downstream actions.</p></div>
-              <div class="pf-sub-tile"><h4>Collaboration Automation</h4><p>Reducing repetitive coordination by automating notifications, team workflows, and scheduled structured messages in Microsoft Teams and Slack.</p></div>
-              <div class="pf-sub-tile"><h4>System Integration</h4><p>Connecting disparate systems through webhooks, APIs, and HTTP requests to enable event-driven information exchange.</p></div>
-              <div class="pf-sub-tile"><h4>Data &amp; Message Transformation</h4><p>Transforming system data into usable collaboration messages using JSON payload construction, Parse JSON, and dynamic Adaptive Cards.</p></div>
-              <div class="pf-sub-tile"><h4>Reusable Automation Patterns</h4><p>Designing scalable patterns such as event-to-webhook workflows, dynamic routing, and multi-team reporting automation.</p></div>
+              <div class="pf-sub-tile">
+                <h4>Jira Workflow Automation</h4>
+                <p>Building event-driven automation using triggers, conditions, and smart values to execute workflow
+                  actions based on issue data.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Workflow Orchestration</h4>
+                <p>Creating multi-step workflows in Power Automate to process incoming data, apply conditional routing,
+                  and trigger downstream actions.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Collaboration Automation</h4>
+                <p>Reducing repetitive coordination by automating notifications, team workflows, and scheduled
+                  structured messages in Microsoft Teams and Slack.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>System Integration</h4>
+                <p>Connecting disparate systems through webhooks, APIs, and HTTP requests to enable event-driven
+                  information exchange.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Data &amp; Message Transformation</h4>
+                <p>Transforming system data into usable collaboration messages using JSON payload construction, Parse
+                  JSON, and dynamic Adaptive Cards.</p>
+              </div>
+              <div class="pf-sub-tile">
+                <h4>Reusable Automation Patterns</h4>
+                <p>Designing scalable patterns such as event-to-webhook workflows, dynamic routing, and multi-team
+                  reporting automation.</p>
+              </div>
             </div>
             <div style="margin-top: 20px; text-align: right;">
-              <a href="#flow-craft" class="contact-link" style="font-size: 0.9rem; font-weight: 600;">See these capabilities in action → Explore Flow Craft</a>
+              <a href="#flow-craft" class="contact-link" style="font-size: 0.9rem; font-weight: 600;">See these
+                capabilities in action → Explore Flow Craft</a>
             </div>
           </div>
 
@@ -1719,7 +1877,9 @@
           <span class="section-tag">Automation Library</span>
           <h2 class="section-title">Flow Craft</h2>
           <div class="section-divider"></div>
-          <p class="section-intro">A curated library of real-world automation use cases built across Agile delivery, tooling, and team operations. Each flow is documented with the problem it solves, the technology stack, and how it works.</p>
+          <p class="section-intro">A curated library of real-world automation use cases built across Agile delivery,
+            tooling, and team operations. Each flow is documented with the problem it solves, the technology stack, and
+            how it works.</p>
         </div>
 
         <!-- Filter / tag area -->
@@ -1753,15 +1913,19 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Sprint completion reporting required manually retrieving delivery metrics from Jira and communicating results to the team, creating repetitive effort and inconsistent reporting.</p>
+                <p class="fc-card-text">Sprint completion reporting required manually retrieving delivery metrics from
+                  Jira and communicating results to the team, creating repetitive effort and inconsistent reporting.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">When a sprint completes, Jira Automation collects metrics, builds a JSON payload, and sends it via webhook to Power Automate — which formats and publishes the summary to Microsoft Teams.</p>
+                <p class="fc-card-text">When a sprint completes, Jira Automation collects metrics, builds a JSON
+                  payload, and sends it via webhook to Power Automate — which formats and publishes the summary to
+                  Microsoft Teams.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-summary.html'" aria-label="View use case: Automated Sprint Completion Summary">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-summary.html'"
+                aria-label="View use case: Automated Sprint Completion Summary">View Use Case →</button>
             </div>
           </article>
 
@@ -1782,15 +1946,20 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Multiple squads needed automation notifications delivered to their own Teams channels. Maintaining a separate flow per squad created duplication and growing maintenance overhead.</p>
+                <p class="fc-card-text">Multiple squads needed automation notifications delivered to their own Teams
+                  channels. Maintaining a separate flow per squad created duplication and growing maintenance overhead.
+                </p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">One shared Jira-to-Power-Automate integration uses Switch/Condition routing logic to identify the squad from the payload and dynamically deliver the notification to the correct Teams channel.</p>
+                <p class="fc-card-text">One shared Jira-to-Power-Automate integration uses Switch/Condition routing
+                  logic to identify the squad from the payload and dynamically deliver the notification to the correct
+                  Teams channel.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/multi-squad-routing.html'" aria-label="View use case: Multi-Squad Dynamic Channel Routing">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/multi-squad-routing.html'"
+                aria-label="View use case: Multi-Squad Dynamic Channel Routing">View Use Case →</button>
             </div>
           </article>
 
@@ -1811,15 +1980,19 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">When work became ready for rollout, relevant people needed timely visibility without relying entirely on manual messages or checking Jira.</p>
+                <p class="fc-card-text">When work became ready for rollout, relevant people needed timely visibility
+                  without relying entirely on manual messages or checking Jira.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">When a Jira issue transitions to "Ready for Rollout", Jira Automation sends a webhook to Power Automate, which formats and delivers a structured Teams notification with key issue details.</p>
+                <p class="fc-card-text">When a Jira issue transitions to "Ready for Rollout", Jira Automation sends a
+                  webhook to Power Automate, which formats and delivers a structured Teams notification with key issue
+                  details.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/rollout-notification.html'" aria-label="View use case: Ready-for-Rollout Notification">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/rollout-notification.html'"
+                aria-label="View use case: Ready-for-Rollout Notification">View Use Case →</button>
             </div>
           </article>
 
@@ -1839,15 +2012,20 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Newly reported bugs had no automatic visibility. Teams depended on someone manually posting to a channel, meaning defects could sit unnoticed until the next standup or check-in.</p>
+                <p class="fc-card-text">Newly reported bugs had no automatic visibility. Teams depended on someone
+                  manually posting to a channel, meaning defects could sit unnoticed until the next standup or check-in.
+                </p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">When a Bug is created in Jira, Jira Automation validates the issue type, extracts key bug details, and sends a structured JSON payload via webhook to Power Automate, which formats and delivers an alert to Microsoft Teams.</p>
+                <p class="fc-card-text">When a Bug is created in Jira, Jira Automation validates the issue type,
+                  extracts key bug details, and sends a structured JSON payload via webhook to Power Automate, which
+                  formats and delivers an alert to Microsoft Teams.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/bug-alert.html'" aria-label="View use case: New Bug Alert Automation">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/bug-alert.html'"
+                aria-label="View use case: New Bug Alert Automation">View Use Case →</button>
             </div>
           </article>
 
@@ -1867,15 +2045,19 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Plain text automation notifications are difficult to scan and provide limited structure for operational information delivered to Microsoft Teams.</p>
+                <p class="fc-card-text">Plain text automation notifications are difficult to scan and provide limited
+                  structure for operational information delivered to Microsoft Teams.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">Power Automate receives a JSON payload from Jira via webhook, maps dynamic values, and constructs a structured Adaptive Card posted to Microsoft Teams — transforming raw data into a readable, actionable notification.</p>
+                <p class="fc-card-text">Power Automate receives a JSON payload from Jira via webhook, maps dynamic
+                  values, and constructs a structured Adaptive Card posted to Microsoft Teams — transforming raw data
+                  into a readable, actionable notification.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/adaptive-cards.html'" aria-label="View use case: Dynamic Microsoft Teams Adaptive Cards">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/adaptive-cards.html'"
+                aria-label="View use case: Dynamic Microsoft Teams Adaptive Cards">View Use Case →</button>
             </div>
           </article>
 
@@ -1894,15 +2076,20 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Pattern</span>
-                <p class="fc-card-text">A technical deep-dive into the reusable integration pattern that underpins all Flow Craft automations — how Jira Automation triggers external workflows by sending structured data through a webhook.</p>
+                <p class="fc-card-text">A technical deep-dive into the reusable integration pattern that underpins all
+                  Flow Craft automations — how Jira Automation triggers external workflows by sending structured data
+                  through a webhook.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Why it matters</span>
-                <p class="fc-card-text">Understanding this pattern enables any team to build reliable, scalable Jira-triggered automations without duplicating infrastructure — one architecture, many downstream actions.</p>
+                <p class="fc-card-text">Understanding this pattern enables any team to build reliable, scalable
+                  Jira-triggered automations without duplicating infrastructure — one architecture, many downstream
+                  actions.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/jira-powerautomate-integration.html'" aria-label="View use case: Jira to Power Automate Webhook Integration">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/jira-powerautomate-integration.html'"
+                aria-label="View use case: Jira to Power Automate Webhook Integration">View Use Case →</button>
             </div>
           </article>
 
@@ -1921,15 +2108,19 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Collecting team leave plans through repeated manual messages makes coordination cumbersome and responses difficult to consolidate.</p>
+                <p class="fc-card-text">Collecting team leave plans through repeated manual messages makes coordination
+                  cumbersome and responses difficult to consolidate.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Automation</span>
-                <p class="fc-card-text">A scheduled Slack Workflow Builder automation asks team members for their leave information on a recurring basis and captures structured responses in a shared location for team visibility.</p>
+                <p class="fc-card-text">A scheduled Slack Workflow Builder automation asks team members for their leave
+                  information on a recurring basis and captures structured responses in a shared location for team
+                  visibility.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/slack-leave-planner.html'" aria-label="View use case: Automated Team Leave Planner">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/slack-leave-planner.html'"
+                aria-label="View use case: Automated Team Leave Planner">View Use Case →</button>
             </div>
           </article>
 
@@ -1947,15 +2138,20 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem</span>
-                <p class="fc-card-text">Sprint Review preparation can require gathering delivery information from multiple Jira issues and manually organising statistics and completed work — creating overhead before every review.</p>
+                <p class="fc-card-text">Sprint Review preparation can require gathering delivery information from
+                  multiple Jira issues and manually organising statistics and completed work — creating overhead before
+                  every review.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Approach</span>
-                <p class="fc-card-text">Use Jira data and automation to collect relevant sprint information, aggregate delivery metrics, and present them in a structured Sprint Review report for stakeholder visibility.</p>
+                <p class="fc-card-text">Use Jira data and automation to collect relevant sprint information, aggregate
+                  delivery metrics, and present them in a structured Sprint Review report for stakeholder visibility.
+                </p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-review-reporting.html'" aria-label="View use case: Automated Sprint Review Reporting">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/sprint-review-reporting.html'"
+                aria-label="View use case: Automated Sprint Review Reporting">View Use Case →</button>
             </div>
           </article>
 
@@ -1977,11 +2173,14 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Description</span>
-                <p class="fc-card-text">How to send GitHub push notifications to communication channels using webhooks, and progressively enhance the integration with middleware, payload transformation and webhook security.</p>
+                <p class="fc-card-text">How to send GitHub push notifications to communication channels using webhooks,
+                  and progressively enhance the integration with middleware, payload transformation and webhook
+                  security.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='flowcraft/github-channel-notifications.html'" aria-label="View use case: GitHub → Channel Notifications">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='flowcraft/github-channel-notifications.html'"
+                aria-label="View use case: GitHub → Channel Notifications">View Use Case →</button>
             </div>
           </article>
 
@@ -1997,9 +2196,11 @@
           <span class="section-tag">AI</span>
           <h2 class="section-title">The Applied AI</h2>
           <div class="section-divider"></div>
-          <p class="section-intro">Practical applications of AI across delivery, software workflows and operations — exploring where AI can augment analysis, automation and decision-making while keeping human judgement in the loop.</p>
+          <p class="section-intro">Practical applications of AI across delivery, software workflows and operations —
+            exploring where AI can augment analysis, automation and decision-making while keeping human judgement in the
+            loop.</p>
         </div>
-        
+
         <!-- Filter / tag area -->
         <div class="fc-filter-bar" role="group" aria-label="Explore use cases by category">
           <span class="fc-filter-label">Explore by:</span>
@@ -2019,7 +2220,9 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-01</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Use Case</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Use
+                  Case</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">LLMs</span>
@@ -2030,15 +2233,18 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Extracting meaningful narrative insights from raw sprint data is time-consuming and often misses subtle delivery patterns.</p>
+                <p class="fc-card-text">Extracting meaningful narrative insights from raw sprint data is time-consuming
+                  and often misses subtle delivery patterns.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Using AI to analyse structured Jira data exports, identify trends, and generate plain-language summaries of sprint health to support Scrum Masters and Delivery Leads.</p>
+                <p class="fc-card-text">Using AI to analyse structured Jira data exports, identify trends, and generate
+                  plain-language summaries of sprint health to support Scrum Masters and Delivery Leads.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sprint-insights.html'" aria-label="View use case: AI-Powered Sprint Insights from Jira">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sprint-insights.html'"
+                aria-label="View use case: AI-Powered Sprint Insights from Jira">View Use Case →</button>
             </div>
           </article>
 
@@ -2047,7 +2253,8 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-02</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Implementation</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Implementation</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">LLMs</span>
@@ -2058,15 +2265,19 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Sprint reviews and retrospectives can lack data-backed focus, leading to repetitive discussions and missed systemic issues.</p>
+                <p class="fc-card-text">Sprint reviews and retrospectives can lack data-backed focus, leading to
+                  repetitive discussions and missed systemic issues.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Applying AI to summarise sprint achievements, surface qualitative themes from retro boards, and suggest data-informed continuous improvement actions.</p>
+                <p class="fc-card-text">Applying AI to summarise sprint achievements, surface qualitative themes from
+                  retro boards, and suggest data-informed continuous improvement actions.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sprint-review-retro.html'" aria-label="View use case: AI-Enabled Sprint Review &amp; Retrospective Insights">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/sprint-review-retro.html'"
+                aria-label="View use case: AI-Enabled Sprint Review &amp; Retrospective Insights">View Use Case
+                →</button>
             </div>
           </article>
 
@@ -2075,7 +2286,8 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-03</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Experiment</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Experiment</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">LLMs</span>
@@ -2085,15 +2297,18 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Operations teams face alert fatigue and struggle to quickly correlate complex system events during major incidents.</p>
+                <p class="fc-card-text">Operations teams face alert fatigue and struggle to quickly correlate complex
+                  system events during major incidents.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Experimenting with AI to parse operational logs, identify root-cause patterns, and draft preliminary incident summaries for human review.</p>
+                <p class="fc-card-text">Experimenting with AI to parse operational logs, identify root-cause patterns,
+                  and draft preliminary incident summaries for human review.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/service-health-monitoring.html'" aria-label="View use case: AI-Assisted Service Health Monitoring">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/service-health-monitoring.html'"
+                aria-label="View use case: AI-Assisted Service Health Monitoring">View Use Case →</button>
             </div>
           </article>
 
@@ -2102,7 +2317,8 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-04</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Pattern</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Pattern</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">LLMs</span>
@@ -2113,15 +2329,18 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Developing complex JSON payloads and API integrations manually slows down the creation of new automation workflows.</p>
+                <p class="fc-card-text">Developing complex JSON payloads and API integrations manually slows down the
+                  creation of new automation workflows.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Utilising AI tools like Amazon Q (Kiro) to rapidly prototype JSON schemas, write boilerplate code, and troubleshoot integration errors during workflow development.</p>
+                <p class="fc-card-text">Utilising AI tools like Amazon Q (Kiro) to rapidly prototype JSON schemas, write
+                  boilerplate code, and troubleshoot integration errors during workflow development.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/automation-development.html'" aria-label="View use case: AI-Assisted Automation Development">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/automation-development.html'"
+                aria-label="View use case: AI-Assisted Automation Development">View Use Case →</button>
             </div>
           </article>
 
@@ -2130,7 +2349,8 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-05</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">AI Agents</span>
@@ -2142,15 +2362,18 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Stand-alone LLMs lack context regarding internal tools and real-time project states, limiting their effectiveness in delivery environments.</p>
+                <p class="fc-card-text">Stand-alone LLMs lack context regarding internal tools and real-time project
+                  states, limiting their effectiveness in delivery environments.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Designing frameworks to connect AI agents with workplace systems via Model Context Protocol (MCP) and APIs, extending their reasoning to actual project data.</p>
+                <p class="fc-card-text">Designing frameworks to connect AI agents with workplace systems via Model
+                  Context Protocol (MCP) and APIs, extending their reasoning to actual project data.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/mcp-tool-connectivity.html'" aria-label="View use case: AI Agents + MCP Tool Connectivity">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/mcp-tool-connectivity.html'"
+                aria-label="View use case: AI Agents + MCP Tool Connectivity">View Use Case →</button>
             </div>
           </article>
 
@@ -2159,7 +2382,8 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">AI-06</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Framework</span>
               </div>
               <div class="fc-card-tech-tags">
                 <span class="fc-tech-tag">LLMs</span>
@@ -2169,15 +2393,18 @@
             <div class="fc-card-body">
               <div class="fc-card-section">
                 <span class="fc-card-section-label">Problem / Opportunity</span>
-                <p class="fc-card-text">Unregulated AI use in software development risks introducing quality issues and compliance breaches without proper oversight.</p>
+                <p class="fc-card-text">Unregulated AI use in software development risks introducing quality issues and
+                  compliance breaches without proper oversight.</p>
               </div>
               <div class="fc-card-section">
                 <span class="fc-card-section-label">AI Application</span>
-                <p class="fc-card-text">Defining a control framework that safely integrates AI at key SDLC stages, ensuring AI augments creation while humans remain accountable for review and approval.</p>
+                <p class="fc-card-text">Defining a control framework that safely integrates AI at key SDLC stages,
+                  ensuring AI augments creation while humans remain accountable for review and approval.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='applied-ai/human-ai-sdlc.html'" aria-label="View use case: AI in the SDLC — Human + AI Control Model">View Use Case →</button>
+              <button class="fc-view-btn" onclick="window.location.href='applied-ai/human-ai-sdlc.html'"
+                aria-label="View use case: AI in the SDLC — Human + AI Control Model">View Use Case →</button>
             </div>
           </article>
 
@@ -2192,9 +2419,10 @@
           <span class="section-tag">Tools</span>
           <h2 class="section-title">Toolkit</h2>
           <div class="section-divider"></div>
-          <p class="section-intro">Practical templates, canvases, checklists and reference resources for delivery, automation and applied AI.</p>
+          <p class="section-intro">Practical templates, canvases, checklists and reference resources for delivery,
+            automation and applied AI.</p>
         </div>
-        
+
         <!-- Filter / tag area -->
         <div class="fc-filter-bar" role="group" aria-label="Explore toolkit by category">
           <span class="fc-filter-label">Explore by:</span>
@@ -2212,17 +2440,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-01</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
               </div>
             </div>
             <h3 class="fc-card-title">Team Charter Canvas</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A structured canvas for aligning teams on purpose, ways of working, and operational boundaries.</p>
+                <p class="fc-card-text">A structured canvas for aligning teams on purpose, ways of working, and
+                  operational boundaries.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/team-charter.html'" aria-label="View Canvas: Team Charter Canvas">View Canvas →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/team-charter.html'"
+                aria-label="View Canvas: Team Charter Canvas">View Canvas →</button>
             </div>
           </article>
 
@@ -2231,17 +2462,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-02</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
               </div>
             </div>
             <h3 class="fc-card-title">Sprint Health Check</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A practical checklist for assessing sprint predictability, flow, and team health metrics.</p>
+                <p class="fc-card-text">A practical checklist for assessing sprint predictability, flow, and team health
+                  metrics.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/sprint-health-check.html'" aria-label="View Checklist: Sprint Health Check">View Checklist →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/sprint-health-check.html'"
+                aria-label="View Checklist: Sprint Health Check">View Checklist →</button>
             </div>
           </article>
 
@@ -2250,17 +2484,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-03</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
               </div>
             </div>
             <h3 class="fc-card-title">Flow Metrics Cheat Sheet</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A quick reference guide for understanding Cycle Time, Lead Time, Throughput, and WIP.</p>
+                <p class="fc-card-text">A quick reference guide for understanding Cycle Time, Lead Time, Throughput, and
+                  WIP.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/flow-metrics.html'" aria-label="View Reference: Flow Metrics Cheat Sheet">View Reference →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/flow-metrics.html'"
+                aria-label="View Reference: Flow Metrics Cheat Sheet">View Reference →</button>
             </div>
           </article>
 
@@ -2269,17 +2506,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-04</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
               </div>
             </div>
             <h3 class="fc-card-title">Automation Design Canvas</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A template for mapping out triggers, conditions, and actions before building automation workflows.</p>
+                <p class="fc-card-text">A template for mapping out triggers, conditions, and actions before building
+                  automation workflows.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/automation-design-canvas.html'" aria-label="View Canvas: Automation Design Canvas">View Canvas →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/automation-design-canvas.html'"
+                aria-label="View Canvas: Automation Design Canvas">View Canvas →</button>
             </div>
           </article>
 
@@ -2288,17 +2528,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-05</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Reference</span>
               </div>
             </div>
             <h3 class="fc-card-title">Jira → Webhook → Power Automate Reference Architecture</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A reference architecture for establishing event-driven integrations between Jira and Office 365.</p>
+                <p class="fc-card-text">A reference architecture for establishing event-driven integrations between Jira
+                  and Office 365.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/jira-webhook-powerautomate.html'" aria-label="View Reference: Jira to Power Automate">View Reference →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/jira-webhook-powerautomate.html'"
+                aria-label="View Reference: Jira to Power Automate">View Reference →</button>
             </div>
           </article>
 
@@ -2307,17 +2550,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-06</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Template</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Template</span>
               </div>
             </div>
             <h3 class="fc-card-title">JSON / Webhook Payload Starter Template</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">Reusable JSON payload structures for common webhook integrations and Adaptive Cards.</p>
+                <p class="fc-card-text">Reusable JSON payload structures for common webhook integrations and Adaptive
+                  Cards.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/webhook-payload-template.html'" aria-label="View Template: JSON Webhook Payload">View Template →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/webhook-payload-template.html'"
+                aria-label="View Template: JSON Webhook Payload">View Template →</button>
             </div>
           </article>
 
@@ -2326,17 +2572,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-07</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Canvas</span>
               </div>
             </div>
             <h3 class="fc-card-title">AI Use-Case Canvas</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">A structured approach to evaluating the viability, risks, and human-in-the-loop requirements for new AI applications.</p>
+                <p class="fc-card-text">A structured approach to evaluating the viability, risks, and human-in-the-loop
+                  requirements for new AI applications.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-use-case-canvas.html'" aria-label="View Canvas: AI Use-Case Canvas">View Canvas →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-use-case-canvas.html'"
+                aria-label="View Canvas: AI Use-Case Canvas">View Canvas →</button>
             </div>
           </article>
 
@@ -2345,17 +2594,20 @@
             <div class="fc-card-header">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="fc-card-number">TK-08</span>
-                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
+                <span
+                  style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-blue-primary); background: rgba(59, 130, 246, 0.1); padding: 3px 8px; border-radius: 12px;">Checklist</span>
               </div>
             </div>
             <h3 class="fc-card-title">Human-in-the-Loop &amp; AI Guardrails Checklist</h3>
             <div class="fc-card-body">
               <div class="fc-card-section">
-                <p class="fc-card-text">An essential checklist for ensuring AI systems maintain proper oversight and do not autonomously perform critical actions.</p>
+                <p class="fc-card-text">An essential checklist for ensuring AI systems maintain proper oversight and do
+                  not autonomously perform critical actions.</p>
               </div>
             </div>
             <div class="fc-card-footer">
-              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-guardrails-checklist.html'" aria-label="View Checklist: Human-in-the-Loop Guardrails">View Checklist →</button>
+              <button class="fc-view-btn" onclick="window.location.href='toolkit/ai-guardrails-checklist.html'"
+                aria-label="View Checklist: Human-in-the-Loop Guardrails">View Checklist →</button>
             </div>
           </article>
 
@@ -2380,16 +2632,22 @@
                   <img src="assets/laxman-prasad-kuppili.jpg" alt="Laxman Prasad Kuppili" class="hero-avatar">
                 </div>
                 <div>
-                  <h3 class="contact-heading" style="margin-bottom: 4px; font-family: 'Century Gothic', 'AppleGothic', 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--color-navy-dark);">Laxman Prasad Kuppili</h3>
-                  <p style="font-size: 0.85rem; color: var(--color-blue-primary); font-weight: 600; margin-bottom: 4px;">Agile Delivery Lead, AI Agile Transformation</p>
-                  <p style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500;">PSM-I, SAFe Agilist, SAFe SM, CSPO</p>
+                  <h3 class="contact-heading"
+                    style="margin-bottom: 4px; font-family: 'Century Gothic', 'AppleGothic', 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--color-navy-dark);">
+                    Laxman Prasad Kuppili</h3>
+                  <p
+                    style="font-size: 0.85rem; color: var(--color-blue-primary); font-weight: 600; margin-bottom: 4px;">
+                    Agile Delivery Lead, AI Agile Transformation</p>
+                  <p style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500;">PSM-I, SAFe Agilist,
+                    SAFe SM, CSPO</p>
                 </div>
               </div>
               <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6;">
-                Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence adoption, workflow automation, and continuous improvement.
+                Dedicated to exploring and applying modern approaches in Agile delivery, artificial intelligence
+                adoption, workflow automation, and continuous improvement.
               </p>
             </div>
-            
+
             <!-- Contact Area -->
             <div>
               <h3 class="contact-heading">Get in Touch</h3>
@@ -2402,12 +2660,14 @@
                 <li class="contact-item">
                   <span class="contact-icon">💼</span>
                   <span class="contact-label">LinkedIn</span>
-                  <a href="https://www.linkedin.com/in/laxman-prasad-kuppili/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/laxman-prasad-kuppili</a>
+                  <a href="https://www.linkedin.com/in/laxman-prasad-kuppili/" target="_blank" rel="noopener noreferrer"
+                    class="contact-link">linkedin.com/in/laxman-prasad-kuppili</a>
                 </li>
                 <li class="contact-item">
                   <span class="contact-icon">🐙</span>
                   <span class="contact-label">GitHub</span>
-                  <a href="https://lpk-git.github.io/Laxman-Prasad-Kuppili.github.io/" target="_blank" rel="noopener noreferrer" class="contact-link">lpk-git.github.io</a>
+                  <a href="https://lpk-git.github.io/Laxman-Prasad-Kuppili.github.io/" target="_blank"
+                    rel="noopener noreferrer" class="contact-link">lpk-git.github.io</a>
                 </li>
               </ul>
             </div>
@@ -2432,7 +2692,8 @@
           <li><a href="#contact" class="footer-link">Contact</a></li>
         </ul>
         <p class="footer-copy">
-          &copy; 2026 ValueBridge &middot; Built by <a href="https://www.valuebridge.in/#about">Laxman Prasad Kuppili</a>. All rights reserved.
+          &copy; 2026 ValueBridge &middot; Built by <a href="https://www.valuebridge.in/#about">Laxman Prasad
+            Kuppili</a>. All rights reserved.
         </p>
       </div>
     </div>
@@ -2486,11 +2747,11 @@
     // Filter bar tag filtering for Flow Craft and Applied AI
     (function () {
       const filterBars = document.querySelectorAll('.fc-filter-bar');
-      
+
       filterBars.forEach(bar => {
         const filterBtns = bar.querySelectorAll('.fc-tag');
         const grid = bar.nextElementSibling;
-        
+
         if (!grid || !grid.classList.contains('fc-card-grid')) return;
         const cards = grid.querySelectorAll('.fc-card');
 
@@ -2516,7 +2777,7 @@
     })();
 
     // Scrollspy for navigation highlighting
-    (function() {
+    (function () {
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-menu .nav-link');
 
@@ -2549,7 +2810,8 @@
   </script>
 
   <!-- Notification Center -->
-  <button id="nc-trigger" class="nc-trigger" aria-label="Open notification center" aria-expanded="false" aria-controls="nc-panel">
+  <button id="nc-trigger" class="nc-trigger" aria-label="Open notification center" aria-expanded="false"
+    aria-controls="nc-panel">
     🔔
   </button>
 
@@ -2636,11 +2898,12 @@
       chatbotId: "YFsboKZUtt8U51eCtJ5wE",
     }
   </script>
-  <script
+  <!--   <script
     src="https://www.chatbase.co/embed.min.js"
     chatbotId="YFsboKZUtt8U51eCtJ5wE"
     domain="www.chatbase.co"
     defer>
-  </script>
+  </script> -->
 </body>
+
 </html>

@@ -27,12 +27,12 @@
     "link": "#flowcraft"
   },
   {
-    "id": "DUMMY flowcraft-update",
-    "publishedAt": "2026-09-28T17:00:00+05:30",
-    "type": "updated-content",
-    "section": "FlowCraft",
-    "title": "DUMMY Automation Use Case Updated",
-    "message": "An existing FlowCraft automation use case has been updated.",
-    "link": "#flowcraft"
+    "id": "toolkit-update",
+    "publishedAt": "2026-10-01T10:00:00+05:30",
+    "type": "new-content",
+    "section": "Toolkit",
+    "title": "New Web Dev Tool Added",
+    "message": "A new AI coding assistant has been added to the Toolkit section.",
+    "link": "#toolkit"
   }
 ]
