@@ -1317,7 +1317,44 @@
   <!-- NAVIGATION HEADER -->
   <script src="js/global-header.js"></script>
 
-  <main>
+  <style>
+    .nc-trigger-floating {
+      position: absolute;
+      top: 100px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #1d4ed8;
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      z-index: 990;
+    }
+    .nc-trigger-floating:hover {
+      background-color: #1e40af;
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+      .nc-trigger-floating {
+        top: 90px;
+        right: 16px;
+      }
+    }
+  </style>
+  <main style="position: relative;">
+    <!-- Floating Notification Center Trigger -->
+    <button id="nc-trigger" class="nc-trigger-floating" aria-label="Open notification center" aria-expanded="false" aria-controls="nc-panel">
+      🔔
+    </button>
+    
     <!-- HOME / HERO SECTION -->
     <section id="home" class="hero-section">
       <div class="container">

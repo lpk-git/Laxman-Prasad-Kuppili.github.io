@@ -5,6 +5,15 @@
                  !path.includes('/toolkit/');
   const rootPrefix = isRoot ? '' : '../';
 
+  let backLink = '';
+  if (path.includes('/flowcraft/')) {
+    backLink = `<div class="sub-nav"><div class="global-nav-container"><a href="../index.html#flow-craft" class="back-link">← Back to Flow Craft</a></div></div>`;
+  } else if (path.includes('/applied-ai/')) {
+    backLink = `<div class="sub-nav"><div class="global-nav-container"><a href="../index.html#applied-ai" class="back-link">← Back to The Applied AI</a></div></div>`;
+  } else if (path.includes('/toolkit/')) {
+    backLink = `<div class="sub-nav"><div class="global-nav-container"><a href="../index.html#toolkit" class="back-link">← Back to Toolkit</a></div></div>`;
+  }
+
   const style = document.createElement('style');
   style.innerHTML = `
     .global-header {
@@ -57,24 +66,53 @@
       background-color: #eff6ff;
       outline: none;
     }
-    
-    .nc-trigger-nav {
-      width: 32px;
-      height: 32px;
+
+    .sub-nav {
+      background-color: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 0;
+    }
+    .sub-nav .global-nav-container {
+      height: auto;
+      justify-content: flex-start;
+    }
+    .back-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .back-link:hover {
+      color: #1e40af;
+      text-decoration: underline;
+    }
+
+    .scroll-top-btn {
+      position: fixed;
+      bottom: -60px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background-color: #1d4ed8;
       color: #ffffff;
       border: none;
       box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
-      font-size: 0.9rem;
+      font-size: 1.2rem;
+      font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-      margin-left: 16px;
+      transition: bottom 0.3s ease, background-color 0.2s ease, transform 0.2s ease;
+      z-index: 999;
     }
-    .nc-trigger-nav:hover {
+    .scroll-top-btn.visible {
+      bottom: 24px;
+    }
+    .scroll-top-btn:hover {
       background-color: #1e40af;
       transform: translateY(-2px);
     }
@@ -91,14 +129,6 @@
   `;
   document.head.appendChild(style);
 
-  // We add the bell to all pages if we want the constant look, but the Notification Center panel 
-  // currently only exists on index.html. We will hide the bell on subpages if NC isn't there, 
-  // or we can show it but maybe it won't do anything. The user said "constant". So let's include it.
-  // Wait, if we include the bell, clicking it on subpages will do nothing or cause a JS error if the NC panel doesn't exist.
-  // Actually, we can just omit the bell on subpages for now, or just leave it there.
-  // The user's screenshot explicitly includes the bell icon! So I will leave it there.
-  // But wait, if I put id="nc-trigger", and the JS for NC is NOT on the sub-page, it does nothing (which is fine).
-
   const headerHTML = `
   <header class="global-header">
     <div class="global-nav-container">
@@ -114,26 +144,31 @@
           <li><a href="${rootPrefix}index.html#applied-ai" class="global-nav-link">The Applied AI</a></li>
           <li><a href="${rootPrefix}index.html#toolkit" class="global-nav-link">Toolkit</a></li>
           <li><a href="${rootPrefix}index.html#contact" class="global-nav-link">Contact</a></li>
-          ` + (isRoot ? `
-          <li>
-            <button id="nc-trigger" class="nc-trigger-nav" aria-label="Open notification center" aria-expanded="false" aria-controls="nc-panel">
-              🔔
-            </button>
-          </li>
-          ` : `
-          <li>
-            <a href="${rootPrefix}index.html#nc-panel" style="text-decoration: none;">
-              <button class="nc-trigger-nav" aria-label="Go to notifications" aria-expanded="false">
-                🔔
-              </button>
-            </a>
-          </li>
-          `) + `
         </ul>
       </nav>
     </div>
   </header>
+  ${backLink}
+  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top">↑</button>
   `;
 
   document.write(headerHTML);
+
+  // Defer script logic until DOM is ready since document.write elements might not be instantly selectable 
+  // depending on execution timing, though they usually are.
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollBtn = document.getElementById('scroll-top-btn');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollBtn.classList.add('visible');
+        } else {
+          scrollBtn.classList.remove('visible');
+        }
+      });
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  });
 })();
