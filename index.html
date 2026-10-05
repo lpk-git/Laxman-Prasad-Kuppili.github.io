@@ -1128,6 +1128,159 @@
       bottom: 20px !important; /* ensure it stays somewhat grounded */
     }
 
+    /* --- NOTIFICATION CENTER --- */
+    .nc-trigger {
+      position: fixed;
+      bottom: 120px;
+      right: 24px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background-color: var(--color-blue-primary);
+      color: var(--color-white);
+      border: none;
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .nc-trigger:hover {
+      background-color: var(--color-blue-hover);
+      transform: translateY(-2px);
+    }
+    .nc-trigger:focus-visible {
+      outline: 2px solid var(--color-navy-dark);
+      outline-offset: 2px;
+    }
+
+    .nc-panel {
+      position: fixed;
+      bottom: 190px;
+      right: 24px;
+      width: 360px;
+      max-height: 500px;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(10, 25, 47, 0.15);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      visibility: hidden;
+    }
+    .nc-panel.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .nc-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--color-bg-page);
+      border-radius: 12px 12px 0 0;
+    }
+    .nc-title {
+      font-weight: 600;
+      color: var(--color-navy-dark);
+      font-size: 1.05rem;
+    }
+    .nc-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      border-radius: 4px;
+    }
+    .nc-close:hover {
+      color: var(--color-text-main);
+      background-color: var(--color-border);
+    }
+    .nc-close:focus-visible {
+      outline: 2px solid var(--color-navy-dark);
+    }
+
+    .nc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .nc-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nc-item:last-child {
+      border-bottom: none;
+    }
+    .nc-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .nc-item-title {
+      font-weight: 600;
+      color: var(--color-navy-dark);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .nc-item-meta {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .nc-item-message {
+      font-size: 0.85rem;
+      color: var(--color-text-main);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .nc-item-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-blue-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nc-item-link:hover {
+      color: var(--color-blue-hover);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .nc-panel {
+        width: calc(100% - 32px);
+        bottom: 100px;
+        right: 16px;
+        left: 16px;
+        max-height: 60vh;
+      }
+      .nc-trigger {
+        bottom: 24px;
+        right: 16px;
+        z-index: 10000;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2385,6 +2538,88 @@
         sectionObserver.observe(section);
       });
     })();
+  </script>
+
+  <!-- Notification Center -->
+  <button id="nc-trigger" class="nc-trigger" aria-label="Open notification center" aria-expanded="false" aria-controls="nc-panel">
+    🔔
+  </button>
+
+  <div id="nc-panel" class="nc-panel" role="dialog" aria-modal="false" aria-label="Notification Center">
+    <div class="nc-header">
+      <div class="nc-title">🔔 What's New</div>
+      <button id="nc-close" class="nc-close" aria-label="Close notification center">✕</button>
+    </div>
+    <div id="nc-list" class="nc-list">
+      <!-- Notifications injected via JS -->
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ncTrigger = document.getElementById('nc-trigger');
+      const ncPanel = document.getElementById('nc-panel');
+      const ncClose = document.getElementById('nc-close');
+      const ncList = document.getElementById('nc-list');
+
+      let isOpen = false;
+
+      function togglePanel() {
+        isOpen = !isOpen;
+        if (isOpen) {
+          ncPanel.classList.add('is-open');
+          ncTrigger.setAttribute('aria-expanded', 'true');
+        } else {
+          ncPanel.classList.remove('is-open');
+          ncTrigger.setAttribute('aria-expanded', 'false');
+          ncTrigger.focus();
+        }
+      }
+
+      ncTrigger.addEventListener('click', togglePanel);
+      ncClose.addEventListener('click', () => {
+        if (isOpen) togglePanel();
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) {
+          togglePanel();
+        }
+      });
+
+      // Format date logic
+      function formatDate(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        });
+      }
+
+      // Load and render notifications
+      fetch('data/updates.json')
+        .then(response => response.json())
+        .then(data => {
+          // Sort newest first
+          data.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+          // Render
+          ncList.innerHTML = data.map(item => `
+            <div class="nc-item">
+              <div class="nc-item-title">${item.title}</div>
+              <div class="nc-item-meta">${item.section} • ${formatDate(item.publishedAt)}</div>
+              <div class="nc-item-message">${item.message}</div>
+              <a href="${item.link}" class="nc-item-link">View &rarr;</a>
+            </div>
+          `).join('');
+        })
+        .catch(err => {
+          console.error('Failed to load notifications:', err);
+          ncList.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--color-text-muted);">Failed to load updates.</div>';
+        });
+    });
   </script>
 
   <!-- Chatbase Chat Bubble Embed -->

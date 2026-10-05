@@ -1,0 +1,29 @@
+[
+  {
+    "id": "github-channel-notifications",
+    "publishedAt": "2026-10-05T19:30:00+05:30",
+    "type": "new-content",
+    "section": "FlowCraft",
+    "title": "GitHub → Channel Notifications",
+    "message": "A new integration use case has been added to the FlowCraft section.",
+    "link": "flowcraft/github-channel-notifications.html"
+  },
+  {
+    "id": "applied-ai-update",
+    "publishedAt": "2026-10-02T18:00:00+05:30",
+    "type": "new-content",
+    "section": "The Applied AI",
+    "title": "AI-Powered Sprint Insights",
+    "message": "A new AI implementation has been added to The Applied AI section.",
+    "link": "#applied-ai"
+  },
+  {
+    "id": "flowcraft-update",
+    "publishedAt": "2026-09-28T17:00:00+05:30",
+    "type": "updated-content",
+    "section": "FlowCraft",
+    "title": "Automation Use Case Updated",
+    "message": "An existing FlowCraft automation use case has been updated.",
+    "link": "#flowcraft"
+  }
+]
