@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Guide: Launching Projects with GitHub & AI Tools</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9fafb;
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 20px;
+        }
+        h2 {
+            color: #1e40af;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+        }
+        h3 {
+            color: #1d4ed8;
+            margin-top: 25px;
+        }
+        .step-number {
+            background-color: #2563eb;
+            color: white;
+            min-width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 4px solid #2563eb;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .why-box {
+            background-color: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-style: italic;
+            border: 1px solid #bfdbfe;
+        }
+        .why-box strong {
+            color: #1e40af;
+            font-style: normal;
+        }
+        .feature-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .feature-box h4 {
+            margin-top: 0;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        code {
+            background-color: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ef4444;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 Simple Guide: Launching Projects with GitHub & AI Tools</h1>
+    <p style="text-align: center; font-size: 18px; color: #4b5563;">A step-by-step manual for non-technical creators.</p>
+
+    <div class="card">
+        <h2><span class="step-number">1</span> How to Set Up a Repository on GitHub</h2>
+        <p><em>Think of a repository (repo) as a master folder in the cloud where your project lives.</em></p>
+        <ul>
+            <li>Go to <strong>GitHub.com</strong> and log in to your account.</li>
+            <li>Click the <strong>"+"</strong> icon at the top right of the screen and select <strong>"New repository"</strong>.</li>
+            <li>Give your repository a short, clear name (e.g., <code>my-new-website</code>).</li>
+            <li>Choose <strong>"Public"</strong> (this is required if you want others to see the website for free).</li>
+            <li>Check the box that says <strong>"Add a README file"</strong>. This creates an initial starting point for the folder.</li>
+            <li>Click the green <strong>"Create repository"</strong> button at the bottom.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2><span class="step-number">2</span> Deploy the Project (Making it Live!)</h2>
+        <p><em>Deploying means taking your project files and putting them on a public web address for the world to see.</em></p>
+        <ul>
+            <li>On your new repository page, click the <strong>"Settings"</strong> tab (the gear icon near the top right).</li>
+            <li>On the left-hand sidebar, scroll down and click on <strong>"Pages"</strong>.</li>
+            <li>Under the "Build and deployment" section, look for the <strong>"Source"</strong> dropdown. Ensure it says <strong>"Deploy from a branch"</strong>.</li>
+            <li>Right below that, under "Branch", change the dropdown from "None" to <strong><code>main</code></strong> (or <code>master</code>).</li>
+            <li>Click <strong>"Save"</strong>.</li>
+        </ul>
+        <div class="why-box">
+            <strong>💡 Why are we doing this?</strong><br>
+            GitHub Pages is a free service that hosts your website. By changing these settings, you are telling GitHub: <em>"Please take the files in my 'main' folder and turn them into a live, public website."</em> After a few minutes, a web link will appear at the top of that page (e.g., <code>https://yourusername.github.io/my-new-website</code>).
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><span class="step-number">3</span> Connecting Your Repo to an AI Tool (like AntiGravity or Kiro)</h2>
+        <p><em>The AI needs access to your folder so it can write and edit code for you.</em></p>
+        <ul>
+            <li>Go back to your repository's main page on GitHub and click the green <strong>"&lt;&gt; Code"</strong> button.</li>
+            <li>Copy the web link provided (it usually ends in <code>.git</code>).</li>
+            <li>Open your AI Tool (like AntiGravity or Kiro).</li>
+            <li>Look for a section called <strong>"Source Control"</strong>, <strong>"GitHub"</strong>, or <strong>"Workspace"</strong>.</li>
+            <li>Select the option to <strong>"Clone"</strong> or <strong>"Open"</strong> an existing repository.</li>
+            <li>Paste the link you copied from GitHub.</li>
+            <li>The tool will likely ask you to log in to GitHub to authorize access. Follow the prompts on the screen.</li>
+        </ul>
+        <div class="why-box">
+            <strong>💡 Why are we doing this?</strong><br>
+            This synchronizes your AI tool with your GitHub master folder. Now, when the AI generates or edits code for you, it is writing those files directly into your project!
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><span class="step-number">4</span> Saving Your Work (Committing Changes)</h2>
+        <p><em>In the software world, "saving" your progress is called committing.</em></p>
+        <ul>
+            <li>Once the AI has created or updated files for you, you need to save these changes back to the cloud (GitHub).</li>
+            <li>Go to the <strong>Source Control</strong> tab in your AI tool. You will see a list of files that were changed.</li>
+            <li>Look for a text box labeled <strong>"Message"</strong> or <strong>"Summary"</strong>. Type a brief description of what was done (e.g., <em>"Added a new homepage design"</em>).</li>
+            <li>Click the <strong>"Commit"</strong> button.</li>
+        </ul>
+        
+        <h3>Push vs. Sync: What's the difference?</h3>
+        <p>After clicking Commit, you must send your changes to the cloud. You will usually see an option to <strong>Push</strong> or <strong>Sync</strong>.</p>
+        <ul>
+            <li><strong>Push (One-Way Street ⬆️):</strong> This simply takes your locally saved changes and uploads them straight to GitHub. <em>Use this if you are the only person working on the website.</em></li>
+            <li><strong>Sync (Two-Way Street ⬇️⬆️):</strong> This first <em>downloads</em> any new changes from GitHub that you might not have on your computer yet, and then it <em>uploads</em> your new changes. <em>Use this if multiple people (or multiple AI tools) are working on the project at the same time to prevent breaking things.</em></li>
+        </ul>
+
+        <div class="why-box">
+            <strong>💡 Why a message?</strong><br>
+            The summary message acts like a sticky note in your project's history. It ensures you and the AI always remember exactly what changed on what day and why.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><span class="step-number">5</span> Making Sense of the Settings Sidebar</h2>
+        <p>When you click on the <strong>Settings</strong> tab in GitHub, the left sidebar is packed with technical options. You don't need most of them, but here is a simple translation of the most common ones:</p>
+        
+        <ul>
+            <li><strong>Branches:</strong> Think of a branch like an alternate timeline. You can create a "test" branch to experiment with a new design without accidentally breaking your live "main" website.</li>
+            <li><strong>Actions:</strong> A tool for creating robots that automatically do chores for you (like automatically testing your code every time you save).</li>
+            <li><strong>Secrets and variables:</strong> A highly secure digital vault. If your website needs a password to connect to a database, you store the password here so hackers can't see it in your code.</li>
+        </ul>
+
+        <div class="feature-box">
+            <h4>🔌 Webhooks (The Digital Tap on the Shoulder)</h4>
+            <p><strong>What is it?</strong> A Webhook is a way for GitHub to instantly notify another application the exact second something happens in your project.</p>
+            <p><strong>Example Usage:</strong> Let's say you have a team chat on <strong>Slack</strong>. You can set up a Webhook in GitHub and paste a special URL provided by Slack into it. You tell the Webhook: <em>"Every time someone Pushes new code, send a message to this URL."</em></p>
+            <p>Now, whenever your AI tool finishes a job and you Push the code, your entire team's Slack channel instantly dings with a message: <em>"New updates are live!"</em> No one has to check GitHub manually; the apps talk to each other automatically.</p>
+        </div>
+
+        <div class="feature-box">
+            <h4>✉️ Email Notifications</h4>
+            <p><strong>What is it?</strong> A simple way to receive an email in your inbox when specific events occur in your repository.</p>
+            <p><strong>How to set it up:</strong> Click on <strong>Email notifications</strong> in the sidebar. You will see a box where you can type in up to 2 email addresses. You can then check boxes to decide what triggers an email (e.g., when someone "pushes" code, or when someone opens an "Issue").</p>
+            <p><strong>Example Usage:</strong> Imagine you build a website and allow users to report bugs (GitHub calls these <em>Issues</em>). Instead of constantly logging into GitHub to check if anyone reported a bug, you can set up Email Notifications. Now, the moment a user submits a bug report, you get an email directly to your phone saying, <em>"Hey, a new bug was reported on your site."</em></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>You're all set! Keep this guide handy for your next big project. 🚀</p>
+    </div>
+
+</body>
+</html>
