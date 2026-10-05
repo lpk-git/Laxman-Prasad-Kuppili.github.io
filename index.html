@@ -1143,24 +1143,21 @@
 
     /* --- NOTIFICATION CENTER --- */
     .nc-trigger {
-      position: fixed;
-      bottom: 16px;
-      right: 90px;
-      /* Positioned beside the Chatbase bubble */
-      width: 46px;
-      height: 46px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background-color: var(--color-blue-primary);
       color: var(--color-white);
       border: none;
       box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
-      font-size: 1.15rem;
+      font-size: 0.9rem;
       cursor: pointer;
       z-index: 999;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background-color 0.2s ease, transform 0.2s ease;
+      margin-left: 16px;
     }
 
     .nc-trigger:hover {
@@ -1311,12 +1308,6 @@
         left: 16px;
         max-height: 60vh;
       }
-
-      .nc-trigger {
-        bottom: 16px;
-        right: 76px;
-        z-index: 10000;
-      }
     }
   </style>
 </head>
@@ -1338,6 +1329,11 @@
           <li><a href="#applied-ai" class="nav-link">The Applied AI</a></li>
           <li><a href="#toolkit" class="nav-link">Toolkit</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <button id="nc-trigger" class="nc-trigger" aria-label="Open notification center" aria-expanded="false" aria-controls="nc-panel">
+              🔔
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
@@ -2810,10 +2806,6 @@
   </script>
 
   <!-- Notification Center -->
-  <button id="nc-trigger" class="nc-trigger" aria-label="Open notification center" aria-expanded="false"
-    aria-controls="nc-panel">
-    🔔
-  </button>
 
   <div id="nc-panel" class="nc-panel" role="dialog" aria-modal="false" aria-label="Notification Center">
     <div class="nc-header">
