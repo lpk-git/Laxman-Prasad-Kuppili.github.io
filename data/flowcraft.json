@@ -72,6 +72,14 @@
       "problem": "Sprint Review preparation can require gathering delivery information from multiple Jira issues and manually organising statistics and completed work — creating overhead before every review.",
       "automation": "Use Jira data and automation to collect relevant sprint information, aggregate delivery metrics, and present them in a structured Sprint Review report for stakeholder visibility.",
       "technology": ["Jira", "Jira Automation", "Jira Query / Data", "Dashboard / Reporting", "Automation"]
+    },
+    {
+      "id": "github-channel-notifications",
+      "title": "GitHub → Channel Notifications",
+      "file": "flowcraft/github-channel-notifications.html",
+      "tags": ["github", "webhooks", "integration", "automation", "middleware", "slack", "cloudflare-workers"],
+      "problem": "How to send GitHub push notifications to communication channels using webhooks, and progressively enhance the integration with middleware, payload transformation and webhook security.",
+      "technology": ["GitHub", "Webhooks", "Integration", "Automation", "Middleware", "Slack", "Cloudflare Workers"]
     }
   ]
 }

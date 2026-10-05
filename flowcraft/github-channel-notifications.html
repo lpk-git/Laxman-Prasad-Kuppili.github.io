@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="https://valuebridge.in/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://valuebridge.in/assets/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flow Craft UC-09 — How to Send GitHub Push Notifications to Communication Channels Using Webhooks.">
+  <title>UC-09 GitHub → Channel Notifications | Flow Craft</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* ── Architecture diagram ───────────────────────────── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 8px 0;
+    }
+
+    .arch-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 360px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .arch-node--trigger {
+      background: #0a192f;
+      color: #ffffff;
+      border: 2px solid #1d4ed8;
+    }
+
+    .arch-node--process {
+      background: #eff6ff;
+      color: #1e3a5f;
+      border: 1px solid #bfdbfe;
+    }
+
+    .arch-node--transport {
+      background: #fefce8;
+      color: #713f12;
+      border: 1px solid #fde68a;
+    }
+
+    .arch-node--platform {
+      background: #f0fdf4;
+      color: #14532d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .arch-node--output {
+      background: #1d4ed8;
+      color: #ffffff;
+      border: 2px solid #1e40af;
+    }
+
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 3px 0;
+      user-select: none;
+    }
+
+    .arch-arrow::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 10px;
+      background: #cbd5e1;
+    }
+
+    .arch-arrow::after {
+      content: '▼';
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+
+    /* ── Details overrides ──────────────────────────────── */
+    .fc-detail-hero p {
+      font-size: 1.1rem; 
+      color: var(--color-text-muted); 
+      margin-top: 12px; 
+      margin-bottom: 24px; 
+      max-width: 800px; 
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fc-detail-header">
+    <a href="../index.html#flow-craft" class="fc-back-link">← Back to Flow Craft</a>
+    <span class="fc-uc-id">UC-09</span>
+  </header>
+
+  <main class="fc-detail-main">
+    <div class="fc-detail-container">
+
+      <!-- ── Hero ─────────────────────────────────────────── -->
+      <div class="fc-detail-hero">
+        <h1 class="fc-detail-title">How to Send GitHub Push Notifications to Communication Channels Using Webhooks</h1>
+        <p>A beginner-friendly journey from a simple GitHub → Slack webhook to secure, dynamic notifications using lightweight middleware.</p>
+        <div class="fc-detail-tags">
+          <span class="fc-tech-tag">GitHub</span>
+          <span class="fc-tech-tag">Webhooks</span>
+          <span class="fc-tech-tag">Integration</span>
+          <span class="fc-tech-tag">Automation</span>
+          <span class="fc-tech-tag">Middleware</span>
+          <span class="fc-tech-tag">Slack</span>
+          <span class="fc-tech-tag">Cloudflare Workers</span>
+        </div>
+      </div>
+
+      <!-- 1. The Problem -->
+      <section class="fc-detail-section">
+        <h2>1. The Problem</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 2. Before We Build — Understand the Basics -->
+      <section class="fc-detail-section">
+        <h2>2. Before We Build — Understand the Basics</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 3. Approach 1 — Direct GitHub → Slack Webhook -->
+      <section class="fc-detail-section">
+        <h2>3. Approach 1 — Direct GitHub → Slack Webhook</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 4. The First Working Version -->
+      <section class="fc-detail-section">
+        <h2>4. The First Working Version</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 5. But What If We Need Actual GitHub Data? -->
+      <section class="fc-detail-section">
+        <h2>5. But What If We Need Actual GitHub Data?</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 6. The Nested JSON Challenge -->
+      <section class="fc-detail-section">
+        <h2>6. The Nested JSON Challenge</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 7. Introducing Middleware -->
+      <section class="fc-detail-section">
+        <h2>7. Introducing Middleware</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 8. Approach 2 — GitHub → Middleware → Slack -->
+      <section class="fc-detail-section">
+        <h2>8. Approach 2 — GitHub → Middleware → Slack</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 9. Payload Transformation -->
+      <section class="fc-detail-section">
+        <h2>9. Payload Transformation</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 10. Changed Files -->
+      <section class="fc-detail-section">
+        <h2>10. Changed Files</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 11. Handling Multiple Commits -->
+      <section class="fc-detail-section">
+        <h2>11. Handling Multiple Commits</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 12. Aggregation & Deduplication -->
+      <section class="fc-detail-section">
+        <h2>12. Aggregation & Deduplication</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 13. Securing the Webhook -->
+      <section class="fc-detail-section">
+        <h2>13. Securing the Webhook</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 14. Positive & Negative Testing -->
+      <section class="fc-detail-section">
+        <h2>14. Positive & Negative Testing</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 15. Troubleshooting Lessons -->
+      <section class="fc-detail-section">
+        <h2>15. Troubleshooting Lessons</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 16. Direct Webhook vs Middleware -->
+      <section class="fc-detail-section">
+        <h2>16. Direct Webhook vs Middleware</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 17. What I Learned -->
+      <section class="fc-detail-section">
+        <h2>17. What I Learned</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 18. Final Architecture -->
+      <section class="fc-detail-section">
+        <h2>18. Final Architecture</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 19. Can This Pattern Work Beyond Slack? -->
+      <section class="fc-detail-section">
+        <h2>19. Can This Pattern Work Beyond Slack?</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+      <!-- 20. Key Takeaway -->
+      <section class="fc-detail-section">
+        <h2>20. Key Takeaway</h2>
+        <p>[Placeholder content]</p>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>
