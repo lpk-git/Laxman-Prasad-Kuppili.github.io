@@ -1131,16 +1131,16 @@
     /* --- NOTIFICATION CENTER --- */
     .nc-trigger {
       position: fixed;
-      bottom: 120px;
-      right: 24px;
-      width: 54px;
-      height: 54px;
+      bottom: 24px;
+      right: 90px; /* Positioned beside the Chatbase bubble */
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background-color: var(--color-blue-primary);
       color: var(--color-white);
       border: none;
       box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
-      font-size: 1.4rem;
+      font-size: 1.15rem;
       cursor: pointer;
       z-index: 999;
       display: flex;
@@ -1157,12 +1157,20 @@
       outline-offset: 2px;
     }
 
+    /* Attempt to scale down the dynamically injected Chatbase button */
+    #chatbase-bubble-button,
+    #chatbase-bubble-window-button,
+    iframe[id^="chatbase"] {
+      transform: scale(0.85) !important;
+      transform-origin: bottom right !important;
+    }
+
     .nc-panel {
       position: fixed;
-      bottom: 190px;
+      bottom: 84px;
       right: 24px;
       width: 360px;
-      max-height: calc(100vh - 220px);
+      max-height: calc(100vh - 120px);
       background-color: var(--color-white);
       border: 1px solid var(--color-border);
       border-radius: 12px;
@@ -1270,14 +1278,14 @@
     @media (max-width: 768px) {
       .nc-panel {
         width: calc(100% - 32px);
-        bottom: 100px;
+        bottom: 84px;
         right: 16px;
         left: 16px;
         max-height: 60vh;
       }
       .nc-trigger {
         bottom: 24px;
-        right: 16px;
+        right: 76px;
         z-index: 10000;
       }
     }
