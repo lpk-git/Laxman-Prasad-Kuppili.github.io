@@ -116,14 +116,60 @@
       background-color: #1e40af;
       transform: translateY(-2px);
     }
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+    .hamburger-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px 0;
+      background-color: #233554;
+      transition: all 0.3s ease;
+    }
     
     @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
       .global-nav-menu {
-        gap: 10px;
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 24px 20px;
+        margin: 0;
+        gap: 5px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .global-nav-menu.open {
+        display: flex;
       }
       .global-nav-link {
-        font-size: 0.75rem;
-        padding: 4px;
+        font-size: 1rem;
+        padding: 10px 12px;
+        display: block;
+        width: 100%;
+      }
+      
+      .mobile-menu-toggle.open .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .mobile-menu-toggle.open .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-menu-toggle.open .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
     }
   `;
@@ -135,6 +181,11 @@
       <a href="${rootPrefix}index.html" class="global-brand-logo" aria-label="Go to Home section">
         <img src="${rootPrefix}assets/logo.png" alt="ValueBridge Logo" style="max-height: 80px; height: 100%; width: auto;">
       </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
       <nav aria-label="Primary navigation">
         <ul class="global-nav-menu">
           <li><a href="${rootPrefix}index.html#about" class="global-nav-link">About</a></li>
@@ -168,6 +219,24 @@
       });
       scrollBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const globalNavMenu = document.querySelector('.global-nav-menu');
+    
+    if (mobileMenuToggle && globalNavMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('open');
+        globalNavMenu.classList.toggle('open');
+      });
+
+      const navLinks = document.querySelectorAll('.global-nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuToggle.classList.remove('open');
+          globalNavMenu.classList.remove('open');
+        });
       });
     }
   });
