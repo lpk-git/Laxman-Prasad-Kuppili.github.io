@@ -36,6 +36,441 @@
       max-width: 800px;
       line-height: 1.6;
     }
+
+    /* ── Workflow Strips (Horizontal Steps) ──────────────── */
+    .workflow-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 12px 0;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .workflow-strip--manual {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .workflow-strip--auto {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .workflow-step {
+      background: #ffffff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+    }
+
+    .workflow-step--repeat {
+      border: 1.5px dashed #dc2626;
+      background: #fee2e2;
+    }
+
+    .workflow-arrow {
+      color: #94a3b8;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    /* ── Callout Boxes ───────────────────────────────────── */
+    .callout {
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 14px 0;
+      line-height: 1.6;
+    }
+
+    .callout--info {
+      background-color: var(--color-blue-soft);
+      border-left: 4px solid var(--color-blue-primary);
+      color: var(--color-navy);
+    }
+
+    .callout--caution {
+      background-color: #fefce8;
+      border-left: 4px solid #eab308;
+      color: #713f12;
+    }
+
+    .callout--success {
+      background-color: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #14532d;
+    }
+
+    /* ── Numbered Steps List ─────────────────────────────── */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-blue-primary);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-navy);
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Progression / Journey List ──────────────────────── */
+    .journey-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .journey-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .journey-badge {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-primary);
+      background: var(--color-blue-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .journey-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .journey-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-navy);
+    }
+
+    .journey-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Value / Capabilities Grid ───────────────────────── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .value-item {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .value-icon { font-size: 1.4rem; }
+    .value-label { font-size: 0.92rem; font-weight: 700; color: var(--color-navy); }
+    .value-desc { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Guardrails Grid ─────────────────────────────────── */
+    .guardrail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .guardrail-item {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid #16a34a;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .guardrail-title { font-size: 0.9rem; font-weight: 700; color: var(--color-navy); }
+    .guardrail-desc { font-size: 0.83rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ── Tech Stack Grid ─────────────────────────────────── */
+    .tech-stack-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tech-stack-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 12px 18px;
+    }
+
+    .tech-stack-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      min-width: 190px;
+      flex-shrink: 0;
+    }
+
+    .tech-stack-role {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Architecture Diagram ────────────────────────────── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 16px 0;
+    }
+
+    .arch-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 380px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .arch-node--trigger {
+      background: #0a192f;
+      color: #ffffff;
+      border: 2px solid #1d4ed8;
+    }
+
+    .arch-node--process {
+      background: #eff6ff;
+      color: #1e3a5f;
+      border: 1px solid #bfdbfe;
+    }
+
+    .arch-node--whatsapp {
+      background: #f0fdf4;
+      color: #14532d;
+      border: 1px solid #86efac;
+    }
+
+    .arch-node--output {
+      background: #1d4ed8;
+      color: #ffffff;
+      border: 2px solid #1e40af;
+    }
+
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 0;
+      user-select: none;
+    }
+
+    .arch-arrow::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 12px;
+      background: #cbd5e1;
+    }
+
+    .arch-arrow::after {
+      content: '▼';
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+
+    /* ── Comparison Columns ──────────────────────────────── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 12px 0;
+    }
+
+    .compare-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .compare-header {
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .compare-header--before { color: #dc2626; }
+    .compare-header--after { color: #16a34a; }
+
+    /* ── Visual Walkthrough ──────────────────────────────── */
+    .walkthrough-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 16px;
+    }
+
+    .walkthrough-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .walkthrough-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .walkthrough-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .walkthrough-step-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-blue-primary);
+      background: var(--color-blue-soft);
+      border: 1px solid #bfdbfe;
+      padding: 3px 10px;
+      border-radius: 4px;
+      line-height: 1;
+    }
+
+    .walkthrough-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin: 0;
+    }
+
+    .walkthrough-img-container {
+      background: #f8fafc;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .walkthrough-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .walkthrough-caption {
+      font-size: 0.95rem;
+      color: var(--color-navy);
+      margin: 0 0 6px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .walkthrough-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .compare-grid { grid-template-columns: 1fr; }
+      .tech-stack-item { flex-direction: column; gap: 4px; }
+      .tech-stack-name { min-width: unset; }
+      .workflow-strip { font-size: 0.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -61,56 +496,467 @@
 
       <!-- 01 — The Challenge -->
       <section class="fc-detail-section" id="challenge">
-        <h2>01 — The Challenge</h2>
-        <p>Examining the friction, inefficiency, and repetition involved in manually preparing and sending common WhatsApp notifications across multiple recipients.</p>
+        <h2>The Challenge</h2>
+        <p>Sending the same notification individually to multiple WhatsApp recipients can become repetitive. The typical process involves finding a recipient, copying the message, pasting it, sending it, and repeating the same steps for every person.</p>
+
+        <div class="workflow-strip workflow-strip--manual" role="img" aria-label="Manual repetitive workflow: Find Contact to Copy Message to Paste to Send to Repeat">
+          <span class="workflow-step">Find Contact</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Copy Message</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Paste</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Send</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step workflow-step--repeat">Repeat for Each Person</span>
+        </div>
+
+        <p>For a small number of recipients this is manageable, but as the recipient list grows, the process becomes time-consuming and increases the possibility of copy-paste or number-entry errors.</p>
+        <p>The core challenge was not WhatsApp itself — the platform works reliably for individual and group messaging. The friction stemmed entirely from the repetitive workflow required for one-to-many individual communications, where each recipient needs an individual message without creating an unwanted group.</p>
       </section>
 
       <!-- 02 — The Solution -->
       <section class="fc-detail-section" id="solution">
-        <h2>02 — The Solution</h2>
-        <p>A client-side browser application designed to streamline recipient management, message consistency, and sequential dispatch.</p>
+        <h2>The Solution</h2>
+        <p>I built a lightweight browser-based application that prepares a common WhatsApp notification for multiple recipients through one structured workflow.</p>
+
+        <p>The application simplifies and structures the process so the user can:</p>
+        <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted);">
+          <li>Enter multiple WhatsApp numbers in one go</li>
+          <li>Write the common message once</li>
+          <li>Validate and clean the recipient list automatically</li>
+          <li>Remove duplicate recipients so numbers are not processed twice</li>
+          <li>Review the recipient list and draft before proceeding</li>
+          <li>Confirm the broadcast parameters</li>
+          <li>Process recipients sequentially without opening multiple tabs at once</li>
+          <li>Open each WhatsApp conversation with the message pre-filled</li>
+          <li>Perform the final Send manually with full human discretion</li>
+        </ul>
+
+        <div class="workflow-strip workflow-strip--auto" role="img" aria-label="Transformed workflow: Enter Recipients to Write Once to Validate to Review to Confirm to Open to Send to Next">
+          <span class="workflow-step">Enter Recipients</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Write Once</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Validate</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Review</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Confirm</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Open</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Send</span>
+          <span class="workflow-arrow">→</span>
+          <span class="workflow-step">Next</span>
+        </div>
+
+        <div class="callout callout--info">
+          <strong>Automation removes repetition — human confirmation retains control.</strong>
+          <p style="margin: 4px 0 0; font-size: 0.92rem;">The application structures preparation and eliminates manual retyping, while deliberately keeping the user in full control of every final dispatch decision.</p>
+        </div>
+
+        <p>The application deliberately does not send messages automatically in bulk or bypass WhatsApp's native interface; instead, it orchestrates the preparation steps so each message is ready for human review before sending.</p>
       </section>
 
       <!-- 03 — How It Works -->
       <section class="fc-detail-section" id="how-it-works">
-        <h2>03 — How It Works</h2>
-        <p>The structured end-to-end workflow: from recipient parsing and format validation to confirmation and sequential WhatsApp message preparation.</p>
+        <h2>How It Works</h2>
+        <p>The application guides the user through an end-to-end sequential workflow designed for clarity and safety:</p>
+
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-number">1</span>
+            <div class="step-content">
+              <span class="step-title">Add Recipients</span>
+              <span class="step-desc">Enter one or multiple WhatsApp numbers using a comma-separated list into the recipient input area.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">2</span>
+            <div class="step-content">
+              <span class="step-title">Compose Once</span>
+              <span class="step-desc">Write one common notification message in the editor without needing to retype or copy-paste it later.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">3</span>
+            <div class="step-content">
+              <span class="step-title">Validate</span>
+              <span class="step-desc">The application parses, cleans and validates the recipient numbers against international phone formatting rules.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">4</span>
+            <div class="step-content">
+              <span class="step-title">Remove Duplicates</span>
+              <span class="step-desc">Duplicate recipients are identified and removed so the same number is not processed twice during the session.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">5</span>
+            <div class="step-content">
+              <span class="step-title">Review &amp; Confirm</span>
+              <span class="step-desc">Review the valid recipient count, parsed numbers, and message content in a confirmation dialog before continuing.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">6</span>
+            <div class="step-content">
+              <span class="step-title">Create the Queue</span>
+              <span class="step-desc">The application prepares a structured sequential queue, maintaining progress and current position.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">7</span>
+            <div class="step-content">
+              <span class="step-title">Open in WhatsApp</span>
+              <span class="step-desc">The current recipient conversation is opened using WhatsApp Click-to-Chat with the validated number and message pre-filled.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">8</span>
+            <div class="step-content">
+              <span class="step-title">Human Review &amp; Send</span>
+              <span class="step-desc">The user reviews the prepared message in WhatsApp and manually presses Send to complete the communication.</span>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-number">9</span>
+            <div class="step-content">
+              <span class="step-title">Continue</span>
+              <span class="step-desc">Return to the application and proceed to the next recipient in the queue until all contacts have been processed.</span>
+            </div>
+          </li>
+        </ol>
       </section>
 
       <!-- 04 — Implementation Journey -->
       <section class="fc-detail-section" id="implementation-journey">
-        <h2>04 — Implementation Journey</h2>
-        <p>The incremental engineering progression from problem definition to UI creation, safety controls, Click-to-Chat integration, and version-controlled deployment.</p>
+        <h2>Built Incrementally, Not All at Once</h2>
+        <p>The solution was deliberately developed in small stages so that each capability could be tested and verified before introducing the next one:</p>
+
+        <div class="journey-list">
+          <div class="journey-item">
+            <span class="journey-badge">Stage 1</span>
+            <div class="journey-body">
+              <span class="journey-title">UI &amp; Confirmation</span>
+              <span class="journey-desc">Built the basic recipient/message interface, validation for mandatory fields and confirmation flow.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Stage 2</span>
+            <div class="journey-body">
+              <span class="journey-title">Number Validation &amp; Cleaning</span>
+              <span class="journey-desc">Added parsing, formatting cleanup, international-number validation and duplicate detection.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Stage 3</span>
+            <div class="journey-body">
+              <span class="journey-title">WhatsApp Click-to-Chat Integration</span>
+              <span class="journey-desc">Connected the validated queue with WhatsApp and introduced one-recipient-at-a-time processing.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Stage 4</span>
+            <div class="journey-body">
+              <span class="journey-title">Navigation &amp; Reset</span>
+              <span class="journey-desc">Added Home navigation, reset behaviour and protection against accidentally abandoning an active broadcast.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Stage 5</span>
+            <div class="journey-body">
+              <span class="journey-title">Production Readiness</span>
+              <span class="journey-desc">Added privacy messaging, input safeguards, responsive behaviour, metadata, error handling and final regression testing.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Review</span>
+            <div class="journey-body">
+              <span class="journey-title">Safety &amp; Abuse-Prevention Review</span>
+              <span class="journey-desc">Added a 50-recipient session limit, responsible-use acknowledgement, no-persistence checks, popup failure handling and secret/configuration review.</span>
+            </div>
+          </div>
+
+          <div class="journey-item">
+            <span class="journey-badge">Deploy</span>
+            <div class="journey-body">
+              <span class="journey-title">Git &amp; GitHub Pages</span>
+              <span class="journey-desc">Version-controlled the project with Git, published the source to GitHub and deployed the static application through GitHub Pages.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--success">
+          <strong>💡 Key Implementation Lesson:</strong>
+          <p style="margin: 4px 0 0; font-size: 0.92rem;">Building incrementally made it easier to validate each behaviour, protect existing functionality and identify problems before they propagated into later stages.</p>
+        </div>
       </section>
 
       <!-- 05 — Key Capabilities -->
       <section class="fc-detail-section" id="key-capabilities">
-        <h2>05 — Key Capabilities</h2>
-        <p>Core functionality including input cleaning, number validation, duplicate elimination, review confirmation, and interactive queue tracking.</p>
+        <h2>Key Capabilities</h2>
+        <p>The application bundles a focused set of client-side utilities designed to balance efficiency with operational safety:</p>
+
+        <div class="value-grid">
+          <div class="value-item">
+            <span class="value-icon">📝</span>
+            <span class="value-label">Multi-Recipient Input</span>
+            <span class="value-desc">Accept multiple recipient numbers in one session using flexible comma-separated input.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">🧹</span>
+            <span class="value-label">Number Cleaning</span>
+            <span class="value-desc">Handle common formatting such as spaces, +, hyphens and parentheses before validation.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">✅</span>
+            <span class="value-label">Recipient Validation</span>
+            <span class="value-desc">Check that cleaned recipient values contain a reasonable international phone-number format.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">🔍</span>
+            <span class="value-label">Duplicate Detection</span>
+            <span class="value-desc">Prevent duplicate numbers from being processed repeatedly in the same broadcast.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">💬</span>
+            <span class="value-label">Common Message</span>
+            <span class="value-desc">Compose the notification once instead of repeatedly copying and pasting it.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">📋</span>
+            <span class="value-label">Review &amp; Confirmation</span>
+            <span class="value-desc">Allow the user to verify the recipient count and message before proceeding.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">⏱️</span>
+            <span class="value-label">Sequential Queue</span>
+            <span class="value-desc">Process one recipient at a time rather than opening multiple WhatsApp windows simultaneously.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">📊</span>
+            <span class="value-label">Progress Tracking</span>
+            <span class="value-desc">Track Total, Opened and Remaining recipients in real time throughout the session.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-icon">🔄</span>
+            <span class="value-label">Reset &amp; Navigation</span>
+            <span class="value-desc">Allow a completed or abandoned workflow to return safely to the starting state.</span>
+          </div>
+        </div>
       </section>
 
       <!-- 06 — Privacy & Responsible Design -->
       <section class="fc-detail-section" id="privacy-responsible-design">
-        <h2>06 — Privacy & Responsible Design</h2>
-        <p>Architectural safeguards: zero server persistence, strictly client-side processing, explicit user consent, session limits, and retaining user control via manual sending.</p>
+        <h2>Automation with Guardrails</h2>
+        <p>Privacy and responsible usage were treated as core architectural design requirements rather than afterthoughts:</p>
+
+        <div class="guardrail-grid">
+          <div class="guardrail-item">
+            <span class="guardrail-title">Client-Side Processing</span>
+            <span class="guardrail-desc">Recipient and message processing happens entirely within the browser application.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">No Application Database</span>
+            <span class="guardrail-desc">The application does not use a backend or database to persist recipient lists or message content.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">No Intentional Persistence</span>
+            <span class="guardrail-desc">Recipient numbers and messages are not intentionally saved to localStorage, sessionStorage, IndexedDB or cookies.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">Responsible-Use Acknowledgement</span>
+            <span class="guardrail-desc">The user confirms that recipients expect or have agreed to receive the communication before proceeding.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">50-Recipient Session Limit</span>
+            <span class="guardrail-desc">A single broadcast session is strictly limited to a maximum of 50 unique valid recipients.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">Manual Final Send</span>
+            <span class="guardrail-desc">The application prepares the WhatsApp conversation, but the user performs the final Send action.</span>
+          </div>
+
+          <div class="guardrail-item">
+            <span class="guardrail-title">No Embedded Credentials</span>
+            <span class="guardrail-desc">The static application does not require WhatsApp credentials, access tokens or API secrets.</span>
+          </div>
+        </div>
+
+        <div class="callout callout--caution">
+          <strong>🔒 Technical Privacy Note:</strong>
+          <p style="margin: 4px 0 0; font-size: 0.92rem;">When the user chooses Open in WhatsApp, the selected recipient number and encoded message are passed to WhatsApp through the Click-to-Chat URL so the conversation can be prepared.</p>
+        </div>
       </section>
 
       <!-- 07 — Technology & Architecture -->
       <section class="fc-detail-section" id="technology-architecture">
-        <h2>07 — Technology & Architecture</h2>
-        <p>Technical stack and integration protocols: HTML5, CSS3, Vanilla JavaScript, WhatsApp Click-to-Chat, Git, and GitHub Pages deployment without backend infrastructure.</p>
+        <h2>Lightweight by Design</h2>
+        <p>The application relies entirely on standard browser capabilities, static hosting, and native WhatsApp integration:</p>
+
+        <div class="tech-stack-grid">
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">HTML</span>
+            <span class="tech-stack-role">Provides accessible page structure, semantic forms, and dialog overlays.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">CSS</span>
+            <span class="tech-stack-role">Delivers a clean, responsive interface, visual status badges, and mobile-friendly styling.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Vanilla JavaScript</span>
+            <span class="tech-stack-role">Powers number validation, duplicate detection, queue management, state tracking, and Click-to-Chat URL construction.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">WhatsApp Click-to-Chat</span>
+            <span class="tech-stack-role">Standard URL protocol used to pre-fill individual recipient conversations without requiring backend APIs.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">Git</span>
+            <span class="tech-stack-role">Local version control used to track small, testable, and reviewable increments.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">GitHub</span>
+            <span class="tech-stack-role">Central code repository for versioned source control and release tracking.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">GitHub Pages</span>
+            <span class="tech-stack-role">Reliable static web deployment delivering fast HTTPS delivery with zero server maintenance overhead.</span>
+          </div>
+          <div class="tech-stack-item">
+            <span class="tech-stack-name">AntiGravity + AI Assistance</span>
+            <span class="tech-stack-role">Guided incremental implementation, edge-case testing, and code validation.</span>
+          </div>
+        </div>
+
+        <p style="margin-top: 16px;">The simplified architectural data flow operates as follows:</p>
+
+        <div class="arch-diagram" role="img" aria-label="Architecture: User Browser to HTML CSS JS to Validate and Prepare Recipient to WhatsApp Click-to-Chat to WhatsApp to User Reviews and Sends">
+          <div class="arch-node arch-node--trigger">User Browser</div>
+          <div class="arch-arrow"></div>
+          <div class="arch-node arch-node--process">HTML + CSS + JavaScript</div>
+          <div class="arch-arrow"></div>
+          <div class="arch-node arch-node--process">Validate &amp; Prepare Recipient</div>
+          <div class="arch-arrow"></div>
+          <div class="arch-node arch-node--whatsapp">WhatsApp Click-to-Chat</div>
+          <div class="arch-arrow"></div>
+          <div class="arch-node arch-node--whatsapp">WhatsApp Client</div>
+          <div class="arch-arrow"></div>
+          <div class="arch-node arch-node--output">User Reviews &amp; Sends</div>
+        </div>
+
+        <p style="font-size: 0.92rem; color: var(--color-text-muted);">No custom backend or application database is required for Version 1.0. WhatsApp is not hosted inside the application; standard web protocols securely bridge browser-based preparation to the native communication client.</p>
       </section>
 
       <!-- 08 — Outcome & Learning -->
       <section class="fc-detail-section" id="outcome-learning">
-        <h2>08 — Outcome & Learning</h2>
-        <p>Practical operational benefits, friction reduction, everyday problem-solving insights, and lessons learned from lightweight automation.</p>
+        <h2>What Changed?</h2>
+        <p>Structuring the preparation workflow created a clear shift in how multi-recipient notifications are handled:</p>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <span class="compare-header compare-header--before">Before — Manual Loop</span>
+            <div style="font-weight: 600; font-size: 0.85rem; color: #991b1b; line-height: 1.5;">
+              Find → Copy → Paste → Send → Repeat
+            </div>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
+              Repetitive manual search and copy-paste activity for each recipient; high risk of missed numbers, clipboard mistakes, and operational fatigue.
+            </p>
+          </div>
+
+          <div class="compare-card">
+            <span class="compare-header compare-header--after">After — Structured Flow</span>
+            <div style="font-weight: 600; font-size: 0.85rem; color: #166534; line-height: 1.5;">
+              Enter Once → Write Once → Validate → Review → Process Sequentially
+            </div>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
+              Recipients are cleaned and verified upfront; duplicate numbers are eliminated; messages are pre-filled; sending remains intentional and human-reviewed.
+            </p>
+          </div>
+        </div>
+
+        <p>Key practical outcomes achieved:</p>
+        <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted);">
+          <li>Reduced repetitive copy-paste activity</li>
+          <li>Reduced manual number-entry errors</li>
+          <li>Structured the multi-recipient workflow</li>
+          <li>Added validation before processing</li>
+          <li>Added clear progress visibility</li>
+          <li>Retained human control over final sending</li>
+          <li>Avoided unnecessary backend/database infrastructure</li>
+        </ul>
+
+        <div class="callout callout--info" style="margin-top: 18px;">
+          <p style="margin: 0 0 10px; font-weight: 600; color: var(--color-navy); font-size: 1rem; line-height: 1.5;">
+            "The biggest learning was that useful automation does not always require a complex platform, AI agent or backend service. Sometimes the right solution is to remove repetitive steps while deliberately preserving the human decision at the point where it matters."
+          </p>
+          <p style="margin: 0; font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.6;">
+            AI-assisted development helped translate the requirement into small, testable increments — but validation, workflow decisions, privacy controls and responsible-use boundaries remained part of the solution design.
+          </p>
+        </div>
       </section>
 
       <!-- 09 — Visual Walkthrough -->
       <section class="fc-detail-section" id="visual-walkthrough">
-        <h2>09 — Visual Walkthrough</h2>
-        <p>Step-by-step visual demonstration of the user interface, recipient review, confirmation dialog, active queue status, and WhatsApp preparation.</p>
+        <h2>Visual Walkthrough</h2>
+        <p>The visual walkthrough below illustrates the start-to-finish user journey: from composing and validating the batch notification in the browser to reviewing the pre-populated chat directly in WhatsApp before final manual transmission.</p>
+
+        <div class="walkthrough-gallery">
+          <!-- Visual 1 — Prepare the Notification -->
+          <div class="walkthrough-card">
+            <div class="walkthrough-card-header">
+              <span class="walkthrough-step-badge">Visual 1</span>
+              <h3 class="walkthrough-card-title">1. Prepare the Notification</h3>
+            </div>
+            <div class="walkthrough-img-container">
+              <img src="../assets/whatsapp-broadcast-prepare.png" alt="Screenshot of the WhatsApp Notification Broadcast recipient and message entry screen with masked numbers and common message" class="walkthrough-img" loading="lazy">
+            </div>
+            <p class="walkthrough-caption">
+              <em>Enter multiple recipients and compose the common message once.</em>
+            </p>
+            <p class="walkthrough-desc">
+              The user enters recipient numbers into the input view and drafts the common notification. Real-time validation checks format rules and character boundaries directly in the browser with zero backend storage.
+            </p>
+          </div>
+
+          <!-- Visual 4 — Review & Send -->
+          <div class="walkthrough-card">
+            <div class="walkthrough-card-header">
+              <span class="walkthrough-step-badge">Visual 4</span>
+              <h3 class="walkthrough-card-title">4. Review & Send</h3>
+            </div>
+            <div class="walkthrough-img-container">
+              <img src="../assets/whatsapp-broadcast-complete.png" alt="Screenshot of WhatsApp chat with masked recipient number and prepared notification message awaiting manual send confirmation" class="walkthrough-img" loading="lazy">
+            </div>
+            <p class="walkthrough-caption">
+              <em>WhatsApp opens with the recipient and message prepared. The user retains control of the final Send action.</em>
+            </p>
+            <p class="walkthrough-desc">
+              Selecting "Open in WhatsApp" triggers the official Click-to-Chat protocol, opening the recipient chat with the pre-populated notification payload. The user retains full control to inspect, confirm, or edit before executing the final manual send.
+            </p>
+          </div>
+        </div>
       </section>
 
     </div>
