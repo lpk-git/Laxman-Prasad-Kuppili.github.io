@@ -80,6 +80,14 @@
       "tags": ["github", "webhooks", "integration", "automation", "middleware", "slack", "cloudflare-workers"],
       "problem": "How to send GitHub push notifications to communication channels using webhooks, and progressively enhance the integration with middleware, payload transformation and webhook security.",
       "technology": ["GitHub", "Webhooks", "Integration", "Automation", "Middleware", "Slack", "Cloudflare Workers"]
+    },
+    {
+      "id": "whatsapp-notification-broadcast",
+      "title": "WhatsApp Notification Broadcast",
+      "file": "flowcraft/whatsapp-notification-broadcast.html",
+      "tags": ["whatsapp", "click-to-chat", "automation", "integration", "vanilla-js", "web", "github-pages"],
+      "problem": "A lightweight browser-based solution that simplifies sending a common WhatsApp notification to multiple recipients through validation, review and sequential message preparation.",
+      "technology": ["HTML", "CSS", "Vanilla JavaScript", "WhatsApp Click-to-Chat", "Git", "GitHub Pages"]
     }
   ]
 }

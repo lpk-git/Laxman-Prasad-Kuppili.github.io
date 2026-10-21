@@ -1,5 +1,14 @@
 [
   {
+    "id": "whatsapp-notification-broadcast",
+    "publishedAt": "2026-10-21T15:30:00+05:30",
+    "type": "new-content",
+    "section": "FlowCraft",
+    "title": "WhatsApp Notification Broadcast",
+    "message": "A new automation learning use case has been added around simplifying multi-recipient WhatsApp notification preparation.",
+    "link": "flowcraft/whatsapp-notification-broadcast.html"
+  },
+  {
     "id": "github-channel-notifications",
     "publishedAt": "2026-10-05T19:30:00+05:30",
     "type": "new-content",
